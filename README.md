@@ -17,7 +17,7 @@
 
 ### 一. Mixly库
 
-​        mixly库我们秉着mixly软件自带传感器库和我们的硬件兼容的器件我们不做库，只做差异化的库的原则分成了六个模块，分别为基础输入模块、传感器、显示器、执行器、智能模块、无线通信；当我们使用Mixly编程的时候，先[点击下载][点击下载](https://github.com/emakefun/emakefun_sensors_graphical_lib/releases/download/v1.0.0/Emakefun_Sensor.zip) Mixly库，解压下载的Emakefun_Sensor.zip文件；将里面的EM_MQTT和EM_OLED两个文件夹，
+​        mixly库我们秉着mixly软件自带传感器库和我们的硬件兼容的器件我们不做库，只做差异化的库的原则分成了六个模块，分别为基础输入模块、传感器、显示器、执行器、智能模块、无线通信；当我们使用Mixly编程的时候，先[点击下载](https://github.com/emakefun/emakefun_sensors_graphical_lib/releases/download/v1.0.0/Emakefun_Sensor.zip) Mixly库，解压下载的Emakefun_Sensor.zip文件；将里面的EM_MQTT和EM_OLED两个文件夹，
 
 **1. 基础输入模块:**
 
