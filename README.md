@@ -2,16 +2,27 @@
 ​       本库是深圳市易创空间科技有限公司结合自家公司生产的硬件做的Arduino库；其中里面包含Arduino源码、Mixly扩展库、Mind+扩展库、MBlock5扩展库以及相对应的示例程序。
 ## 目录结构
 
-> -----emakefun_sensors_graphical_lib
->      |
->      |-----example
->      |       |-----mblock5     mblock5图形化案例
->      |       |-----mind+         mind图形化案例
->      |       |-----mixly           mixly图形化案例
->      |-----mblock5              mblock5图形化库
->      |-----mind+                  mind+图形化库
->      |-----mixly                    mixly图形化库
->      |-----README.md       readme
+|-- emakefun_sensors_graphical_lib
+
+  |-- README.md
+
+  |-- example
+
+  |  |-- mblock5
+
+  |  |-- mind+
+
+  |  |-- mixly
+
+  |-- mblock5
+
+  |-- media
+
+  |  |-- mixly
+
+  |-- mind+
+
+  |-- mixly
 
 ## 库描述
 
