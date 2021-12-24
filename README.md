@@ -26,7 +26,7 @@
 
 钢琴模块分为v1、v2两个版本，使用时请根据硬件上的丝印选择对应的块。
 
-当硬件是V1时，请选择![piano_v1](.\media\mixly\piano_v1.png)
+当硬件是V1时，请选择![piano_v1](./media/mixly/piano_v1.png)
 
 **描述：** 
 钢琴模块选择对应的CLK、DIO两个引脚，判断钢琴模块上的数字按键是否被触摸；当被触摸对应的数字时，输出TRUE,否则为FALSE。
