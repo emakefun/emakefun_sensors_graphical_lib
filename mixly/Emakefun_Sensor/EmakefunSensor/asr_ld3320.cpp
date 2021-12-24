@@ -1,9 +1,14 @@
 #include <Wire.h>
 #include "asr_ld3320.h"
 
-bool WireWriteByte(uint8_t val)
+LD3320::LD3320(uint8_t addr){
+  Wire.begin();
+    _i2c_addr = addr;
+}
+
+boolean LD3320::WireWriteByte(uint8_t val)
 {
-    Wire.beginTransmission(VOICE_IIC_ADDR);
+    Wire.beginTransmission(_i2c_addr);
     Wire.write(val);
     if( Wire.endTransmission() != 0 ) {
         return false;
@@ -11,10 +16,10 @@ bool WireWriteByte(uint8_t val)
     return true;
 }
 
-bool WireWriteDataArray(uint8_t reg, uint8_t *val, unsigned int len)
+boolean LD3320::WireWriteDataArray(uint8_t reg, uint8_t *val, unsigned int len)
 {
     unsigned int i;
-    Wire.beginTransmission(VOICE_IIC_ADDR);
+    Wire.beginTransmission(_i2c_addr);
     Wire.write(reg);
     for(i = 0; i < len; i++) {
         Wire.write(val[i]);
@@ -25,14 +30,14 @@ bool WireWriteDataArray(uint8_t reg, uint8_t *val, unsigned int len)
     return true;
 }
 
-int WireReadDataArray(uint8_t reg, uint8_t *val, unsigned int len)
+int LD3320::WireReadDataArray(uint8_t reg, uint8_t *val, unsigned int len)
 {
     unsigned char i = 0;  
     /* Indicate which register we want to read from */
     if (!WireWriteByte(reg)) {
         return -1;
     }
-    Wire.requestFrom(VOICE_IIC_ADDR, len);
+    Wire.requestFrom(_i2c_addr, len);
     while (Wire.available()) {
         if (i >= len) {
             return -1;
@@ -44,9 +49,9 @@ int WireReadDataArray(uint8_t reg, uint8_t *val, unsigned int len)
     return i;
 }
 
-bool ld3320_config_time(unsigned char t) 
+boolean LD3320::ld3320_config_time(unsigned char t) 
 {
-    Wire.beginTransmission(VOICE_IIC_ADDR);
+    Wire.beginTransmission(_i2c_addr);
 	Wire.write(VOICE_CONFIG_TIME_REG);
 	Wire.write(t);
     if (Wire.endTransmission() != 0) {
@@ -57,9 +62,9 @@ bool ld3320_config_time(unsigned char t)
     return true;
 }
 
-bool ld3320_config_mode(E_WORK_MODE m)
+boolean LD3320::ld3320_config_mode(E_WORK_MODE m)
 {
-  Wire.beginTransmission(VOICE_IIC_ADDR);
+  Wire.beginTransmission(_i2c_addr);
 	Wire.write(VOICE_MODE_REG);
 	Wire.write(m);
     if (Wire.endTransmission() != 0) {
@@ -70,26 +75,26 @@ bool ld3320_config_mode(E_WORK_MODE m)
     return true;	
 }
 
-bool ld3320_clear(void)
+boolean LD3320::ld3320_clear(void)
 {
 	WireWriteByte(VOICE_ERASE_REG);
 }
 
-bool ld3320_reset(void)
+boolean LD3320::ld3320_reset(void)
 {
   WireWriteByte(VOICE_RESET_REG);
   delay(300);
 
 }
 
-bool ld3320_asr_start(void)
+boolean LD3320::ld3320_asr_start(void)
 {
   WireWriteByte(VOICE_ASR_START_REG);
   delay(300);
   return true;
 }
 
-unsigned char ld3320_get_result(void)
+unsigned char LD3320::ld3320_get_result(void)
 {
     unsigned char result;
     WireReadDataArray(VOICE_RESULT_REG, &result, 1);
@@ -103,9 +108,9 @@ unsigned char ld3320_get_result(void)
  * words：要识别汉字词条的拼音，汉字之间用空格隔开
  * 执行该函数，词条是自动往后排队添加的。
  */
-bool ld3320_add_words(unsigned char idNum, const char *words)
+boolean LD3320::ld3320_add_words(unsigned char idNum, const char *words)
 {
-    Wire.beginTransmission(VOICE_IIC_ADDR);
+    Wire.beginTransmission(_i2c_addr);
     Wire.write(VOICE_ADD_WORDS_REG);
     Wire.write(idNum);
     Wire.write(words, strlen(words));
@@ -117,7 +122,11 @@ bool ld3320_add_words(unsigned char idNum, const char *words)
     return true;
 }
 
-bool ld3320_config_keywords(const char *words)
+boolean LD3320::ld3320_config_keywords(const char *words)
 {
 	return ld3320_add_words(0, words);
+}
+
+LD3320::~LD3320()
+{
 }

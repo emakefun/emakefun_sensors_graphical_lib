@@ -19,103 +19,30 @@
 	<block type="em_print"></block>
 	<!--矩阵键盘引脚初始化-->
 	<block type="em_initialize_matrix_keyboard">
-		<value name="em_scl_pin">
-			<shadow type="math_number">
-				<field name="NUM">3</field>
-			</shadow>
-		</value>
-		<value name="em_sdo_pin">
-			<shadow type="math_number">
-				<field name="NUM">2</field>
-			</shadow>
-		</value>
 	</block>
 	<!--矩阵键盘状态-->
-	<block type="em_matrix_keyboard_status">
-	</block>
+	<!-- <block type="em_matrix_keyboard_status">
+	</block> -->
 	<!--获取矩阵键盘的值-->
 	<block type="em_matrix_keyboard_values">
 	</block>
 	<!-- 遥控手柄初始化 -->
-	<block type="em_hand_initalize_header"></block>
+	<!-- <block type="em_hand_initalize_header"></block> -->
 	<!-- 手柄方向控制 -->
 	<block type="em_hand_jobone_header_x" id="jobone_header_x"></block>
 	<!-- 手柄按钮控制 -->
 	<block type="em_hand_botton_fore"></block>
 	<!-- 按下和释放状态判断 -->
-	<block type="em_hand_press_that"></block>
-	<block type="em_hand_release_that"></block>
+	<!-- <block type="em_hand_press_that"></block>
+	<block type="em_hand_release_that"></block> -->
 	<!-- 手柄左右摇杆 -->
 	<!-- <block type="em_hand_lr_press"></block> -->
-	<!--插针式矩阵键盘初始化 -->
-	<block type="em_keypad">
-		<value name="em_row_1">
-			<shadow type="math_number">
-				<field name="NUM">4</field>
-			</shadow>
-		</value>
-		<value name="em_row_2">
-			<shadow type="math_number">
-				<field name="NUM">5</field>
-			</shadow>
-		</value>
-		<value name="em_row_3">
-			<shadow type="math_number">
-				<field name="NUM">6</field>
-			</shadow>
-		</value>
-		<value name="em_row_4">
-			<shadow type="math_number">
-				<field name="NUM">7</field>
-			</shadow>
-		</value>
-		<value name="em_col_1">
-			<shadow type="math_number">
-				<field name="NUM">8</field>
-			</shadow>
-		</value>
-				<value name="em_col_2">
-			<shadow type="math_number">
-				<field name="NUM">9</field>
-			</shadow>
-		</value>
-			<value name="em_col_3">
-			<shadow type="math_number">
-				<field name="NUM">10</field>
-			</shadow>
-		</value>
-		<value name="em_col_4">
-			<shadow type="math_number">
-				<field name="NUM">11</field>
-			</shadow>
-		</value>
-	</block>
-	<!--获取插针式矩阵键盘值ֵ-->
-	<block type="em_getkeypad">
-	</block>
-	<!--判断矩阵键盘按下的值-->
-	<block type="em_keypadpressed">
-	</block>
-	<!--获取插针式矩阵键盘按下的值-->
-	<block type="em_keypadvalue">
-	</block>
 </category>
 
 <category id="catMakeBlocka" name="传感器(Sensor)" colour="100">
     <!-- <blcok type="em_fiveInfraredTracking"></block> -->
 	<!--普通超声波获取距离-->
-	<block type="em_ultrasonicread">
-		<value name="em_trigpin">
-			<shadow type="math_number">
-				<field name="NUM">2</field>
-			</shadow>
-		</value>
-		<value name="em_echopin">
-			<shadow type="math_number">
-				<field name="NUM">3</field>
-			</shadow>
-		</value>
-	</block>
+
 	<!--RGB超声波初始化-->
 	<block type="em_initrgbultrasonic">
 		<value name="em_ultrasonicpin">
@@ -140,8 +67,7 @@
 	<!-- 水蒸气传感器 -->
 	<block type="em_water_vapor"></block>
 	<!-- 指南针 -->
-	<block type="em_compass_star"></block>
-	<block type="em_compass_getValue"></block>
+	<!-- <block type="em_compass_star"></block> -->
 	<block type="em_compass_vue"></block>
 	<!-- 五路循迹 -->
 	<block type="em_fiveInfraredTracking"></block>
@@ -275,22 +201,7 @@
 		<block type="em_7ledcountnumoff"></block>
 		<!--PH2.0初始化8*8点阵-->
 		<block type="em_dianzhen">
-			<value name="em_din">
-				<shadow type="math_number">
-					<field name="NUM">7</field>
-				</shadow>
-			</value>
-					<value name="em_cs">
-				<shadow type="math_number">
-					<field name="NUM">6</field>
-				</shadow>
-			</value>
-					<value name="em_clk">
-				<shadow type="math_number">
-					<field name="NUM">5</field>
-				</shadow>
-			</value>
-					<value name="em_count">
+			<value name="em_count">
 				<shadow type="math_number">
 					<field name="NUM">1</field>
 				</shadow>
@@ -322,8 +233,6 @@
 		<!--  74 595插针式数码管关闭 -->
 		<block type="em_74hoff">
 		</block>
-		<!-- OLED初始化 -->
-		<block type= "em_OLED_Init"></block>
 		<!-- OLED初始化 -->
 		<block type= "em_OLED_Model"></block>
 				<!-- OLED清屏
@@ -363,22 +272,6 @@
 
 
 <category id="catMakeBlockd" name="执行器(Actuator)" colour="100">
-	
-		<!-- 舵机-->
-		<block type="em_servo">
-			<value name="em_servopin">
-				<shadow type="math_number">
-					<field name="NUM">7</field>
-				</shadow>
-			</value>
-			<value name="em_servoangle">
-				<shadow type="math_number">
-					<field name="NUM">90</field>
-				</shadow>
-			</value>
-		</block>
-	
-	
 	<!--蜂鸣器-->
 	<block type="em_buzzerpin">
 		<value name="em_freq">
@@ -455,50 +348,15 @@
 			</shadow>
 		</value>
 	</block> -->
-	<!--MP3模块初始化-->
-	<block type="em_MP3_MODE">
-		<value name="em_tx_pin">
-			<shadow type="math_number">
-				<field name="NUM">0</field>
-			</shadow>
-		</value>
-		<value name="em_rx_pin">
-			<shadow type="math_number">
-				<field name="NUM">1</field>
-			</shadow>
-		</value>
-	</block>
-	<!--设置设置MP3模块音量-->
-	<block type="em_MP3_Volume">
-		<value name="em_volume">
-			<shadow type="math_number">
-				<field name="NUM">30</field>
-			</shadow>
-		</value>
-	</block>
-	<!-- 设置MP3播放哪首  -->
-	<block type="em_MP3_playIndex">
-		<value name="em_index">
-			<shadow type="math_number">
-				<field name="NUM">1</field>
-			</shadow>
-		</value>
-	</block>
-	<!-- 设置MP3播放模式  -->
-	<block type="em_MP3_playModel"></block>
-	<!-- 设置MP3播放音效  -->
-	<block type="em_MP3_playEqualizer"></block>
-	<!-- MP3模块操作 -->
-	<block type= "em_MP3_Play"></block>
 </category>
 
 <category id="catMakeBlocke" name="智能模块(Smart Module)" colour="100">
 	<!-- 初始化颜色传感器 -->
-	<block type = "em_colorview_init"></block>
+	<!-- <block type = "em_colorview_init"></block> -->
 	<!-- 颜色传感器读取的值 -->
 	<block type="em_colorview_value"></block>
 	<!-- 初始化语音识别传感器 -->
-	<block type = "em_VoiceRecognition_init"></block>
+	<!-- <block type = "em_VoiceRecognition_init"></block> -->
 	<!--语音识别模式设置-->
 	<block type="em_VoiceRecognition_Mode"></block>
 	<!--语音识别设置词条和编号-->
@@ -525,6 +383,14 @@
 		<value name="em_time">
 			<shadow type="math_number">
 				<field name="NUM">5</field>
+			</shadow>
+		</value>
+	</block>
+	<!-- 设置唤醒词 -->
+	<block type= "em_VoiceRecognition_wake_word">
+		<value name="em_wakeWordContent">
+			<shadow type="text">
+				<field name="TEXT">xiao ai tong xue</field>
 			</shadow>
 		</value>
 	</block>
@@ -565,15 +431,15 @@
 			</block>-->
 
 			<!-- 六轴陀螺仪 -->
-	<block type="em_gyro_init"></block>
-	<block type="em_gyro_getvalue"></block>
+	<!-- <block type="em_gyro_init"></block>
+	<block type="em_gyro_getvalue"></block> -->
 	
 	<!-- 手势传感器 -->
-	<block type="em_handleStatus_init"></block>
+	<!-- <block type="em_handleStatus_init"></block> -->
 	<!-- 是否获取到值 -->
 	<block type="em_handleSensor_isGetValue"></block>
 	<!-- 获取值 -->
-	<block type="em_handleSensor_getValue"></block>
+	<!-- <block type="em_handleSensor_getValue"></block> -->
 	<!-- 获取状态 -->
 	<block type="em_handleSensor_getStatus"></block>
 	

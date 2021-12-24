@@ -16,7 +16,7 @@ var EM_RGBPOSITION = [[Blockly.EM_ALL, "E_RGB_ALL"], [Blockly.EM_RIGHT, "E_RGB_R
 var EM_RGBCOLOR = [[Blockly.EM_RED, "RGB_RED"], [Blockly.EM_GREEN, "RGB_GREEN"], [Blockly.EM_BLUE, "RGB_BLUE"], [Blockly.EM_YELLOW, "RGB_YELLOW"], [Blockly.EM_PURPLE, "RGB_PURPLE"], [Blockly.EM_ORANGE, "RGB_ORANGE"], [Blockly.EM_INDIGO, "RGB_INDIGO"], [Blockly.EM_VIOLET, "RGB_VIOLET"], [Blockly.EM_WHITE, "RGB_WHITE"], [Blockly.EM_BLACK, "0x000000"]];
 var EM_RGBSTYLE = [[Blockly.EM_NONE, "E_EFFECT_NONE"], [Blockly.EM_BREATHING, "E_EFFECT_BREATHING"], [Blockly.EM_ROTATE, "E_EFFECT_ROTATE"], [Blockly.EM_FLASH, "E_EFFECT_FLASH"]];
 // 手柄摇杆和按钮
-var EM_JOBONE_X = [['x','1'],['y','2']];
+var EM_JOBONE_X = [['X','1'],['Y','2']];
 var EM_JOBONE_BTN = [['A','BUTOON_UP'],['B','BUTOON_RIGHT'],['C','BUTOON_DOWN'],['D','BUTOON_LEFT'],[Blockly.EM_CENTER,'JOYSTICK_BUTTON']];
 var EM_JOBONE_LAST = [[Blockly.EM_PRESSDOWNS,"PRESS_DOWN"],[Blockly.EM_PRESSUPS,"PRESS_UP"],[Blockly.EM_PRESSONES,"SINGLE_CLICK"],[Blockly.EM_PRESSTWOS,"DOUBLE_CLICK"],[Blockly.EM_PRESSYEARS,"LONG_PRESS_HOLD"],[Blockly.EM_PRESSNOS,"NONE_PRESS"]];
 
@@ -24,7 +24,7 @@ var EM_JOBONE_LAST = [[Blockly.EM_PRESSDOWNS,"PRESS_DOWN"],[Blockly.EM_PRESSUPS,
 var EM_LR_press = [[Blockly.EM_LRPRESSL,'A'],[Blockly.EM_LRPRESSR,'B']];
 
 // 指南针
-var EM_COMPASS_VAU = [['x','x'],['y','y'],['z','z'],[Blockly.EM_AZIMUTHS,'azimuth']];
+var EM_COMPASS_VAU = [['X方向','1'],['Y方向','2'],['Z方向','3'],[Blockly.EM_AZIMUTHS,'4']];
 // 陀螺仪
 var EM_GYROVALUE = [[Blockly.EM_GYROVALUEA,'GetGravity(BT_X)'],[Blockly.EM_GYROVALUEB,'GetGravity(BT_Y)'],[Blockly.EM_GYROVALUEC,'GetGravity(BT_Z)'],[Blockly.EM_GYROVALUED,'GetRoll()'],[Blockly.EM_GYROVALUEE,'GetPitch()']];
 
@@ -59,23 +59,67 @@ Blockly.Blocks.em_initrgbultrasonic = {
       this.setColour(80);
       this.appendDummyInput("")
         .appendField(Blockly.EM_INITRGBULTRASONIC)
-      this.appendValueInput("em_ultrasonicpin", Number)
+        .appendField(new Blockly.FieldTextInput('myRGBUltrasonic'), 'em_rgbUltrasonic')
         .appendField(Blockly.EM_ULTRASONICPIN)
-        .setCheck(Number);
-      this.appendValueInput("em_rgbpin", Number)
+        .appendField(new Blockly.FieldDropdown([
+          ['6', "6"],
+          ['0', "0"],
+          ['1', "1"],
+          ['2', "2"],
+          ['3', "3"],
+          ['4', "4"],
+          ['5', "5"],
+          ['7', "7"],
+          ['8', "8"],
+          ['9', "9"],
+          ['10', "10"],
+          ['11', "11"],
+          ['12', "12"],
+          ['13', "13"],
+          ['A0', "A0"],
+          ['A1', "A1"],
+          ['A2', "A2"],
+          ['A3', "A3"],
+          ['A4', "A4"],
+          ['A5', "A5"],
+        ]), "em_ultrasonicpin")
         .appendField(Blockly.EM_RGBPIN)
-        .setCheck(Number);
+        .appendField(new Blockly.FieldDropdown([
+          ['5', "5"],
+          ['0', "0"],
+          ['1', "1"],
+          ['2', "2"],
+          ['3', "3"],
+          ['4', "4"],
+          ['6', "6"],
+          ['7', "7"],
+          ['8', "8"],
+          ['9', "9"],
+          ['10', "10"],
+          ['11', "11"],
+          ['12', "12"],
+          ['13', "13"],
+          ['A0', "A0"],
+          ['A1', "A1"],
+          ['A2', "A2"],
+          ['A3', "A3"],
+          ['A4', "A4"],
+          ['A5', "A5"],
+        ]), "em_rgbpin")
       this.setPreviousStatement(true, null);
       this.setInputsInline(true);
       this.setNextStatement(true, null);
     }
   };
+
 //设置RGB超声波模块颜色样式
 Blockly.Blocks.em_setcolorandstyle = {
     init: function () {
       this.setColour(80);
       this.appendDummyInput("")
         .appendField(Blockly.EM_SETCOLOR)
+        .appendField(new Blockly.FieldTextInput('myRGBUltrasonic'), 'em_rgbUltrasonic')
+        .appendField(Blockly.EM_PROBE)
         .appendField(new Blockly.FieldDropdown(EM_RGBPOSITION), "em_rgbposition");
       this.appendDummyInput("")
       .appendField(Blockly.EM_SETRGBCOLOR)
@@ -93,6 +137,8 @@ Blockly.Blocks.em_readultrasonicdistance = {
     init: function () {
       this.setColour(80);
       this.appendDummyInput("")
+      .appendField(Blockly.RGBULTRASONIC)
+      .appendField(new Blockly.FieldTextInput('myRGBUltrasonic'), 'em_rgbUltrasonic')
         .appendField(Blockly.EM_READULTRASONICDISTANCE)
       this.setOutput(true, Number);
       this.setInputsInline(true);
@@ -148,6 +194,8 @@ Blockly.Blocks.em_compass_vue={
 		this.setColour(200);
 		this.appendDummyInput("")
 		    .appendField(Blockly.EM_COMMPASSONE)
+        .appendField(new Blockly.FieldTextInput('myCompass'), 'em_compass')
+        .appendField(Blockly.EM_COMMPASSONE_GET)
 		    .appendField(new Blockly.FieldDropdown(EM_COMPASS_VAU), "em_capa")
 		    .appendField(Blockly.EM_COMMPASSTWO);
 		this.setOutput(true);
@@ -160,19 +208,9 @@ Blockly.Blocks.em_compass_star={
 	init:function(){
 		this.setColour(200);
 		this.appendDummyInput("")
+    .appendField(Blockly.EM_COMPASS)
+    .appendField(new Blockly.FieldTextInput('myCompass'), 'em_compass')
 		    .appendField(Blockly.EM_COMMPASSTHR)
-		this.setOutput(false);
-		this.setPreviousStatement(true, null);
-		this.setNextStatement(true, null);
-		this.setTooltip('');
-	}
-};
-
-Blockly.Blocks.em_compass_getValue={
-	init:function(){
-		this.setColour(200);
-		this.appendDummyInput("")
-		    .appendField(Blockly.EM_COMMPASSGETVALUE)
 		this.setOutput(false);
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
@@ -182,8 +220,10 @@ Blockly.Blocks.em_compass_getValue={
 
 Blockly.Blocks.em_fiveInfraredTracking={
   init:function(){
-    this.setColour(200);
+    this.setColour(220);
 		this.appendDummyInput("")
+        .appendField(Blockly.EM_FIVEINFRAREDTRACKING)
+        .appendField(new Blockly.FieldTextInput('myFiveInfraredTracking'), 'em_fiveInfraredTracking')
         .appendField(Blockly.EM_FIVEINFRAREDTRACKINGINIT)
         // .appendField("五路循迹模块 从左至右第")
         .appendField(new Blockly.FieldDropdown(EM_FIVE_INFRARED_TRACKING_GROUP), "em_infrared")
@@ -196,8 +236,10 @@ Blockly.Blocks.em_fiveInfraredTracking={
 
 Blockly.Blocks.em_fiveInfraredTrackingData={
   init:function(){
-    this.setColour(200);
+    this.setColour(220);
 		this.appendDummyInput("")
+        .appendField(Blockly.EM_FIVEINFRAREDTRACKING)
+        .appendField(new Blockly.FieldTextInput('myFiveInfraredTracking'), 'em_fiveInfraredTracking')
         .appendField(Blockly.EM_FIVEINFRAREDTRACKINGDATA)
         // .appendField("五路循迹模块 从左至右第")
       // .appendField("组探头检测到黑线?")
@@ -407,6 +449,8 @@ Blockly.Blocks.em_digitalInitPort = {
     this.setColour(160);
     this.appendDummyInput("")
       .appendField(Blockly.EM_DIGITALPORTINIT)
+      .appendField(new Blockly.FieldTextInput('myEncoder'), 'em_encoder')
+      .appendField(Blockly.EM_DIGITALPORTA)
       .appendField(new Blockly.FieldDropdown([
         ['3', "3"],
         ['0', "0"],
@@ -487,6 +531,8 @@ Blockly.Blocks.em_digital = {
     init: function () {
       this.setColour(160);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_ENCODER)
+        .appendField(new Blockly.FieldTextInput('myEncoder'), 'em_encoder')
         .appendField(Blockly.EM_DIGITAL)
       this.setOutput(true, Boolean);
       this.setTooltip('');
@@ -496,7 +542,9 @@ Blockly.Blocks.em_digital = {
     init: function () {
       this.setColour(160);
       this.appendDummyInput("")
-        .appendField(Blockly.EM_PRINT)
+      .appendField(Blockly.EM_ENCODER)
+      .appendField(new Blockly.FieldTextInput('myEncoder'), 'em_encoder')
+      .appendField(Blockly.EM_PRINT)
       this.setOutput(true, Number);
       this.setInputsInline(true);
     }
@@ -507,12 +555,53 @@ Blockly.Blocks.em_initialize_matrix_keyboard = {
       this.setColour(190);
       this.appendDummyInput("")
         .appendField(Blockly.EM_INITIALIZE_MATRIX_KEYBOARD)
-      this.appendValueInput("em_scl_pin", Number)
+        .appendField(new Blockly.FieldTextInput('myMatrixKeyboard'), 'em_keyboard')
         .appendField(Blockly.EM_SCLPIN)
-        .setCheck(Number);
-      this.appendValueInput("em_sdo_pin", Number)
+        .appendField(new Blockly.FieldDropdown([
+          ['A5', "A5"],
+          ['0', "0"],
+          ['1', "1"],
+          ['2', "2"],
+          ['3', "3"],
+          ['4', "4"],
+          ['5', "5"],
+          ['6', "6"],
+          ['7', "7"],
+          ['8', "8"],
+          ['9', "9"],
+          ['10', "10"],
+          ['11', "11"],
+          ['12', "12"],
+          ['13', "13"],
+          ['A0', "A0"],
+          ['A1', "A1"],
+          ['A2', "A2"],
+          ['A3', "A3"],
+          ['A4', "A4"]
+        ]), "em_scl_pin")
         .appendField(Blockly.EM_SDOPIN)
-        .setCheck(Number);
+        .appendField(new Blockly.FieldDropdown([
+          ['A4', "A4"],
+          ['0', "0"],
+          ['1', "1"],
+          ['2', "2"],
+          ['3', "3"],
+          ['4', "4"],
+          ['5', "5"],
+          ['6', "6"],
+          ['7', "7"],
+          ['8', "8"],
+          ['9', "9"],
+          ['10', "10"],
+          ['11', "11"],
+          ['12', "12"],
+          ['13', "13"],
+          ['A0', "A0"],
+          ['A1', "A1"],
+          ['A2', "A2"],
+          ['A3', "A3"],
+          ['A5', "A5"]
+        ]), "em_sdo_pin")
       this.setPreviousStatement(true, null);
       this.setInputsInline(true);
       this.setNextStatement(true, null);
@@ -524,34 +613,31 @@ Blockly.Blocks.em_initialize_matrix_keyboard = {
       this.setColour(190);
       this.appendDummyInput("")
         .appendField(Blockly.EM_MATRIX_KEYBOARD)
+        .appendField(new Blockly.FieldTextInput('myMatrixKeyboard'), 'em_keyboard')
+        .appendField(Blockly.EM_MATRIX_KEY)
         .appendField(new Blockly.FieldDropdown(
           [
-            ['1', "1"],
-            ['2', "2"],
-            ['3', "3"],
-            ['4', "4"],
-            ['5', "5"],
-            ['6', "6"],
-            ['7', "7"],
-            ['8', "8"],
-            ['9', "9"],
-            ['0', "0"],
-            ['*', "*"],
-            ['#', "#"],
-            ['A', "A"],
-            ['B', "B"],
-            ['C', "C"],
-            ['D', "D"]
+            ['1', "KEYPAD_KEYCODE_1"],
+            ['2', "KEYPAD_KEYCODE_2"],
+            ['3', "KEYPAD_KEYCODE_3"],
+            ['4', "KEYPAD_KEYCODE_4"],
+            ['5', "KEYPAD_KEYCODE_5"],
+            ['6', "KEYPAD_KEYCODE_6"],
+            ['7', "KEYPAD_KEYCODE_7"],
+            ['8', "KEYPAD_KEYCODE_8"],
+            ['9', "KEYPAD_KEYCODE_9"],
+            ['0', "KEYPAD_KEYCODE_0"],
+            ['*', "KEYPAD_KEYCODE_STAR"],
+            ['#', "KEYPAD_KEYCODE_POUND"],
+            ['A', "KEYPAD_KEYCODE_A"],
+            ['B', "KEYPAD_KEYCODE_B"],
+            ['C', "KEYPAD_KEYCODE_C"],
+            ['D', "KEYPAD_KEYCODE_D"]
           ]
         ), "em_key")
       this.appendDummyInput("")
         .appendField(Blockly.EM_STATUS)
-        .appendField(new Blockly.FieldDropdown(
-          [
-            [Blockly.EM_PRESSDOWNS, '='],
-            [Blockly.EM_PRESSUPS, '!'],
-          ]
-        ), "em_status")
+        
       this.setOutput(true, Boolean);
       this.setTooltip('');
       this.setInputsInline(true);
@@ -562,6 +648,8 @@ Blockly.Blocks.em_initialize_matrix_keyboard = {
     init: function () {
       this.setColour(190);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_MATRIX_KEYBOARD)
+      .appendField(new Blockly.FieldTextInput('myMatrixKeyboard'), 'em_keyboard')
         .appendField(Blockly.EM_MATRIX_KEYBOARD_VALUES)
       this.setOutput(true, Number);
       this.setInputsInline(true);
@@ -573,6 +661,7 @@ Blockly.Blocks.em_hand_initalize_header={
 		this.setColour(210);
 		this.appendDummyInput("")
 		    .appendField(Blockly.EM_HANDINIT_HEADER)
+        .appendField(new Blockly.FieldTextInput('myJoystickHandle'), 'em_joystick')
 		this.setInputsInline(false);
     this.setPreviousStatement(true, null);
 		// this.setPreviousStatement(false, null);
@@ -589,6 +678,7 @@ Blockly.Blocks.em_hand_press_that={
 		this.setColour(210);
 		this.appendDummyInput("")
 		    .appendField(Blockly.EM_HAND_PRESS_THATA)
+        .appendField(new Blockly.FieldTextInput('myJoystickHandle'), 'em_joystick')
 			.appendField(new Blockly.FieldDropdown(EM_JOBONE_BTN), "em_btnfour")
 			.appendField(Blockly.EM_HAND_PRESS_THATB);
 		this.setInputsInline(true);
@@ -603,6 +693,8 @@ Blockly.Blocks.em_hand_release_that={
 		this.setColour(210);
 		this.appendDummyInput("")
 		    .appendField(Blockly.EM_HAND_PRESS_THATA)
+        .appendField(new Blockly.FieldTextInput('myJoystickHandle'), 'em_joystick')
+        .appendField(Blockly.EM_HAND_PRESS_THATA_KEY)
 			.appendField(new Blockly.FieldDropdown(EM_JOBONE_BTN), "em_btnfour")
 			.appendField(Blockly.EM_HAND_PRESS_THATC);
 		this.setInputsInline(true);
@@ -617,7 +709,9 @@ Blockly.Blocks.em_hand_jobone_header_x={
   init:function(){
     this.setColour(210);
     this.appendDummyInput("")
-	  .appendField(Blockly.EM_HAND_IOBONE_HEADERA)
+	  .appendField(Blockly.EM_HAND_IOBONE_HEADER)
+    .appendField(new Blockly.FieldTextInput('myJoystickHandle'), 'em_joystick')
+    .appendField(Blockly.EM_HAND_IOBONE_HEADERA)
       .appendField(new Blockly.FieldDropdown(EM_JOBONE_X), "em_decasx")
 	  .appendField(Blockly.EM_HAND_IOBONE_HEADERB)
     this.setOutput(true, Number);
@@ -631,11 +725,12 @@ Blockly.Blocks.em_hand_botton_fore={
 	init:function(){
 		this.setColour(210);
 		this.appendDummyInput("")
-		    .appendField(Blockly.EM_HAND_BOTTON_FOREA)
+		    .appendField(Blockly.EM_HAND_PRESS_THATA)
+        .appendField(new Blockly.FieldTextInput('myJoystickHandle'), 'em_joystick')
+        .appendField(Blockly.EM_HAND_PRESS_THATA_KEY)
 		    .appendField(new Blockly.FieldDropdown(EM_JOBONE_BTN), "em_btnfour")
-		    .appendField(Blockly.EM_HAND_BOTTON_FOREB)
+		    .appendField(Blockly.EM_HAND_BOTTON_FOREC)
 		    .appendField(new Blockly.FieldDropdown(EM_JOBONE_LAST), "em_btnlast")
-		    .appendField(Blockly.EM_HAND_BOTTON_FOREC);
 		this.setInputsInline(true);
 		this.setOutput(true, Number);
 		this.setPreviousStatement(false, null);
@@ -792,16 +887,81 @@ Blockly.Blocks.em_dianzhen = {
     init: function () {
       this.setColour(110);
       this.appendDummyInput("")
-        .appendField(Blockly.EM_INITDIANZHEN);
-      this.appendValueInput("em_din", Number)
+        .appendField(Blockly.EM_INITDIANZHEN)
+        .appendField(new Blockly.FieldTextInput('myMaxMatrix'), 'em_maxMaxtrix')
         .appendField(Blockly.EM_DIN)
-        .setCheck(Number);
-      this.appendValueInput("em_cs", Number)
-        .appendField(Blockly.EM_CS)
-        .setCheck(Number);
-      this.appendValueInput("em_clk", Number)
+        .appendField(new Blockly.FieldDropdown([
+          ['7', "7"],
+          ['0', "0"],
+          ['1', "1"],
+          ['2', "2"],
+          ['3', "3"],
+          ['4', "4"],
+          ['5', "5"],
+          ['6', "6"],
+          ['8', "8"],
+          ['9', "9"],
+          ['10', "10"],
+          ['11', "11"],
+          ['12', "12"],
+          ['13', "13"],
+          ['A0', "A0"],
+          ['A1', "A1"],
+          ['A2', "A2"],
+          ['A3', "A3"],
+          ['A4', "A4"],
+          ['A5', "A5"]
+        ]), "em_din")
+      .appendField(Blockly.EM_CS)
+      .appendField(new Blockly.FieldDropdown([
+        ['6', "6"],
+        ['0', "0"],
+        ['1', "1"],
+        ['2', "2"],
+        ['3', "3"],
+        ['4', "4"],
+        ['5', "5"],
+        ['7', "7"],
+        ['8', "8"],
+        ['9', "9"],
+        ['10', "10"],
+        ['11', "11"],
+        ['12', "12"],
+        ['13', "13"],
+        ['A0', "A0"],
+        ['A1', "A1"],
+        ['A2', "A2"],
+        ['A3', "A3"],
+        ['A4', "A4"],
+        ['A5', "A5"]
+      ]), "em_cs")
+      // this.appendValueInput("em_cs", Number)
+      //   .setCheck(Number);
+      // this.appendValueInput("em_clk", Number)
         .appendField(Blockly.EM_CLK)
-        .setCheck(Number);
+        .appendField(new Blockly.FieldDropdown([
+          ['5', "5"],
+          ['0', "0"],
+          ['1', "1"],
+          ['2', "2"],
+          ['3', "3"],
+          ['4', "4"],
+          ['6', "6"],
+          ['7', "7"],
+          ['8', "8"],
+          ['9', "9"],
+          ['10', "10"],
+          ['11', "11"],
+          ['12', "12"],
+          ['13', "13"],
+          ['A0', "A0"],
+          ['A1', "A1"],
+          ['A2', "A2"],
+          ['A3', "A3"],
+          ['A4', "A4"],
+          ['A5', "A5"]
+        ]), "em_clk")
+        // .setCheck(Number);
       this.appendValueInput("em_count", Number)
         .appendField(Blockly.EM_COUNT)
         .setCheck(Number);
@@ -817,6 +977,8 @@ Blockly.Blocks.em_dianzhen = {
       this.setColour(110);
       this.appendDummyInput("")
         .appendField(Blockly.EM_MAXIMAGES)
+        .appendField(new Blockly.FieldTextInput('myMaxMatrix'), 'em_maxMaxtrix')
+        .appendField(Blockly.EM_MAXIMAGESDISPLAY)
         .appendField(new Blockly.FieldDropdown(EM_MAXIMAGE), "em_maximage");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -1498,6 +1660,7 @@ Blockly.Blocks.em_OLED_Init = {
     this.setColour(130);
     this.appendDummyInput("")
       .appendField(Blockly.EM_OLEDINIT)
+      .appendField(new Blockly.FieldTextInput('myOled'), 'em_oled')
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('');
@@ -1509,6 +1672,7 @@ Blockly.Blocks.em_OLED_Model = {
       this.setColour(130);
       this.appendDummyInput("")
         .appendField(Blockly.EM_OLEDRUN)
+        .appendField(new Blockly.FieldTextInput('myOled'), 'em_oled')
         this.appendStatementInput('DO')
         .appendField(Blockly.EM_OLEDDISPLAY)
       this.setPreviousStatement(true, null);
@@ -1516,34 +1680,14 @@ Blockly.Blocks.em_OLED_Model = {
       this.setTooltip('');
     }
   }
-  //OLED实时刷新
-  Blockly.Blocks.OLED_Refresh = {
-    init: function () {
-      this.setColour(130);
-      this.appendDummyInput("")
-        .appendField(Blockly.OLEDREFRESH)
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  }
-  //OLED清屏
-  Blockly.Blocks.OLED_Clear = {
-    init: function () {
-      this.setColour(130);
-      this.appendDummyInput("")
-        .appendField(Blockly.OLEDCLEAR)
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  }
+
   //OLED显示字符串
   Blockly.Blocks.em_OLED_Display_String = {
     init: function () {
       this.setColour(130);
       this.appendDummyInput("")
         .appendField(Blockly.EM_OLEDDISPLAYSTRING)
+        .appendField(new Blockly.FieldTextInput('myOled'), 'em_oled')
       this.appendValueInput("em_horizontal", Number)
         .appendField(Blockly.EM_OLEDDISPLAYSTRING_HORIZONTAL)
         .setCheck(Number);
@@ -1572,6 +1716,8 @@ Blockly.Blocks.em_OLED_Model = {
       this.setColour(130);
       this.appendDummyInput("")
         // .appendField(Blockly.OLEDDISPLAYSTRING)
+        .appendField(Blockly.EM_OLEDDISPLAYSTRING)
+        .appendField(new Blockly.FieldTextInput('myOled'), 'em_oled')
         .appendField(Blockly.EM_OLEDDISPLAYSTRINGROW)
         .appendField(new Blockly.FieldDropdown(
           [
@@ -1599,113 +1745,7 @@ Blockly.Blocks.em_OLED_Model = {
       this.setTooltip('');
     }
   };
-  //OLED显示字符
-  Blockly.Blocks.OLED_Display_Char = {
-    init: function () {
-      this.setColour(130);
-      this.appendDummyInput("")
-        .appendField(Blockly.OLEDDISPLAYCHAR)
-      this.appendValueInput("horizontal", Number)
-        .appendField(Blockly.OLEDDISPLAYSTRING_HORIZONTAL)
-        .setCheck(Number);
-      this.appendValueInput("longitudinal", Number)
-        .appendField(Blockly.OLEDDISPLAYSTRING_LONGITUDINAL)
-        .setCheck(Number);
-      this.appendValueInput("Content", String)
-        .appendField(Blockly.EM_OLEDDISPLAYCHAR_CONTENT)
-        this.appendDummyInput("")
-        .appendField(Blockly.EM_OLEDSIZE)
-        .appendField(new Blockly.FieldDropdown(
-          [
-            ['12', '12'],
-            ['16', '16'],
-            ['24', '24']
-          ]
-        ), "em_Size")
-      this.setPreviousStatement(true, null);
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  };
-  //OLED显示字符
-  Blockly.Blocks.em_OLED_Display_Num = {
-    init: function () {
-      this.setColour(130);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_OLEDDISPLAYNUM)
-      this.appendValueInput("em_horizontal", Number)
-        .appendField(Blockly.EM_OLEDDISPLAYSTRING_HORIZONTAL)
-        .setCheck(Number);
-      this.appendValueInput("em_longitudinal", Number)
-        .appendField(Blockly.EM_OLEDDISPLAYSTRING_LONGITUDINAL)
-        .setCheck(Number);
-      this.appendValueInput("em_Content", String)
-        .appendField(Blockly.EM_OLEDDISPLAYNUM_CONTENT)
-      this.appendValueInput("em_Digits", Number)
-        .appendField(Blockly.EM_OLEDDISPLAYNUM_DIGITS)
-        .setCheck(Number);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_OLEDSIZE)
-        .appendField(new Blockly.FieldDropdown(
-          [
-            ['12', '12'],
-            ['16', '16'],
-            ['24', '24']
-          ]
-        ), "em_Size")
-      this.setPreviousStatement(true, null);
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  };
-  //OLED画线
-  Blockly.Blocks.OLED_Display_Line = {
-    init: function () {
-      this.setColour(130);
-      this.appendDummyInput("")
-        .appendField(Blockly.OLEDDISPLAYLINE)
-      this.appendValueInput("Start_horizontal", Number)
-        .appendField(Blockly.OLEDDISPLAYLINE_STARTHORIZONTAL)
-        .setCheck(Number);
-      this.appendValueInput("Start_longitudinal", Number)
-        .appendField(Blockly.OLEDDISPLAYLINE_STARTLONGITUDINAL)
-        .setCheck(Number);
-      this.appendValueInput("Ending_horizontal", Number)
-        .appendField(Blockly.OLEDDISPLAYLINE_ENDINGHORIZONTAL)
-        .setCheck(Number);
-      this.appendValueInput("Ending_longitudinal", Number)
-        .appendField(Blockly.OLEDDISPLAYLINE_ENDINGLONGITUDINAL)
-        .setCheck(Number);
-      this.setPreviousStatement(true, null);
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  };
-  //OLED画圆h
-  Blockly.Blocks.OLED_Display_DrawCircle = {
-    init: function () {
-      this.setColour(130);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_OLEDDISPLAYDRAWCIRCLE)
-      this.appendValueInput("horizontal", Number)
-        .appendField(Blockly.EM_OLEDDISPLAYSTRING_HORIZONTAL)
-        .setCheck(Number);
-      this.appendValueInput("longitudinal", Number)
-        .appendField(Blockly.EM_OLEDDISPLAYSTRING_LONGITUDINAL)
-        .setCheck(Number);
-      this.appendValueInput("Radius", Number)
-        .appendField(Blockly.EM_OLEDDISPLAYDRAWCIRCLE_RADIUS)
-        .setCheck(Number);
-      this.setPreviousStatement(true, null);
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  };
-
+  
 
 /* 
 //执行器
@@ -2040,11 +2080,13 @@ Blockly.Blocks.em_colorview_init = {
       this.setColour(50);
       this.appendDummyInput("")
         .appendField(Blockly.EM_COLORVIEW_VALUE)
+        .appendField(new Blockly.FieldTextInput('myColorSensor'), 'em_colorView')
+        .appendField(Blockly.EM_COLORVIEW)
         .appendField(new Blockly.FieldDropdown(
           [
-            ['R', 'getRed'],
-            ['G', 'getGreen'],
-            ['B', 'getBlue']
+            ['R(红)', 'getRed'],
+            ['G(绿)', 'getGreen'],
+            ['B(蓝)', 'getBlue']
           ]
         ), "em_color")
       this.appendDummyInput("")
@@ -2066,6 +2108,7 @@ Blockly.Blocks.em_colorview_init = {
       this.setColour(150);
       this.appendDummyInput("")
         .appendField(Blockly.EM_VOICERECOGNITION_INIT)
+        .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setTooltip('');
@@ -2076,6 +2119,8 @@ Blockly.Blocks.em_colorview_init = {
     init: function () {
       this.setColour(150);
       this.appendDummyInput("")
+        .appendField(Blockly.EM_VOICERECOGNITION)
+        .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
         .appendField(Blockly.EM_VOICERECOGNITION_MODE)
         .appendField(new Blockly.FieldDropdown(
           [
@@ -2094,6 +2139,8 @@ Blockly.Blocks.em_colorview_init = {
     init: function () {
       this.setColour(150);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_VOICERECOGNITION)
+      .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
         //.appendField(Blockly.INITIALIZE_MATRIX_KEYBOARD)
       this.appendValueInput("em_Key", Number)
         .appendField(Blockly.EM_VOICERECOGNITION_KEY)
@@ -2110,6 +2157,8 @@ Blockly.Blocks.em_colorview_init = {
     init: function () {
       this.setColour(150);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_VOICERECOGNITION)
+      .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
         .appendField(Blockly.EM_VOICERECOGNITION_START)
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -2121,6 +2170,8 @@ Blockly.Blocks.em_colorview_init = {
     init: function () {
       this.setColour(150);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_VOICERECOGNITION)
+      .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
         .appendField(Blockly.EM_VOICERECOGNITION_RESET)
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -2132,6 +2183,8 @@ Blockly.Blocks.em_colorview_init = {
     init: function () {
       this.setColour(150);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_VOICERECOGNITION)
+      .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
         .appendField(Blockly.EM_VOICERECOGNITION_NUMBER)
       this.setOutput(true, Number);
       this.setTooltip(true);
@@ -2142,7 +2195,9 @@ Blockly.Blocks.em_colorview_init = {
     init: function () {
       this.setColour(150);
       this.appendDummyInput("")
-        .appendField(Blockly.EM_VOICERECOGNITION_TIME);
+      .appendField(Blockly.EM_VOICERECOGNITION)
+      .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
+      .appendField(Blockly.EM_VOICERECOGNITION_TIME);
       this.appendValueInput("em_time", Number)
         .setCheck(Number)
         .setAlign(Blockly.EM_ALIGN_RIGHT);
@@ -2153,11 +2208,28 @@ Blockly.Blocks.em_colorview_init = {
     }
   };
 
+  //语音识别设置唤醒词
+  Blockly.Blocks.em_VoiceRecognition_wake_word = {
+    init: function () {
+      this.setColour(150);
+      this.appendDummyInput("")
+      .appendField(Blockly.EM_VOICERECOGNITION)
+      .appendField(new Blockly.FieldTextInput('myVoiceRecognition'), 'em_VoiceRecognition')
+      this.appendValueInput("em_wakeWordContent", String)
+        .appendField(Blockly.EM_VOICERECOGNITION_WAKEWORD)
+      this.setPreviousStatement(true, null);
+      this.setInputsInline(true);
+      this.setNextStatement(true, null);
+    }
+  };
+
   // 开始语音合成并播放
   Blockly.Blocks.em_speech_synthesisStart = {
     init: function () {
       this.setColour(180);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_SPEECH)
+      .appendField(new Blockly.FieldTextInput('mySpeechSynthesis'), 'em_speech')
         .appendField(Blockly.EM_SPEECH_START)
         .appendField(new Blockly.FieldDropdown(
           [
@@ -2206,6 +2278,8 @@ Blockly.Blocks.em_colorview_init = {
     init: function () {
       this.setColour(180);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_SPEECH)
+      .appendField(new Blockly.FieldTextInput('mySpeechSynthesis'), 'em_speech')
         .appendField(Blockly.EM_SPEECH_STARTCACHE)
         .appendField(new Blockly.FieldDropdown(
           [
@@ -2253,37 +2327,12 @@ Blockly.Blocks.em_speech_cplay={
   init:function(){
     this.setColour(180);
     this.appendDummyInput("")
+    .appendField(Blockly.EM_SPEECH)
+      .appendField(new Blockly.FieldTextInput('mySpeechSynthesis'), 'em_speech')
     this.appendValueInput("em_freq", Number)
         .appendField(Blockly.EM_SPEED_CPLAY)
     this.setInputsInline(true);
     // this.setOutput(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip('');
-  }
-}
-
-// 查询状态
-Blockly.Blocks.em_speech_synthesisStatus={
-  init:function(){
-    this.setColour(180);
-    this.appendDummyInput("")
-        .appendField(Blockly.EM_SPEED_SYNTHESISSTATUS)
-        .appendField(new Blockly.FieldDropdown(
-          [
-            ['5', '5'],
-            ['0', '0'],
-            ['1', '1'],
-            ['2', '2'],
-            ['3', '3'],
-            ['4', '4'],
-            ['6', '6'],
-            ['7', '7'],
-            ['8', '8'],
-            ['9', '9'],
-            ['10', '10'],
-          ]), "em_voiceSpeed")
-    this.setOutput(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('');
@@ -2316,35 +2365,37 @@ Blockly.Blocks.em_gyro_getvalue={
   }
 }
 
-// 手势传感器
-Blockly.Blocks.em_handleStatus_init={
-  init:function(){
-    this.setColour(245);
-    this.appendDummyInput("")
-        .appendField(Blockly.EM_HANDLESENSOR_INIT)
-    this.setOutput(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip('');
-  }
-}
+// // 手势传感器
+// Blockly.Blocks.em_handleStatus_init={
+//   init:function(){
+//     this.setColour(245);
+//     this.appendDummyInput("")
+//         .appendField(Blockly.EM_HANDLESENSOR_INIT)
+//     this.setOutput(false);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setTooltip('');
+//   }
+// }
 
-Blockly.Blocks.em_handleSensor_getValue={
-  init:function(){
-    this.setColour(245);
-    this.appendDummyInput("")
-        .appendField(Blockly.EM_HANDLESENSOR_GETVALUE)
-    this.setOutput(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip('');
-  }
-}
+// Blockly.Blocks.em_handleSensor_getValue={
+//   init:function(){
+//     this.setColour(245);
+//     this.appendDummyInput("")
+//         .appendField(Blockly.EM_HANDLESENSOR_GETVALUE)
+//     this.setOutput(false);
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setTooltip('');
+//   }
+// }
 
 Blockly.Blocks.em_handleSensor_isGetValue = {
     init: function () {
       this.setColour(245);
       this.appendDummyInput("")
+      .appendField(Blockly.EM_HANDLESENSOR)
+      .appendField(new Blockly.FieldTextInput('myHandleSensor'), 'em_handleSensor')
         .appendField(Blockly.EM_HANDLESENSOR_ISGETVALUE)
       this.setOutput(true, Boolean);
       this.setInputsInline(true);
@@ -2355,8 +2406,10 @@ Blockly.Blocks.em_handleSensor_isGetValue = {
     init: function () {
       this.setColour(245);
       this.appendDummyInput("")
-        .appendField(Blockly.EM_HANDLESENSOR_GETSTATUS)
-		.appendField(new Blockly.FieldDropdown(
+      .appendField(Blockly.EM_HANDLESENSOR)
+      .appendField(new Blockly.FieldTextInput('myHandleSensor'), 'em_handleSensor')
+      .appendField(Blockly.EM_HANDLESENSOR_GETSTATUS)
+		  .appendField(new Blockly.FieldDropdown(
           [
             [Blockly.EM_HANDLESENSOR_UP, 'DIR_UP'],
             [Blockly.EM_HANDLESENSOR_DOWN, 'DIR_DOWN'],
@@ -2364,7 +2417,7 @@ Blockly.Blocks.em_handleSensor_isGetValue = {
             [Blockly.EM_HANDLESENSOR_RIGHT, 'DIR_RIGHT'],
 			[Blockly.EM_HANDLESENSOR_NEAR, 'DIR_NEAR'],
             [Blockly.EM_HANDLESENSOR_FAR, 'DIR_FAR']
-          ]), "em_MODE")
+          ]), "em_mode")
       this.setOutput(true, Boolean);
       this.setInputsInline(true);
     }
@@ -2722,6 +2775,7 @@ Blockly.Blocks.em_initir = {
       this.setColour(135);
       this.appendDummyInput("")
         .appendField(Blockly.EM_INITIR)
+        .appendField(Blockly.EM_IRPORT)
       this.appendValueInput("em_initir", Number)
         .setCheck(Number);
       this.setInputsInline(true);

@@ -91,19 +91,21 @@ Blockly.Arduino.em_ultrasonicread = function () {
 };
 
 Blockly.Arduino.em_dianzhen = function () {
-    var value_clk = Blockly.Arduino.valueToCode(this, 'em_clk', Blockly.Arduino.ORDER_ATOMIC);
-	var value_cs = Blockly.Arduino.valueToCode(this, 'em_cs', Blockly.Arduino.ORDER_ATOMIC);
-	var value_din = Blockly.Arduino.valueToCode(this, 'em_din', Blockly.Arduino.ORDER_ATOMIC);
+	var em_maxMaxtrix = this.getFieldValue('em_maxMaxtrix');
+	var value_clk = this.getFieldValue('em_clk');
+	var value_cs = this.getFieldValue('em_cs');
+	var value_din = this.getFieldValue('em_din');
 	var value_count = Blockly.Arduino.valueToCode(this, 'em_count', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_['define_dianzhen'] = '#include <MAX7219_MaxMatrix.h>\n';
-	 Blockly.Arduino.definitions_['define_dianzhen1'] = 'MaxMatrix ledmatrix('+value_din+', '+value_cs+', '+value_clk+', '+value_count+');\n';
-	 Blockly.Arduino.setups_['setup_dianzhen'] ='ledmatrix.init();\n  ledmatrix.setIntensity(1);\n  ledmatrix.clearMatrix();\n';
+	 Blockly.Arduino.definitions_['define_dianzhen1'] = 'MaxMatrix ' + em_maxMaxtrix + '(' + value_din + ', ' + value_cs + ', ' + value_clk + ', ' + value_count + ');\n';
+	 Blockly.Arduino.setups_['setup_dianzhen'] =em_maxMaxtrix + '.init();\n  ' + em_maxMaxtrix + '.setIntensity(1);\n  ' + em_maxMaxtrix + '.clearMatrix();\n';
 	 //Blockly.Arduino.setups_['setup_input_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
     var code = '';
 	return code;
 };
 
 Blockly.Arduino.em_dianzhenprint = function () {
+	var em_maxMaxtrix = this.getFieldValue('em_maxMaxtrix');
 	var dropdown_maximage = this.getFieldValue('em_maximage');
 	//var value_cs = Blockly.Arduino.valueToCode(this, 'cs', Blockly.Arduino.ORDER_ATOMIC);
 	//var value_din = Blockly.Arduino.valueToCode(this, 'din', Blockly.Arduino.ORDER_ATOMIC);
@@ -111,7 +113,7 @@ Blockly.Arduino.em_dianzhenprint = function () {
 	 //Blockly.Arduino.definitions_['define_dianzhen1'] = 'int CLK = '+value_clk+';\nint CS =  '+value_cs+';\nint DIN = '+value_din+';\n'+'LedControl lc=LedControl(DIN,CLK,CS,0);\n'+'void printByte(byte character []){\nint i = 0;\nfor(i=0;i<8;i++){\nlc.setRow(0,i,character[i]);\n}}\n';
 	 //Blockly.Arduino.setups_['setup_dianzhen'] ='\t'+'lc.shutdown(0,false);\nlc.setIntensity(0,15);\nlc.clearDisplay(0);\n';
 	 //Blockly.Arduino.setups_['setup_input_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
-    var code = 'ledmatrix.writeFull(ledmatrix.getMouthShape('+dropdown_maximage+'));\n';
+    var code = em_maxMaxtrix + '.writeFull(ledmatrix.getMouthShape('+dropdown_maximage+'));\n';
 	return code;
 };
 
@@ -370,9 +372,11 @@ Blockly.Arduino.em_stepperspeed2 = function () {
 // };
 
 Blockly.Arduino.em_initrgbultrasonic = function () {
-	var value_ultrasonicpin = Blockly.Arduino.valueToCode(this, 'em_ultrasonicpin', Blockly.Arduino.ORDER_ATOMIC);
-	var value_rgbpin = Blockly.Arduino.valueToCode(this, 'em_rgbpin', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['define_initrgbultrasonic'] = '#include <RgbUltrasonic.h>\nRgbUltrasonic mRUS04('+value_ultrasonicpin+', '+value_rgbpin+');\n';
+	var value_ultrasonicpin = this.getFieldValue('em_ultrasonicpin');
+    var value_rgbpin = this.getFieldValue('em_rgbpin');
+	var myRGBUltrasonic = this.getFieldValue('em_rgbUltrasonic');
+	Blockly.Arduino.definitions_['define_initrgbultrasonic'] = '#include <RgbUltrasonic.h>\n';
+	Blockly.Arduino.definitions_['define_initrgbultrasonic_' + myRGBUltrasonic] = 'RgbUltrasonic ' + myRGBUltrasonic + '('+value_ultrasonicpin+', '+value_rgbpin+');\n';
 	var code = '';
     return code;
 };
@@ -385,21 +389,23 @@ Blockly.Arduino.em_setcolor = function () {
 };
 
 Blockly.Arduino.em_setcolorandstyle = function () {
+	var myRGBUltrasonic = this.getFieldValue('em_rgbUltrasonic');
     var dropdown_rgbposition = this.getFieldValue('em_rgbposition');
 	var dropdown_rgbcolor = this.getFieldValue('em_rgbcolor');
 	var dropdown_rgbstyle = this.getFieldValue('em_rgbstyle');
-    var code = '  mRUS04.SetRgbEffect('+dropdown_rgbposition+', '+dropdown_rgbcolor+', '+dropdown_rgbstyle+');\n';
+    var code = myRGBUltrasonic + '.SetRgbEffect('+dropdown_rgbposition+', '+dropdown_rgbcolor+', '+dropdown_rgbstyle+');\n';
 	return code;
 };
 
 Blockly.Arduino.em_setrgbbreathe = function () {
     var dropdown_rgbposition = this.getFieldValue('em_rgbposition');
-    var code = '  mRUS04.SetRgbEffect('+dropdown_rgbposition+', RGB_WHITE, E_EFFECT_BREATHING);\n';
+    var code = 'mRUS04.SetRgbEffect('+dropdown_rgbposition+', RGB_WHITE, E_EFFECT_BREATHING);\n';
 	return code;
 };
 
 Blockly.Arduino.em_readultrasonicdistance = function () {
-	var code = 'mRUS04.GetUltrasonicDistance()'
+	var myRGBUltrasonic = this.getFieldValue('em_rgbUltrasonic');
+	var code = myRGBUltrasonic + '.GetUltrasonicDistance()'
     return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -485,36 +491,40 @@ Blockly.Arduino.em_initPiano_v2 = function () {
 };
 // 
 Blockly.Arduino.em_digitalInitPort = function () {
+	var myEncoder = this.getFieldValue('em_encoder');
 	var em_porta = this.getFieldValue('em_porta');
 	var em_portb = this.getFieldValue('em_portb');
-	var em_portd = this.getFieldValue('em_portd');
-	Blockly.Arduino.definitions_['define_ecport'] = '#define ecPortA ' + em_porta + '\n#define ecPortB ' + em_portb + '\n#define ecPortD ' + em_portd + '\n';
-	Blockly.Arduino.definitions_['define_ecvolatile'] = 'volatile int lastEncoded = 0;\nvolatile long encoderValue = 0;\nlong lastencoderValue = 0;\nint lastMSB = 0;\nint lastLSB = 0;\n\nlong readEncoderValue(void) {\n  return encoderValue / 4;\n}\n';
-	Blockly.Arduino.setups_['setup_port'] = "pinMode(ecPortA, INPUT);\n  pinMode(ecPortB, INPUT);\n  pinMode(ecPortD, INPUT);\n  digitalWrite(ecPortA, HIGH);\n  digitalWrite(ecPortB, HIGH);\n";
+	var em_portd = this.getFieldValue('em_portd');        
+	Blockly.Arduino.definitions_['define_ecport_' + myEncoder] = '#define ' + myEncoder + '_A ' + em_porta + '\n#define ' + myEncoder + '_B ' + em_portb + '\n#define ' + myEncoder + '_D ' + em_portd + '\n';
+	Blockly.Arduino.definitions_['define_ecvolatile_' + myEncoder] = 'volatile int ' + myEncoder + '_lastEncoded = 0;\nvolatile long ' + myEncoder + '_encoderValue = 0;\nlong ' + myEncoder + '_lastencoderValue = 0;\nint ' + myEncoder + '_lastMSB = 0;\nint ' + myEncoder + '_lastLSB = 0;\n\nlong ' + myEncoder + '_readEncoderValue(void) {\n  return ' + myEncoder + '_encoderValue / 4;\n}\n';
+	Blockly.Arduino.setups_['setup_port_' + myEncoder] = "pinMode(" + myEncoder + "_A, INPUT);\n  pinMode(" + myEncoder + "_B, INPUT);\n  pinMode(" + myEncoder + "_D, INPUT);\n  digitalWrite(" + myEncoder + "_A, HIGH);\n  digitalWrite(" + myEncoder + "_B, HIGH);\n";
 	// var code = 'digitalRead(' + 'SWITCH_PIN' + ')' + '== LOW';
 	return "";
 };
 
 //旋转编码器
 Blockly.Arduino.em_digital = function () {
-	Blockly.Arduino.definitions_['define_encoder_button'] = "boolean isButtonPushDown(void) {\n  if (!digitalRead(ecPortD)) {\n    delay(5);\n    if (!digitalRead(ecPortD))\n      return true;\n    }\n  return false;\n}\n";
-	var code = 'isButtonPushDown()';     
+	var myEncoder = this.getFieldValue('em_encoder');
+	Blockly.Arduino.definitions_['define_encoder_button_' + myEncoder] = "boolean " + myEncoder + "_isButtonPushDown(void) {\n  if (!digitalRead(" + myEncoder + "_D)) {\n    delay(5);\n    if (!digitalRead(" + myEncoder + "_D))\n      return true;\n    }\n  return false;\n}\n";
+	var code = myEncoder + '_isButtonPushDown()';     
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino.em_print = function () {
-	Blockly.Arduino.setups_['setup_attachInterrupt'] = 'attachInterrupt(0, updateEncoder, CHANGE);\n  attachInterrupt(1, updateEncoder, CHANGE);\n';
-	Blockly.Arduino.definitions_['read_quadrature'] = 'void updateEncoder() {\n  int MSB = digitalRead(ecPortA);\n  int LSB = digitalRead(ecPortB);\n  int encoded = (MSB << 1) | LSB;\n  int sum  = (lastEncoded << 2) | encoded;\n  if (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) encoderValue ++;\n  if (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) encoderValue --;\n  lastEncoded = encoded;\n}\n';
-	var oldposition = 'readEncoderValue()';
+	var myEncoder = this.getFieldValue('em_encoder');
+	Blockly.Arduino.setups_['setup_attachInterrupt_' + myEncoder] = 'attachInterrupt(0, updateEncoder_' + myEncoder + ', CHANGE);\n  attachInterrupt(1, updateEncoder_' + myEncoder + ', CHANGE);\n';
+	Blockly.Arduino.definitions_['read_quadrature_' + myEncoder] = 'void updateEncoder_' + myEncoder + '() {\n  int MSB = digitalRead(' + myEncoder + '_A);\n  int LSB = digitalRead(' + myEncoder + '_B);\n  int encoded = (MSB << 1) | LSB;\n  int sum  = (' + myEncoder + '_lastEncoded << 2) | encoded;\n  if (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) ' + myEncoder + '_encoderValue ++;\n  if (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) ' + myEncoder + '_encoderValue --;\n  ' + myEncoder + '_lastEncoded = encoded;\n}\n';
+	var oldposition = myEncoder + '_readEncoderValue()';
 	return [oldposition, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 //初始化矩阵键盘
 Blockly.Arduino.em_initialize_matrix_keyboard = function () {
-	var value_scl = Blockly.Arduino.valueToCode(this, 'em_scl_pin', Blockly.Arduino.ORDER_ATOMIC);
-	var value_sdo = Blockly.Arduino.valueToCode(this, 'em_sdo_pin', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['define_matrix_keyboard'] = '#include <EM_TTP229.h>\nEM_TTP229 mTTP229;\nint SCLPin = '+value_scl+', SDOPin = '+value_sdo+';\nString Read_Key () {\n String key_name = mTTP229.GetKeyMap();\n char * result = (char *)key_name.c_str();\n return result;\n}';
-	Blockly.Arduino.setups_['matrix_keyboard'] ='mTTP229.initTTP229(' + value_scl + ', ' + value_sdo + ');';
+	var myKeyBoard = this.getFieldValue('em_keyboard');
+	var value_scl = this.getFieldValue('em_scl_pin');
+	var value_sdo = this.getFieldValue('em_sdo_pin');
+	Blockly.Arduino.definitions_['define_matrix_keyboard'] = '#include <TouchMatriKeyPad.h>\n';
+	Blockly.Arduino.definitions_['matrix_keyboard_' + myKeyBoard] = 'TouchMatriKeyPad ' + myKeyBoard + '(' + value_scl + ', ' + value_sdo + ');\nString ' + myKeyBoard + '_getKeyPadValue() {\n  uint16_t keycode = ' + myKeyBoard + '.GetKeyCode();\n  if (keycode != 0xFFFF) {\n    String key_name = ' + myKeyBoard + '.GetKeyMap();\n    return key_name;\n  }\n  return "";\n}\n';
 	var code = '';
     return code;
 };
@@ -522,14 +532,16 @@ Blockly.Arduino.em_initialize_matrix_keyboard = function () {
 //矩阵键盘状态
 Blockly.Arduino.em_matrix_keyboard_status = function () {
 	var value_key = this.getFieldValue('em_key');
-	var value_status = this.getFieldValue('em_status');
-	var code = 'Read_Key()'+value_status+'="'+value_key+'"';
+	var myKeyBoard = this.getFieldValue('em_keyboard');
+	// var value_status = this.getFieldValue('em_status');
+	var code =  myKeyBoard + '.KeyPressed(' + value_key + ')';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 //获取矩阵键盘按下的值
 Blockly.Arduino.em_matrix_keyboard_values = function () {
-	var code = 'Read_Key()';
+	var myKeyBoard = this.getFieldValue('em_keyboard');
+	var code = myKeyBoard + '_getKeyPadValue()';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -636,9 +648,13 @@ Blockly.Arduino.em_colorview_init = function(){
 
 //颜色传感器读值
 Blockly.Arduino.em_colorview_value = function () {
+	var em_colorView = this.getFieldValue('em_colorView');
+	Blockly.Arduino.definitions_['EM_TCS34725'] = '#include <EM_TCS34725.h>\n';
+	Blockly.Arduino.definitions_['EM_TCS34725_' + em_colorView] = em_colorView + ' tcs34725;\n'
+	Blockly.Arduino.setups_['tcs34725_' + em_colorView] = em_colorView + '.begin();\n';
 	var Color = this.getFieldValue('em_color');
 	var Gamma = this.getFieldValue('em_gamma');
-	var code = 'tcs34725.' + Color + Gamma +'()';
+	var code = em_colorView + '.' + Color + Gamma +'()';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -651,42 +667,74 @@ Blockly.Arduino.em_VoiceRecognition_init = function(){
 
 //语音识别模式设置
 Blockly.Arduino.em_VoiceRecognition_Mode = function(){
+	var voiceRecognition = this.getFieldValue('em_VoiceRecognition');
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n'
+	Blockly.Arduino.definitions_['VoiceRecognition_init_' + voiceRecognition] = 'LD3320 ' + voiceRecognition + '(VOICE_IIC_ADDR);\n';
 	var mode = this.getFieldValue('em_mode');
-	Blockly.Arduino.setups_['VoiceRecognition_Mode'] = 'uint8_t asr_mode = '+mode+';\nld3320_config_mode(asr_mode);\n';
+	Blockly.Arduino.setups_['VoiceRecognition_Mode_' + voiceRecognition] = voiceRecognition + '.ld3320_config_mode(' + mode + ');\n';
 	return '';
- }
+}
 
  //语音识别设置词条和编号
 Blockly.Arduino.em_VoiceRecognition_Content = function () {
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n'
+	var voiceRecognition = this.getFieldValue('em_VoiceRecognition');
+	Blockly.Arduino.definitions_['VoiceRecognition_init_' + voiceRecognition] = 'LD3320 ' + voiceRecognition + '(VOICE_IIC_ADDR);\n';
+	// Blockly.Arduino.setups_['VoiceRecognition_init'] = 'Wire.begin();\n';
 	var key = Blockly.Arduino.valueToCode(this, 'em_Key', Blockly.Arduino.ORDER_ATOMIC);
 	var content = Blockly.Arduino.valueToCode(this, 'em_content', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.setups_['VoiceRecognition_content'+ key] ='ld3320_add_words('+key+','+ content+');\ndelay(200);\n';
+	Blockly.Arduino.setups_['VoiceRecognition_content'+ voiceRecognition + '_' + key] =voiceRecognition + '.ld3320_add_words('+key+', '+ content+');\n  delay(200);\n';
 	var code = '';
     return code;
 };
 
 //语音识别开始识别
 Blockly.Arduino.em_VoiceRecognition_Start = function(){
-	Blockly.Arduino.setups_['VoiceRecognition_Start'] = 'ld3320_asr_start();\n';
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n'
+	// Blockly.Arduino.setups_['VoiceRecognition_init'] = 'Wire.begin();\n';
+	var voiceRecognition = this.getFieldValue('em_VoiceRecognition');
+	Blockly.Arduino.definitions_['VoiceRecognition_init_' + voiceRecognition] = 'LD3320 ' + voiceRecognition + '(VOICE_IIC_ADDR);\n';
+	Blockly.Arduino.setups_['VoiceRecognition_Start_' + voiceRecognition] = voiceRecognition + '.ld3320_asr_start();\n';
 	return '';
 }
 
 //语音识别进行复位
 Blockly.Arduino.em_VoiceRecognition_Reset = function(){
-	Blockly.Arduino.setups_['VoiceRecognition_Reset'] = 'ld3320_reset();\ndelay(200);\n';
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n'
+	// Blockly.Arduino.setups_['VoiceRecognition_init'] = 'Wire.begin();\n';
+	var voiceRecognition = this.getFieldValue('em_VoiceRecognition');
+	Blockly.Arduino.definitions_['VoiceRecognition_init_' + voiceRecognition] = 'LD3320 ' + voiceRecognition + '(VOICE_IIC_ADDR);\n';
+	Blockly.Arduino.setups_['VoiceRecognition_Reset_' + voiceRecognition] = voiceRecognition + '.ld3320_reset();\n  delay(200);\n';
 	return '';
 }
 
 //语音识别获取识别到词条的对应编号
 Blockly.Arduino.em_VoiceRecognition_Number = function(){
-	var code = 'ld3320_get_result()';
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n';
+	var voiceRecognition = this.getFieldValue('em_VoiceRecognition');
+	Blockly.Arduino.definitions_['VoiceRecognition_init_' + voiceRecognition] = 'LD3320 ' + voiceRecognition + '(VOICE_IIC_ADDR);\n';
+	// Blockly.Arduino.setups_['VoiceRecognition_init'] = 'Wire.begin();\n';
+	var code = voiceRecognition + '.ld3320_get_result()';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 }
 
-//语音识别设置唤醒时间
+// 语音识别设置唤醒时间
 Blockly.Arduino.em_VoiceRecognition_Time = function(){
 	var time = Blockly.Arduino.valueToCode(this,'em_time',Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.setups_['SetTime'] = 'ld3320_config_time('+time+');\n';
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n';
+	var voiceRecognition = this.getFieldValue('em_VoiceRecognition');
+	Blockly.Arduino.definitions_['VoiceRecognition_init_' + voiceRecognition] = 'LD3320 ' + voiceRecognition + '(VOICE_IIC_ADDR);\n';
+	Blockly.Arduino.setups_['SetTime_' + voiceRecognition] = voiceRecognition + '.ld3320_config_time('+time+');\n';
+	return '';
+ }
+
+ // 语音识别设置唤醒词
+ Blockly.Arduino.em_VoiceRecognition_wake_word = function(){
+	var em_wakeWordContent = Blockly.Arduino.valueToCode(this,'em_wakeWordContent',Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n';
+	var voiceRecognition = this.getFieldValue('em_VoiceRecognition');
+	Blockly.Arduino.definitions_['VoiceRecognition_init_' + voiceRecognition] = 'LD3320 ' + voiceRecognition + '(VOICE_IIC_ADDR);\n';
+	Blockly.Arduino.setups_['SetTime_' + voiceRecognition] = voiceRecognition + '.ld3320_config_keywords(' + em_wakeWordContent + ');\n';
 	return '';
  }
 
@@ -695,9 +743,11 @@ Blockly.Arduino.em_VoiceRecognition_Time = function(){
  Blockly.Arduino.em_speech_synthesisStart = function(){
 	var voice = this.getFieldValue('em_voice');
 	var voiceSpeed = this.getFieldValue('em_voiceSpeed');
+	var em_speech = this.getFieldValue('em_speech');
 	var content = Blockly.Arduino.valueToCode(this, 'em_content', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <EM_TTS.h>\n\nTTS tts;\n';
-	var code = `String res_${speechVal} = String("[v${voice}][s${voiceSpeed}]") + String(${content});\nchar cArr_${speechVal}[res_${speechVal}.length() + 1];\nres_${speechVal}.toCharArray(cArr_${speechVal}, res_${speechVal}.length() + 1);\ntts.Start(cArr_${speechVal}, strlen(cArr_${speechVal}));\n`;
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <EM_TTS.h>\n';
+	Blockly.Arduino.definitions_['VoiceRecognition_' + em_speech] = 'TTS ' + em_speech + ';\n';
+	var code = `String res_${speechVal} = String("[v${voice}][s${voiceSpeed}]") + String(${content});\nchar cArr_${speechVal}[res_${speechVal}.length() + 1];\nres_${speechVal}.toCharArray(cArr_${speechVal}, res_${speechVal}.length() + 1);\n${em_speech}.Start(cArr_${speechVal}, strlen(cArr_${speechVal}));\n`;
 	speechVal ++;
 	return code;
  }
@@ -707,96 +757,63 @@ var speechValCache = 0;
 Blockly.Arduino.em_speech_synthesisCache = function(){
 	var voice = this.getFieldValue('em_voice');
 	var voiceSpeed = this.getFieldValue('em_voiceSpeed');
+	var em_speech = this.getFieldValue('em_speech');
 	var content = Blockly.Arduino.valueToCode(this, 'em_content', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <EM_TTS.h>\n\nTTS tts;\n'
-	var code = `String res_${speechValCache} = String("[v${voice}][s${voiceSpeed}]") + String(${content});\nchar_${speechValCache} cArr_${speechValCache}[res_${speechValCache}.length() + 1];\nres_${speechValCache}.toCharArray(cArr_${speechValCache},res_${speechValCache}.length() + 1);\ntts.TextCacheCmd(cArr_${speechValCache}, strlen(cArr_${speechValCache}));\n`;
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <EM_TTS.h>\n';
+	Blockly.Arduino.definitions_['VoiceRecognition_' + em_speech] = 'TTS ' + em_speech + ';\n';
+	var code = `String res_${speechValCache} = String("[v${voice}][s${voiceSpeed}]") + String(${content});\nchar_${speechValCache} cArr_${speechValCache}[res_${speechValCache}.length() + 1];\nres_${speechValCache}.toCharArray(cArr_${speechValCache},res_${speechValCache}.length() + 1);\n${em_speech}.TextCacheCmd(cArr_${speechValCache}, strlen(cArr_${speechValCache}));\n`;
 	return code;
  }
 
  Blockly.Arduino.em_speech_cplay = function(){
+	var em_speech = this.getFieldValue('em_speech');
 	var freq = Blockly.Arduino.valueToCode(this, 'em_freq', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <EM_TTS.h>\n\nTTS tts;\n'
+	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <EM_TTS.h>\n';
+	Blockly.Arduino.definitions_['VoiceRecognition_' + em_speech] = 'TTS ' + em_speech + ';\n';
 	// Blockly.Arduino.setups_['SetTime'] = 'ld3320_config_time('+time+');\n';
-	var code = `tts.Cplay(${freq});\n`;
+	var code = `${em_speech}.Cplay(${freq});\n`;
 	return code;
  }
 
-//初始化MP3模块
-Blockly.Arduino.em_MP3_MODE = function () {
-	var tx_pin = Blockly.Arduino.valueToCode(this, 'em_tx_pin', Blockly.Arduino.ORDER_ATOMIC);
-	var rx_pin = Blockly.Arduino.valueToCode(this, 'em_rx_pin', Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['MP3_MODE'] = '#include <GD5800_Serial.h>\nGD5800_Serial mp345('+tx_pin+','+rx_pin+');\n';
-	Blockly.Arduino.setups_['MP3_MODE'] ='mp345.begin(9600);\n';
-    return '';
-};
-
-//设置设置MP3模块音量
-Blockly.Arduino.em_MP3_Volume = function(){
-	var Volume = Blockly.Arduino.valueToCode(this,'em_volume',Blockly.Arduino.ORDER_ATOMIC);
-	// var operation = this.getFieldValue('Operation');
-	var code = 'mp345.setVolume(' + Volume + ');\n';
-	return code;
- }
-
- //设置MP3播放哪首
-Blockly.Arduino.em_MP3_playIndex = function(){
-	var index = Blockly.Arduino.valueToCode(this,'em_index',Blockly.Arduino.ORDER_ATOMIC);
-	// var operation = this.getFieldValue('Operation');
-	var code = 'mp345.playFileByIndexNumber(' + index + ');\n';
-	return code;
- }
- 
- // 设置MP3播放模式
- Blockly.Arduino.em_MP3_playModel = function(){
-	// var Volume = Blockly.Arduino.valueToCode(this,'Volume',Blockly.Arduino.ORDER_ATOMIC);
-	var model = this.getFieldValue('em_model');
-	var code = 'mp345.setLoopMode(' + model + ');\n';
-	return code;
- }
-  // 设置MP3播放音效
- Blockly.Arduino.em_MP3_playEqualizer = function(){
-	// var Volume = Blockly.Arduino.valueToCode(this,'Volume',Blockly.Arduino.ORDER_ATOMIC);
-	var equalizer = this.getFieldValue('em_equalizer');
-	var code = 'mp345.setLoopMode(' + equalizer + ');\n';
-	return code;
- }
- //MP3模块开始播放
-Blockly.Arduino.em_MP3_Play = function(){
-	var control = this.getFieldValue('em_control');
-	var code = 'mp345.' + control + ';\n';
-	return code;
-}
 //OLED初始化
 Blockly.Arduino.em_OLED_Init = function () {
-    Blockly.Arduino.definitions_['OLED_MODE'] = '#include <EM_OLED.h>\nEM_OLED u8g2(U8G2_R0, U8X8_PIN_NONE);\n';
-    Blockly.Arduino.setups_['OLED_INIT'] ='u8g2.begin();\n  u8g2.enableUTF8Print();\n';
+	var em_oled = this.getFieldValue('em_oled');
+    Blockly.Arduino.definitions_['OLED_MODE'] = '#include <EM_OLED.h>\n';
+	Blockly.Arduino.definitions_['OLED_MODE_' + em_oled] = 'EM_OLED ' + em_oled + '(U8G2_R0, U8X8_PIN_NONE);\n';
+    Blockly.Arduino.setups_['OLED_INIT_' + em_oled] =em_oled + '.begin();\n  ' + em_oled + '.enableUTF8Print();\n';
     return '';
 };
 
 Blockly.Arduino.em_OLED_Model = function () {
+	var em_oled = this.getFieldValue('em_oled');
+	Blockly.Arduino.definitions_['OLED_MODE'] = '#include <EM_OLED.h>\n';
+	Blockly.Arduino.definitions_['OLED_MODE_' + em_oled] = 'EM_OLED ' + em_oled + '(U8G2_R0, U8X8_PIN_NONE);\n';
+    Blockly.Arduino.setups_['OLED_INIT_' + em_oled] =em_oled + '.begin();\n  ' + em_oled + '.enableUTF8Print();\n';
     var branch = Blockly.Arduino.statementToCode(this, "DO");
-    var code = `u8g2.firstPage();\ndo\n{\n${branch}\n}while(u8g2.nextPage());\n`;
+    var code = `${em_oled}.firstPage();\ndo\n{\n${branch}\n}while(${em_oled}.nextPage());\n`;
     return code;
 };
 
 //OLED显示字符串
 Blockly.Arduino.em_OLED_Display_String = function () {
+	var em_oled = this.getFieldValue('em_oled');
     var horizontal = Blockly.Arduino.valueToCode(this,'em_horizontal',Blockly.Arduino.ORDER_ATOMIC);
     var longitudinal = Blockly.Arduino.valueToCode(this,'em_longitudinal',Blockly.Arduino.ORDER_ATOMIC);
     var Content = Blockly.Arduino.valueToCode(this,'em_content',Blockly.Arduino.ORDER_ATOMIC);
     var Size = this.getFieldValue('size');
-    var code ='u8g2.ShowFont(' + horizontal +',' + longitudinal + ',' + Content + ');\n';
+    var code = em_oled + '.ShowFont(' + horizontal +', ' + longitudinal + ', ' + Content + ');\n';
     return code;
 };
 
 // OLED_Display_String_row
 Blockly.Arduino.em_OLED_Display_String_Row = function () {
-  var horizontal = Blockly.Arduino.valueToCode(this,'horizontal',Blockly.Arduino.ORDER_ATOMIC);
+  var em_oled = this.getFieldValue('em_oled');
+  var horizontal = Blockly.Arduino.valueToCode(this,'em_horizontal',Blockly.Arduino.ORDER_ATOMIC);
   var row = this.getFieldValue('em_row');
-  var Content = Blockly.Arduino.valueToCode(this,'content',Blockly.Arduino.ORDER_ATOMIC);
+  var Content = Blockly.Arduino.valueToCode(this,'em_content',Blockly.Arduino.ORDER_ATOMIC);
   var Size = this.getFieldValue('em_size');
   row = row * 16;
-  var code ='u8g2.ShowFont(' + horizontal +',' + row + ',' + Content + ');\n';
+  var code = em_oled + '.ShowFont(' + horizontal +', ' + row + ', ' + Content + ');\n';
   return code;
 };
 
@@ -830,88 +847,86 @@ Blockly.Arduino.em_hand_jobone_header_x= function(){
 
 //手柄键盘传感器
 Blockly.Arduino.em_hand_botton_fore= function(){
-	var btn_four=this.getFieldValue('em_btnfour');
-	var btn_lasts=this.getFieldValue('em_btnlast');
-	var buttonjoge = 'joystick.Get_Button_Status('+btn_four+')';
+	Blockly.Arduino.definitions_['define_maker'] = '#include <JoystickHandle.h>\n';
+	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
+	var em_joystick = this.getFieldValue('em_joystick');
+	var btn_four = this.getFieldValue('em_btnfour');
+	var btn_lasts = this.getFieldValue('em_btnlast');
+	var buttonjoge = em_joystick + '.Get_Button_Status('+btn_four+')';
 	var code=buttonjoge+'=='+btn_lasts;
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 // 手柄初始化
 Blockly.Arduino.em_hand_initalize_header=function(){
-	Blockly.Arduino.definitions_['define_maker'] = '#include <JoystickHandle.h>\nJoystickHandle joystick(JOYSTICK_I2C_ADDR);\n';
+	var em_joystick=this.getFieldValue('em_joystick');
+	Blockly.Arduino.definitions_['define_maker'] = '#include <JoystickHandle.h>\n';
+	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
 	var code='';
 	return code;
 };
 
-// 判断手柄按键按下/释放
-Blockly.Arduino.em_hand_press_that=function(){
-	var btn_pre=this.getFieldValue('em_btnfour');
-	var btn_prebt='PRESS_DOWN';
-	var buttpress = 'joystick.Get_Button_Status('+btn_pre+')';
-	var code=buttpress+'=='+btn_prebt;
-	return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.em_hand_release_that=function(){
-	var btn_rel=this.getFieldValue('em_btnfour');
-	var btn_relbt='NONE_PRESS';
-	var buttrelease = 'joystick.Get_Button_Status('+btn_rel+')';
-	var code=buttrelease+'=='+btn_relbt;
-	return [code, Blockly.Arduino.ORDER_ATOMIC];
-}
-
 // 手柄左右摇杆
 Blockly.Arduino.em_hand_lr_press= function(){
+	Blockly.Arduino.definitions_['define_maker'] = '#include <JoystickHandle.h>\n';
+	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
+	var em_joystick=this.getFieldValue('em_joystick');
 	var deacting_lr=this.getFieldValue('em_lrpre');
 	var lr_press=this.getFieldValue('em_jobone');
 	var code = '';
 	if(lr_press == 1){
-		code='joystick.'+deacting_lr+'nalogRead_X()'
+		code= em_joystick + '.'+deacting_lr+'nalogRead_X()'
 	}else{
-		code='joystick.'+deacting_lr+'nalogRead_Y()'
+		code=em_joystick + '.'+deacting_lr+'nalogRead_Y()'
 	}
    	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 // 指南针
 Blockly.Arduino.em_compass_star=function() {
-	var compass_xyz='int x_values, y_values, z_values, azimuth_values;\nint readCompass(){\n  int x, y, z;\n  int azimuth;\n  qmc.read(&x, &y, &z, &azimuth);\n  x_values = x;\n  y_values = y;\n  z_values = z;\n  azimuth_values = azimuth;\n}\n';
-	Blockly.Arduino.setups_['setup_compass_star'] ='Wire.begin();\n  qmc.init();\n';
-	Blockly.Arduino.definitions_['define_compass'] = '#include  <MechaQMC5883.h>\nMechaQMC5883 qmc;\n' + compass_xyz;
+	var em_compass=this.getFieldValue('em_compass');
+	var compass_xyz='int ' + em_compass + '_readCompass(int type){\n  int x, y, z;\n  int azimuth, result;\n  ' + em_compass + '.read(&x, &y, &z, &azimuth);\n  if(type == 1){\n    result = x;\n  }else if(type == 2) {\n    result = y;\n  }else if(type == 3) {\n    result = z;\n  }else {\n    result = azimuth;\n  }\n  return result;\n}\n';
+	Blockly.Arduino.setups_['setup_compass_star'] ='Wire.begin();\n  ' + em_compass + '.init();\n';
+	Blockly.Arduino.definitions_['define_compass'] = '#include  <MechaQMC5883.h>\n';
+	Blockly.Arduino.definitions_['define_compass_' + em_compass] = 'MechaQMC5883 ' + em_compass + ';\n' + compass_xyz;
     var code='';
 	return code;
 }
 
-
-Blockly.Arduino.em_compass_getValue=function() {
-    var code='readCompass();\n';
-	return code;
-}
-
 Blockly.Arduino.em_compass_vue=function() {
+	var em_compass=this.getFieldValue('em_compass');
 	var compass_v=this.getFieldValue('em_capa');
-    var code=compass_v+"_values";
+    var code=em_compass + "_readCompass(" + compass_v + ")";
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 }
 
 // em_five_infrared_tracking
 Blockly.Arduino.em_fiveInfraredTracking=function() {
-	Blockly.Arduino.definitions_['define_fiveInfraredTracking'] = '#include <EM_InfraredTracking.h>\nInfraredTracking 5line_track(INFRARED_I2C_ADDR);\n';
+	var em_fiveInfraredTracking = this.getFieldValue('em_fiveInfraredTracking');
+	Blockly.Arduino.definitions_['define_fiveInfraredTracking'] = '#include <EM_InfraredTracking.h>\n';
+	Blockly.Arduino.definitions_['define_fiveInfraredTracking_' + em_fiveInfraredTracking] = 'InfraredTracking ' + em_fiveInfraredTracking + '(INFRARED_I2C_ADDR);\n';
 	var em_infrared = this.getFieldValue('em_infrared');
     // var code=compass_v+"_values";
 	var code = "";
 	if(em_infrared == 0) {
-		code = "5line_track.GetState() & 0x01";
+		code = em_fiveInfraredTracking + ".GetState() & 0x01";
 	} else if(em_infrared == 1) {
-		code = "5line_track.GetState() & 0x02";
+		code = em_fiveInfraredTracking + ".GetState() & 0x02";
 	} else if(em_infrared == 2) {
-		code = "5line_track.GetState() & 0x04";
+		code = em_fiveInfraredTracking + ".GetState() & 0x04";
 	} else if(em_infrared == 3) {
-		code = "5line_track.GetState() & 0x08";
+		code = em_fiveInfraredTracking + ".GetState() & 0x08";
 	} else if(em_infrared == 4) {
-		code = "5line_track.GetState() & 0x10";
+		code = em_fiveInfraredTracking + ".GetState() & 0x10";
 	}
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
+}
+
+// em_fiveInfraredTrackingData
+Blockly.Arduino.em_fiveInfraredTrackingData=function() {
+	var em_fiveInfraredTracking = this.getFieldValue('em_fiveInfraredTracking');
+	Blockly.Arduino.definitions_['define_fiveInfraredTracking'] = '#include <EM_InfraredTracking.h>\n';
+	Blockly.Arduino.definitions_['define_fiveInfraredTracking_' + em_fiveInfraredTracking] = 'InfraredTracking ' + em_fiveInfraredTracking + '(INFRARED_I2C_ADDR);\n';
+	return [em_fiveInfraredTracking + '.GetState()', Blockly.Arduino.ORDER_ATOMIC];
 }
 
 // 陀螺仪
@@ -930,7 +945,8 @@ Blockly.Arduino.em_gyro_getvalue=function(){
 
 //手势传感器
 Blockly.Arduino.em_handleStatus_init=function(){
-	Blockly.Arduino.definitions_['define_handleStatus_init'] = '#include <SparkFun_APDS9960.h>\nSparkFun_APDS9960 apds = SparkFun_APDS9960();\nint gestureStatus;\n';
+	Blockly.Arduino.definitions_['define_handleStatus_init'] = '#include <SparkFun_APDS9960.h>\n';
+	Blockly.Arduino.definitions_['define_handleStatus_init'] = 'SparkFun_APDS9960 apds = SparkFun_APDS9960();\nint gestureStatus;\n';
 	Blockly.Arduino.setups_['setup_gyro'] = 'apds.init();\napds.enableGestureSensor(true);\n';
 	return '';
 }
@@ -943,43 +959,21 @@ Blockly.Arduino.em_handleSensor_getValue=function(){
 
 //手势传感器
 Blockly.Arduino.em_handleSensor_isGetValue=function(){
-	var code = 'gestureStatus = apds.readGesture()';
+	Blockly.Arduino.definitions_['define_handleStatus_init'] = '#include <SparkFun_APDS9960.h>\n';
+	var handleSensor = this.getFieldValue('em_handleSensor');
+	Blockly.Arduino.definitions_['define_handleStatus_init_' + handleSensor] = 'SparkFun_APDS9960 ' + handleSensor + ' = SparkFun_APDS9960();\nint ' + handleSensor + '_gestureStatus;\n';
+	Blockly.Arduino.definitions_['define_handleStatus_' + handleSensor] ='bool ' + handleSensor + '_isGestureAvailable() {\n  ' + handleSensor + '_gestureStatus = ' + handleSensor + '.readGesture();\n  return ' + handleSensor + '.isGestureAvailable();\n}\n';
+	Blockly.Arduino.setups_['setup_gyro'] = handleSensor + '.init();\n  ' + handleSensor + '.enableGestureSensor(true);\n';
+	var code = handleSensor + '_isGestureAvailable()';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 }
 
 //手势传感器
-Blockly.Arduino.handleSensor_getStatus=function(){
-	var MODE = this.getFieldValue('em_MODE');
-	var code = 'gestureStatus == ' + MODE;
+Blockly.Arduino.em_handleSensor_getStatus=function(){
+	var handleSensor = this.getFieldValue('em_handleSensor');
+	var MODE = this.getFieldValue('em_mode');
+	var code = handleSensor + '_gestureStatus == ' + MODE;
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
-}
-
-//rgb环灯
-Blockly.Arduino.em_rgbLamp_init=function(){
-	var lam = Blockly.Arduino.valueToCode(this,'em_rgb_init',Blockly.Arduino.RGBLAMP_ONES);
-	Blockly.Arduino.definitions_['define_rgblamp'] = '#include <RGBLed.h>\n#define RgbPin '+lam+'\n';
-	Blockly.Arduino.definitions_['define_rgblnum'] = 'RGBLed mRgb(RgbPin, 12);\n';
-	var code ='';
-	return code;
-}
-
-Blockly.Arduino.em_rgbLamp_Bright=function(){
-	var brg = Blockly.Arduino.valueToCode(this,'rgb_briga',Blockly.Arduino.RGBLAMP_BRIG);
-	Blockly.Arduino.definitions_['define_rgblnum'] = 'RGBLed mRgb(RgbPin, 12);\n';
-	var code ='mRgb.setBrightness('+brg+');\n';
-	return code;
-}
-Blockly.Arduino.em_rgbLamp_num=function(){
-	var rnuma = Blockly.Arduino.valueToCode(this,'em_rgb_numa',Blockly.Arduino.RGBNUMA);
-	var rnumb = Blockly.Arduino.valueToCode(this,'em_rgb_numb',Blockly.Arduino.RGBNUMB);
-	var rnumc = Blockly.Arduino.valueToCode(this,'em_rgb_numc',Blockly.Arduino.RGBNUMC);
-	var rnumd = Blockly.Arduino.valueToCode(this,'em_rgb_numd',Blockly.Arduino.RGBNUMD);
-	var rnume = Blockly.Arduino.valueToCode(this,'em_rgb_nume',Blockly.Arduino.RGBNUME);
-	var rnumf = Blockly.Arduino.valueToCode(this,'em_rgb_numf',Blockly.Arduino.RGBNUMF);
-	var rnumg = Blockly.Arduino.valueToCode(this,'em_rgb_numg',Blockly.Arduino.RGBNUMG);
-	Blockly.Arduino.definitions_['define_rgblnum'] = 'RGBLed mRgb(RgbPin, '+rnuma+');\nint delayval = '+rnumd+';\n';
-	var code ='for(int rgbdh = ' + rnumb + ' - 1; rgbdh < ' + rnumc + '; rgbdh++){\nmRgb.setColorAt(rgbdh, '+rnume+', '+rnumf+', '+rnumg+');\nmRgb.show();\ndelay(delayval);\n}';
-	return code;
 }
 
 //mqtt init
@@ -1121,9 +1115,9 @@ Blockly.Arduino.em_esp8266_connectHttpServer=function(){
 }
 
 //esp8266_get
-Blockly.Arduino.esp8266_get=function(){
-	var getStr = Blockly.Arduino.valueToCode(this,'getStr',Blockly.Arduino.ORDER_ATOMIC);
-	var timeout = Blockly.Arduino.valueToCode(this,'timeout',Blockly.Arduino.ORDER_ATOMIC);
+Blockly.Arduino.em_esp8266_get=function(){
+	var getStr = Blockly.Arduino.valueToCode(this,'em_getStr',Blockly.Arduino.ORDER_ATOMIC);
+	var timeout = Blockly.Arduino.valueToCode(this,'em_timeout',Blockly.Arduino.ORDER_ATOMIC);
 	var code = 'httpClient.readData(String(' + getStr + ').c_str(), &esp8266_serial, ' + timeout + ')';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 }

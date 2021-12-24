@@ -32,11 +32,22 @@ typedef enum
     KEYWORDS_AND_BUTTON = 3, //关键字加按键模式
 }E_WORK_MODE;
 
-bool ld3320_add_words(unsigned char idNum, const char *words);
-bool ld3320_config_time(unsigned char t);
-bool ld3320_config_mode(E_WORK_MODE m);
-bool ld3320_config_keywords(const char *words);
-// bool ld3320_clear(void); // 擦除所有词条
-bool ld3320_reset(void); // 复位语音识别模块
-bool ld3320_asr_start(void); // 语音识别模块开始识别
-unsigned char ld3320_get_result(void);
+class LD3320 {
+    public:
+        uint8_t _i2c_addr;
+        LD3320(uint8_t addr = VOICE_IIC_ADDR);
+        boolean ld3320_add_words(unsigned char idNum, const char *words);
+        boolean ld3320_config_time(unsigned char t);
+        boolean ld3320_config_mode(E_WORK_MODE m);
+        boolean ld3320_config_keywords(const char *words);
+        // bool ld3320_clear(void); // 擦除所有词条
+        boolean ld3320_reset(void); // 复位语音识别模块
+        boolean ld3320_asr_start(void); // 语音识别模块开始识别
+        unsigned char ld3320_get_result(void);
+        ~LD3320();
+     private:
+        boolean WireWriteByte(uint8_t val);
+        boolean WireWriteDataArray(uint8_t reg, uint8_t *val, unsigned int len);
+        int WireReadDataArray(uint8_t reg, uint8_t *val, unsigned int len);
+        boolean ld3320_clear(void); // 擦除所有词条
+};
