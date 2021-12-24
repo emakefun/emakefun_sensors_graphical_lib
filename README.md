@@ -8,21 +8,21 @@
 
     |----- example
 
-    |     |----- mblock5
+    |     |----- mblock5    mblock5图形化案例
  
-    |     |----- mind+
+    |     |----- mind+      mind+图形化案例
 
-    |     |----- mixly
+    |     |----- mixly      mixly图形化案例
 
-    |----- mblock5
+    |----- mblock5          mblock5图形化库
 
-    |----- media
+    |----- mind+            mind+图形化库
 
-    |     |----- mixly
+    |----- mixly            mixly图形化库
+    
+    |----- media            图片
 
-    |----- mind+
-
-    |----- mixly
+    |     |----- mixly      mixly图片
 
 ## 库描述
 
