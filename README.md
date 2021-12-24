@@ -5,23 +5,23 @@
 |---- emakefun_sensors_graphical_lib
 
     |----- README.md
-
+    
     |----- example
-
+    
     |     |----- mblock5    mblock5图形化案例
- 
+     
     |     |----- mind+      mind+图形化案例
-
+    
     |     |----- mixly      mixly图形化案例
-
+    
     |----- mblock5          mblock5图形化库
-
+    
     |----- mind+            mind+图形化库
-
+    
     |----- mixly            mixly图形化库
     
     |----- media            图片
-
+    
     |     |----- mixly      mixly图片
 
 ## 库描述
@@ -30,6 +30,7 @@
 
 ​        mixly库我们秉着mixly软件自带传感器库和我们的硬件兼容的器件我们不做库，只做差异化的库的原则分成了六个模块，分别为基础输入模块、传感器、显示器、执行器、智能模块、无线通信；当我们使用Mixly编程的时候，先[点击下载](https://github.com/emakefun/emakefun_sensors_graphical_lib/releases/download/v1.0.0/Emakefun_Sensor.zip) Mixly库，解压下载的Emakefun_Sensor.zip文件；将里面的EM_MQTT和EM_OLED两个文件夹，复制粘贴到mixly安装目录下的arduino->portable->sketchbook->libraries文件夹下；然后再通过mixly导入本地库的操作导入EmakefunSensor.xml文件，如下图所示。
 <img src="./mixly/Emakefun_Sensor/必看.png"/>
+<img src="./media/mixly/mixly_step2.png"/><img src="./media/mixly/mixly_step3.png"/>
 
 ####  基础输入模块 
 
@@ -293,11 +294,11 @@ http模式发送请求：![http_get](./media/mixly/http_get.png) 物联网模块
 
 [Mixly MQTT模块(HTTP模式)案例](./example/mixly/http_mixly.mix)
 
-**案例说明：** 指定我们的物联网模块用哪几个端口作为RX、TX引脚，配置好wifi名称和密码，配置好ip、端口，连接WiFi;判断是否连上了WIFI，如果连上了WIFI了，否则，重新连接wifi,再判断是否连接上HTTP服务器，发送一个get请求，并设置超时时间为200ms，并且打印请求的数据；
+**案例说明：** 指定我们的物联网模块用哪几个端口作为RX、TX引脚，配置好wifi名称和密码，配置好ip、端口，连接WiFi;判断是否连上了WIFI，如果连上了WIFI了,再判断是否连接上HTTP服务器，发送一个get请求，并设置超时时间为200ms，并且打印请求的数据；
 
 #### 无线通信
 
-无线通信模块包含红外接收模块，同时我们配合世面上常见的一款遥控器和我们自己设计的符合我们公司的一款遥控器进行块封装。
+无线通信模块包含红外接收模块，我们的块兼容了常见的遥控器和我们自己设计的符合我们公司的遥控器。
 
 **描述：**
 
