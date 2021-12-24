@@ -28,7 +28,8 @@
 
 当硬件是V1时，请选择![piano_v1](.\media\mixly\piano_v1.png)
 
-**描述：**钢琴模块选择对应的CLK、DIO两个引脚，判断钢琴模块上的数字按键是否被触摸；当被触摸对应的数字时，输出TRUE,否则为FALSE。
+**描述：** 
+钢琴模块选择对应的CLK、DIO两个引脚，判断钢琴模块上的数字按键是否被触摸；当被触摸对应的数字时，输出TRUE,否则为FALSE。
 
 [Mixly钢琴模块V1案例下载](.\example\mixly\piano_v1_mixly.mix)
 
@@ -54,7 +55,7 @@
 
 [Mixly旋转编码器案例下载](./example/mixly/encoder_mixly.mix)
 
-**案例说明：**旋转编码器A引脚连接Arduino的3引脚，旋转编码器的B引脚连接Arduino的5引脚，旋转编码器的D引脚，当旋转编码器按下的时候，串口显示“encoder button is Enter”，当旋转旋转编码器的时候，串口显示不同的数值。
+**案例说明：** 旋转编码器A引脚连接Arduino的3引脚，旋转编码器的B引脚连接Arduino的5引脚，旋转编码器的D引脚，当旋转编码器按下的时候，串口显示“encoder button is Enter”，当旋转旋转编码器的时候，串口显示不同的数值。
 
 ##### **矩阵键盘**
 
@@ -68,7 +69,7 @@
 
 [MixlyPH2.0矩阵键盘案例下载](./example/mixly/matrixKeyboard_mixly.mix)
 
-**案例说明：**PH2.0矩阵键盘的SCL引脚接Arduino的A5引脚，SDO引脚接Arduino的A4引脚，当触摸PH2.0矩阵键盘的按键时，串口打印对应的按键值；不触摸，则串口打印空行。
+**案例说明：**P H2.0矩阵键盘的SCL引脚接Arduino的A5引脚，SDO引脚接Arduino的A4引脚，当触摸PH2.0矩阵键盘的按键时，串口打印对应的按键值；不触摸，则串口打印空行。
 
 ##### **PH2.0小手柄**
 
@@ -82,7 +83,7 @@
 
 [Mixly PH2.0小手柄案例](./example/mixly/joystickhande_mixly.mix)
 
-**案例说明：**PH2.0小手柄接Arduino的IIC接口，SDA接Arduino的A4,SCL接Arduino的A5;串口会一直打印小手柄的遥杆X 、Y轴方向的值和按钮A的状态。
+**案例说明：** PH2.0小手柄接Arduino的IIC接口，SDA接Arduino的A4,SCL接Arduino的A5;串口会一直打印小手柄的遥杆X 、Y轴方向的值和按钮A的状态。
 
 #### 传感器
 
@@ -112,7 +113,7 @@ RGB超声波模块是易创空间公司自研的一款彩灯和测距的双功�
 
 [Mixly 指南针模块案例](./example/mixly/compass_mixly.mix)
 
-**案例说明：**指南针模块接Arduino的IIC接口，SDA接Arduino的A4,SCL接Arduino的A5;串口会打印出模块获取X方向的度数。
+**案例说明：** 指南针模块接Arduino的IIC接口，SDA接Arduino的A4,SCL接Arduino的A5;串口会打印出模块获取X方向的度数。
 
 ##### 五路循迹模块
 
@@ -126,7 +127,7 @@ RGB超声波模块是易创空间公司自研的一款彩灯和测距的双功�
 
 [Mixly 五路循迹模块案例](./example/mixly/fix_track_mixly.mix)
 
-**案例说明：**五路循迹模块接Arduino的IIC接口，SDA接Arduino的A4,SCL接Arduino的A5;当第一组探头检测到黑线时，打印模块获取到的状态值。
+**案例说明：** 五路循迹模块接Arduino的IIC接口，SDA接Arduino的A4,SCL接Arduino的A5;当第一组探头检测到黑线时，打印模块获取到的状态值。
 
 #### 显示器
 
@@ -213,7 +214,7 @@ OLED对应行显示数据：![](.\media\mixly\oled_display2.png) 设置具体的
 
 [Mixly 语音识别模块案例](./example/mixly/voice_recognition_mixly.mix)
 
- **案例说明：**语音识别模块通信使用IIC，所以需要接Arduino的IIC口，模块的SDA接Arduino的A4,SCL接Arduino的A5;先对模块进行复位，设置模式为循环识别模式，分别设置词条和对应的内容，开始识别；获取识别结果的词条编码，并通过串口打印出来。
+ **案例说明：** 语音识别模块通信使用IIC，所以需要接Arduino的IIC口，模块的SDA接Arduino的A4,SCL接Arduino的A5;先对模块进行复位，设置模式为循环识别模式，分别设置词条和对应的内容，开始识别；获取识别结果的词条编码，并通过串口打印出来。
 
 ##### 语音合成模块
 
