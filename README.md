@@ -15,6 +15,7 @@ Mblock5库
 
 ## 目录结构
 
+```
 emakefun_sensors_graphical_lib
 ├─example
 │  ├─mblock5         # mblock5图形化案例
@@ -27,12 +28,13 @@ emakefun_sensors_graphical_lib
 │  └─mixly               # mixly图片等静态资源
 ├─mind+                 # mind+图形化库
 ├─mixly                   # mixly图形化库
-
+└─README.md             # 内容描述
+```
 ## 库描述
 
 ### 一. Mixly库
 
-Mixly导入库分为两种情况，分别是云端导入和本地导入；mixly库我们秉着mixly软件自带传感器库和我们的硬件兼容的器件我们不做库，只做差异化的库的原则分成了六个模块，分别为基础输入模块、传感器、显示器、执行器、智能模块、无线通信。
+​        Mixly导入库分为两种情况，分别是云端导入和本地导入；mixly库我们秉着mixly软件自带传感器库和我们的硬件兼容的器件我们不做库，只做差异化的库的原则分成了六个模块，分别为基础输入模块、传感器、显示器、执行器、智能模块、无线通信。
 
 1. 云端导入
 
