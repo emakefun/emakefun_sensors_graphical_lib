@@ -12,7 +12,7 @@
 	<!-- 钢琴模块V2 -->
 	<block type="em_initPiano_v2"> 
 	 </block>
-
+	<block type="em_sliding_potentiometer"></block>
 	<!-- 旋转编码器 -->
 	<block type="em_digitalInitPort"></block> 
 	<block type="em_digital"></block>
@@ -297,11 +297,18 @@
 
 	<!-- 双路电机驱动板 -->
 	<block type="em_doubleDcMotorDriver">
-		<value name="em_speed">
+		<value name="em_speed1">
 			<shadow type="math_number">
 				<field name="NUM">255</field>
 			</shadow>
 		</value>
+		<value name="em_speed2">
+			<shadow type="math_number">
+				<field name="NUM">255</field>
+			</shadow>
+		</value>
+	</block>
+	<block type="em_doubleDcMotorDriverStop">
 	</block>
 
    <!-- 步进电机初始化引脚 -->

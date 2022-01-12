@@ -1,36 +1,56 @@
-# Emakefun_sensors_graphical_lib
+# 易创空间传感器图形化库
 ​       本库是深圳市易创空间科技有限公司结合自家公司生产的硬件做的Arduino库；其中里面包含Arduino源码、Mixly扩展库、Mind+扩展库、MBlock5扩展库以及相对应的示例程序。
+
+快速链接：
+
+Arduino IDE库
+
+[Mixly库](https://github.com/emakefun/emakefun_sensors_graphical_lib/releases/download/v1.0.0/Emakefun_Sensor.zip)
+
+Mind+库
+
+Mblock5库
+
+[MagicBlock软件下载](http://www.emakefun.com/download)
+
 ## 目录结构
 
-|---- emakefun_sensors_graphical_lib
-
-    |----- README.md
-    
-    |----- example
-    
-    |     |----- mblock5    mblock5图形化案例
-     
-    |     |----- mind+      mind+图形化案例
-    
-    |     |----- mixly      mixly图形化案例
-    
-    |----- mblock5          mblock5图形化库
-    
-    |----- mind+            mind+图形化库
-    
-    |----- mixly            mixly图形化库
-    
-    |----- media            图片
-    
-    |     |----- mixly      mixly图片
+​    emakefun_sensors_graphical_lib
+​    |----- README.md        包描述
+​    |----- example
+​    |     |----- mblock5    mblock5图形化案例
+​    |     |----- mind+      mind+图形化案例
+​    |     |----- mixly      mixly图形化案例
+​    |----- mblock5          mblock5图形化库
+​    |----- mind+            mind+图形化库
+​    |----- mixly            mixly图形化库
+​    |----- media            图片资源
+​    |     |----- mixly      mixly图片
 
 ## 库描述
 
 ### 一. Mixly库
 
-​        mixly库我们秉着mixly软件自带传感器库和我们的硬件兼容的器件我们不做库，只做差异化的库的原则分成了六个模块，分别为基础输入模块、传感器、显示器、执行器、智能模块、无线通信；当我们使用Mixly编程的时候，先[点击下载](https://github.com/emakefun/emakefun_sensors_graphical_lib/releases/download/v1.0.0/Emakefun_Sensor.zip) Mixly库，解压下载的Emakefun_Sensor.zip文件；将里面的EM_MQTT和EM_OLED两个文件夹，复制粘贴到mixly安装目录下的arduino->portable->sketchbook->libraries文件夹下；然后再通过mixly导入本地库的操作导入EmakefunSensor.xml文件，如下图所示。
-<img src="./mixly/Emakefun_Sensor/必看.png"/>
-<img src="./media/mixly/mixly_step2.png"/><img src="./media/mixly/mixly_step3.png"/>
+Mixly导入库分为两种情况，分别是云端导入和本地导入；mixly库我们秉着mixly软件自带传感器库和我们的硬件兼容的器件我们不做库，只做差异化的库的原则分成了六个模块，分别为基础输入模块、传感器、显示器、执行器、智能模块、无线通信。
+
+1. 云端导入
+
+   云端导入是指企业将各自的软件库放到Mixly官方服务器上，使老师们能够直接点击库名就能加载到Mixly，方便简单；
+
+   **操作步骤**  1.点击导入库-->2.选择库名为emakefun的库-->3.点击云端导入-->4.日志输出框显示导入自定义库成功！
+
+   ![mixly_cloud](./media/mixly/mixly_cloud.png)
+
+2. 本地导入
+
+​        当我们使用Mixly编程的时候，先[点击下载](https://github.com/emakefun/emakefun_sensors_graphical_lib/releases/download/v1.0.0/Emakefun_Sensor.zip) Mixly库，解压下载的Emakefun_Sensor.zip文件；将libraries里面的EM_MQTT和EM_OLED两个文件夹，复制粘贴到mixly安装目录下的arduino->portable->sketchbook->libraries文件夹下(Mixly2.0可以忽略该步骤)；然后再通过mixly导入本地库的操作导入EmakefunSensor.xml文件，Mixly2.0版本可以直接导入EmakefunSensor.xml，如下图所示。
+<img src="./mixly/Emakefun_Sensor/readme.png"/>
+
+**Mixly2.0版本跳过以上步骤；**
+
+<img src="./media/mixly/mixly_step2.png"/>
+
+<img src="./media/mixly/mixly_step3.png"/>
 
 ####  基础输入模块 
 
@@ -45,7 +65,7 @@
 
 [Mixly钢琴模块V1案例下载](./example/mixly/piano_v1_mixly.mix)
 
-**案例说明**：钢琴V1模块CLK引脚接Arduino的A4引脚，钢琴模块的DIO引脚接Arduino的A5引脚，无源蜂鸣器的S引脚接Arduino的3引脚；当按下钢琴模块不同的数字按钮，无源蜂鸣器发出不同的音符，犹如我们在弹钢琴，如果觉得音质不对，我们可以自己调节无源蜂鸣器的频率，让蜂鸣器发出想要的声音，这里就不做过多的解释。 
+**案例说明**：钢琴V1模块CLK引脚接Arduino的5引脚，钢琴模块的DIO引脚接Arduino的6引脚，无源蜂鸣器的S引脚接Arduino的3引脚；当按下钢琴模块不同的数字按钮，无源蜂鸣器发出不同的音符，犹如我们在弹钢琴，如果觉得音质不对，我们可以自己调节无源蜂鸣器的频率，让蜂鸣器发出想要的声音，这里就不做过多的解释。 
 
 当硬件是V2时，请选择![piano_v2](./media/mixly/piano_v2.png)
 
@@ -59,7 +79,7 @@
 
 **描述：**
 
-初始化块：![encoder_init](./media/mixly/encoder_init.png)  初始化指定旋转编码器的三个引脚,并定义我们自己的旋转编码器对象myEncoder.
+初始化块：![encoder_init](./media/mixly/encoder_init.png)  初始化指定旋转编码器的三个引脚（两个相位引脚，一个按键引脚）,并定义我们自己的旋转编码器对象myEncoder.
 
 获取旋转编码器的编码值：![encode_value](./media/mixly/encoder_value.png)  获取旋转编码器myEncoder的编码值
 
@@ -67,7 +87,7 @@
 
 [Mixly旋转编码器案例下载](./example/mixly/encoder_mixly.mix)
 
-**案例说明：** 旋转编码器A引脚连接Arduino的3引脚，旋转编码器的B引脚连接Arduino的5引脚，旋转编码器的D引脚，当旋转编码器按下的时候，串口显示“encoder button is Enter”，当旋转旋转编码器的时候，串口显示不同的数值。
+**案例说明：** 旋转编码器A相位引脚连接Arduino的3引脚，旋转编码器的B相位引脚连接Arduino的5引脚，旋转编码器的按键D引脚连接Arduino的6引脚，当旋转编码器按下的时候，串口显示“encoder button is Enter”，当旋转旋转编码器的时候，串口显示不同的数值。
 
 ##### **矩阵键盘**
 
@@ -81,7 +101,7 @@
 
 [MixlyPH2.0矩阵键盘案例下载](./example/mixly/matrixKeyboard_mixly.mix)
 
-**案例说明：**P H2.0矩阵键盘的SCL引脚接Arduino的A5引脚，SDO引脚接Arduino的A4引脚，当触摸PH2.0矩阵键盘的按键时，串口打印对应的按键值；不触摸，则串口打印空行。
+**案例说明：**PH2.0矩阵键盘的SCL引脚接Arduino的5引脚，SDO引脚接Arduino的6引脚，当触摸PH2.0矩阵键盘的按键时，串口打印对应的按键值；不触摸，则串口打印空行。
 
 ##### **PH2.0小手柄**
 
@@ -177,7 +197,9 @@ OLED对应行显示数据：![](./media/mixly/oled_display2.png) 设置具体的
 
 **描述：**
 
-![double_motor_driver](./media/mixly/double_motor_driver.png) 该模块电机M1和M2共用一路驱动，M3和M4共用一路，同时可以设置速度，当速度为负时，电机反转，为正时，电机正转；
+![double_motor_driver](./media/mixly/double_motor_driver.png) 该模块电机IN1和IN2控制一路电机，IN3和IN4控制另一路电机，同时可以设置速度，当速度为负时，电机反转，为正时，电机正转；
+
+![double_motor_driver_stop](./media/mixly/double_motor_driver_stop.png) 该模块可以让电机马上停止转动，达到刹车的效果。
 
 #### 智能模块
 

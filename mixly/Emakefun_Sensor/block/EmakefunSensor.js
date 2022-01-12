@@ -328,13 +328,12 @@ Blockly.Blocks.em_initPiano = {
       // this.appendDummyInput("")
       //   .appendField(Blockly.EM_IICTUBECLK)
         .appendField(new Blockly.FieldDropdown([
-          ['A4', "A4"],
+          ['5', "5"],
           ['0', "0"],
           ['1', "1"],
           ['2', "2"],
           ['3', "3"],
           ['4', "4"],
-          ['5', "5"],
           ['6', "6"],
           ['7', "7"],
           ['8', "8"],
@@ -347,12 +346,13 @@ Blockly.Blocks.em_initPiano = {
           ['A1', "A1"],
           ['A2', "A2"],
           ['A3', "A3"],
+          ['A4', "A4"],
           ['A5', "A5"],
         ]), "em_clk")
       // this.appendDummyInput("")
         .appendField(Blockly.EM_IICTUBEDIO)
         .appendField(new Blockly.FieldDropdown([
-          ['A5', "A5"],
+          ['6', "6"],
           ['0', "0"],
           ['1', "1"],
           ['2', "2"],
@@ -372,6 +372,7 @@ Blockly.Blocks.em_initPiano = {
           ['A2', "A2"],
           ['A3', "A3"],
           ['A4', "A4"],
+          ['A5', "A5"]
         ]), "em_dio")
         // this.appendDummyInput("")
         .appendField(Blockly.EM_PIANO)
@@ -391,13 +392,12 @@ Blockly.Blocks.em_initPiano_v2 = {
       this.appendDummyInput("")
         .appendField(Blockly.EM_PIANOPORT_V2)
         .appendField(new Blockly.FieldDropdown([
-          ['A4', "A4"],
+          ['5', "5"],
           ['0', "0"],
           ['1', "1"],
           ['2', "2"],
           ['3', "3"],
           ['4', "4"],
-          ['5', "5"],
           ['6', "6"],
           ['7', "7"],
           ['8', "8"],
@@ -410,18 +410,18 @@ Blockly.Blocks.em_initPiano_v2 = {
           ['A1', "A1"],
           ['A2', "A2"],
           ['A3', "A3"],
+          ['A4', "A4"],
           ['A5', "A5"],
         ]), "em_clk")
         .appendField(Blockly.EM_IICTUBEDIO)
         .appendField(new Blockly.FieldDropdown([
-          ['A5', "A5"],
+          ['6', "6"],
           ['0', "0"],
           ['1', "1"],
           ['2', "2"],
           ['3', "3"],
           ['4', "4"],
           ['5', "5"],
-          ['6', "6"],
           ['7', "7"],
           ['8', "8"],
           ['9', "9"],
@@ -434,6 +434,7 @@ Blockly.Blocks.em_initPiano_v2 = {
           ['A2', "A2"],
           ['A3', "A3"],
           ['A4', "A4"],
+          ['A5', "A5"],
         ]), "em_dio")
         .appendField(Blockly.EM_PIANO_V2)
         .appendField(new Blockly.FieldDropdown(EM_PIANOV2), "em_piano")
@@ -443,6 +444,25 @@ Blockly.Blocks.em_initPiano_v2 = {
       this.setTooltip('');
     }
   };
+
+Blockly.Blocks.em_sliding_potentiometer = {
+  init: function () {
+    this.setColour(160);
+    this.appendDummyInput("")
+    .appendField(Blockly.EM_PIN)
+    .appendField(new Blockly.FieldDropdown([
+      ['A0', "A0"],
+      ['A1', "A1"],
+      ['A2', "A2"],
+      ['A3', "A3"],
+      ['A4', "A4"],
+      ['A5', "A5"],
+    ]), "em_slidingPort")
+      .appendField(Blockly.EM_SLIDINGPOTENTIOMETER)
+      this.setOutput(true, Number);
+      this.setInputsInline(true);
+  }
+}
 
 Blockly.Blocks.em_digitalInitPort = {
   init: function () {
@@ -558,13 +578,12 @@ Blockly.Blocks.em_initialize_matrix_keyboard = {
         .appendField(new Blockly.FieldTextInput('myMatrixKeyboard'), 'em_keyboard')
         .appendField(Blockly.EM_SCLPIN)
         .appendField(new Blockly.FieldDropdown([
-          ['A5', "A5"],
+          ['5', "5"],
           ['0', "0"],
           ['1', "1"],
           ['2', "2"],
           ['3', "3"],
           ['4', "4"],
-          ['5', "5"],
           ['6', "6"],
           ['7', "7"],
           ['8', "8"],
@@ -577,18 +596,18 @@ Blockly.Blocks.em_initialize_matrix_keyboard = {
           ['A1', "A1"],
           ['A2', "A2"],
           ['A3', "A3"],
-          ['A4', "A4"]
+          ['A4', "A4"],
+          ['A5', "A5"],
         ]), "em_scl_pin")
         .appendField(Blockly.EM_SDOPIN)
         .appendField(new Blockly.FieldDropdown([
-          ['A4', "A4"],
+          ['6', "6"],
           ['0', "0"],
           ['1', "1"],
           ['2', "2"],
           ['3', "3"],
           ['4', "4"],
           ['5', "5"],
-          ['6', "6"],
           ['7', "7"],
           ['8', "8"],
           ['9', "9"],
@@ -600,7 +619,8 @@ Blockly.Blocks.em_initialize_matrix_keyboard = {
           ['A1', "A1"],
           ['A2', "A2"],
           ['A3', "A3"],
-          ['A5', "A5"]
+          ['A5', "A5"],
+          ['A4', "A4"],
         ]), "em_sdo_pin")
       this.setPreviousStatement(true, null);
       this.setInputsInline(true);
@@ -1877,13 +1897,36 @@ Blockly.Blocks.em_doubleDcMotorDriver = {
     this.appendDummyInput("")
       .appendField(Blockly.EM_DOUBLEDCINIT)
       .appendField(new Blockly.FieldDropdown([
-        ['M1(D5, D6)', "1"],
-        ['M2(D5, D6)', "2"],
-        ['M3(D9, D10)', "3"],
-        ['M4(D9, D10)', "4"],
-      ]), "em_motorPin")
-      this.appendValueInput("em_speed", Number)
-    .appendField(Blockly.EM_DCMOTORSPEED)
+        ['D5', "5"],
+        ['D6', "6"],
+        ['D9', "9"],
+        ['D10', "10"]
+      ]), "em_motorIn1")
+      .appendField(Blockly.EM_DOUBLEDCIN2)
+      .appendField(new Blockly.FieldDropdown([
+        ['D6', "6"],
+        ['D5', "5"],
+        ['D9', "9"],
+        ['D10', "10"]
+      ]), "em_motorIn2")
+      .appendField(Blockly.EM_DOUBLEDCIN3)
+      .appendField(new Blockly.FieldDropdown([
+        ['D9', "9"],
+        ['D5', "5"],
+        ['D6', "6"],
+        ['D10', "10"],
+      ]), "em_motorIn3")
+      .appendField(Blockly.EM_DOUBLEDCIN4)
+      .appendField(new Blockly.FieldDropdown([
+        ['D10', "10"],
+        ['D5', "5"],
+        ['D6', "6"],
+        ['D9', "9"]
+      ]), "em_motorIn4")
+      this.appendValueInput("em_speed1", Number)
+    .appendField(Blockly.EM_DCMOTORSPEED1)
+    this.appendValueInput("em_speed2", Number)
+    .appendField(Blockly.EM_DCMOTORSPEED2)
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setInputsInline(true);
@@ -1891,175 +1934,45 @@ Blockly.Blocks.em_doubleDcMotorDriver = {
   }
 };
 
-//步进电机
-  Blockly.Blocks.em_stepper = {
-    init: function () {
-      this.setColour(220);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_STEPPER)
-      this.appendValueInput("em_ste", Number)
-        .appendField(Blockly.EM_STE)
-        .setCheck(Number);
-      this.appendValueInput("em_in1", Number)
-        .appendField(Blockly.EM_IN1)
-        .setCheck(Number);
-      this.appendValueInput("em_in2", Number)
-        .appendField(Blockly.EM_IN2)
-        .setCheck(Number);
-      this.appendValueInput("em_in3", Number)
-        .appendField(Blockly.EM_IN3)
-        .setCheck(Number);
-      this.appendValueInput("em_in4", Number)
-        .appendField(Blockly.EM_IN4)
-        .setCheck(Number);
-      this.setPreviousStatement(true, null);
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-    }
-  };
-  
-  Blockly.Blocks.em_stepperspeed = {
-    init: function () {
-      this.setColour(220);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_STEPPER1)
-      this.appendValueInput("em_speed1", Number)
-        .appendField(Blockly.EM_SPEED1)
-        .setCheck(Number);
-      this.setPreviousStatement(true, null);
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-    }
-  };
-  Blockly.Blocks.em_stepperspeed2 = {
-    init: function () {
-      this.setColour(220);
-      this.appendDummyInput("")
-      this.appendValueInput("em_step1", Number)
-        .appendField(Blockly.EM_STEP1)
-        .setCheck(Number);
-      this.setPreviousStatement(true, null); 
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-    }
-  };
-//MP3模块初始化
-Blockly.Blocks.em_MP3_MODE = {
-    init: function () {
-      this.setColour(10);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_INITIALIZE_MP3_MODE)
-      this.appendValueInput("em_tx_pin", Number)
-        .appendField(Blockly.EM_TXPIN)
-        .setCheck(Number);
-      this.appendValueInput("em_rx_pin", Number)
-        .appendField(Blockly.EM_RXPIN)
-        .setCheck(Number);
-      this.setPreviousStatement(true, null);
-      this.setInputsInline(true);
-      this.setNextStatement(true, null);
-    }
-  };
-  //设置MP3模块音量
-  Blockly.Blocks.em_MP3_Volume = {
-    init: function () {
-      this.setColour(10);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_MP3_MODEVOLUME)
-      this.appendValueInput("em_volume", Number)
-        .setCheck(Number)
-        .setAlign(Blockly.EM_ALIGN_RIGHT);
-      this.setInputsInline(true);
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  };
-  // 设置MP3播放哪首
-  Blockly.Blocks.em_MP3_playIndex = {
-    init: function () {
-      this.setColour(10);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_MP3_PLAYINDEX)
-      this.appendValueInput("em_index", Number)
-        .setCheck(Number)
-        .setAlign(Blockly.ALIGN_RIGHT);
-		this.appendDummyInput("")
-        .appendField(Blockly.EM_MP3_MUSIC)
-      this.setInputsInline(true);
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
-  };
-  
- // 设置MP3播放模式  
-Blockly.Blocks.em_MP3_playModel = {
-	init: function () {
-		this.setColour(10);
-		this.appendDummyInput("")
-        .appendField(Blockly.EM_MP3_MODEEMODEL)
-		.appendField(new Blockly.FieldDropdown(
-			[
-				[Blockly.EM_MP3_ALL,  'MP3_LOOP_ALL'],
-				[Blockly.EM_MP3_FOLDER,  'MP3_LOOP_FOLDER'],
-				[Blockly.EM_MP3_ONE,  'MP3_LOOP_ONE'],
-				[Blockly.EM_MP3_RAM,  'MP3_LOOP_RAM'],
-			]
-        ), "em_model")
-		this.setPreviousStatement(true, null);
-		this.setNextStatement(true, null);
-		this.setTooltip('');
-	}
-}
-
-//设置MP3播放音效
-Blockly.Blocks.em_MP3_playEqualizer = {
-	init: function () {
-		this.setColour(10);
-		this.appendDummyInput("")
-        .appendField(Blockly.EM_MP3_MODEEQUALIZER)
-		.appendField(new Blockly.FieldDropdown(
-			[
-				[Blockly.EM_MP3_NORMAL,  'MP3_EQ_NORMAL'],
-				[Blockly.EM_MP3_POP,  'MP3_EQ_POP'],
-				[Blockly.EM_MP3_ROCK,  'MP3_EQ_ROCK'],
-				[Blockly.EM_MP3_JAZZ,  'MP3_EQ_JAZZ'],
-				[Blockly.EM_MP3_CLASSIC,  'MP3_EQ_CLASSIC'],
-				[Blockly.EM_MP3_BASS,  'MP3_EQ_BASS'],
-			]
-        ), "em_equalizer")
-		this.setPreviousStatement(true, null);
-		this.setNextStatement(true, null);
-		this.setTooltip('');
-	}
-}
-  
-  //MP3模块开始播放
-  Blockly.Blocks.em_MP3_Play = {
-    init: function () {
-      this.setColour(10);
-      this.appendDummyInput("")
-        .appendField(Blockly.EM_MP3_MODE)
-        .appendField(new Blockly.FieldDropdown(
-          [
-            [Blockly.EM_MP3_PLAYA, 'play()'],
-            [Blockly.EM_MP3_PLAYB, 'pause()'],
-            // [Blockly.MP3_PLAYC, 'Stop'],
-            [Blockly.EM_MP3_PLAYD, 'prev()'],
-            [Blockly.EM_MP3_PLAYE, 'next()'],
-           // [Blockly.MP3_PLAYF, 'EndPlay'],
-            [Blockly.EM_MP3_PLAYG, 'volumeUp()'],
-            [Blockly.EM_MP3_PLAYH, 'volumeDn()'],
-           // [Blockly.MP3_PLAYI, 'EndLoop']
-          ]
-        ), "em_control")
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setTooltip('');
-    }
+// 
+Blockly.Blocks.em_doubleDcMotorDriverStop = {
+  init: function () {
+    this.setColour(220);
+    this.appendDummyInput("")
+    .appendField(Blockly.EM_DOUBLEDC)
+      .appendField(new Blockly.FieldDropdown([
+        ['D5', "5"],
+        ['D6', "6"],
+        ['D9', "9"],
+        ['D10', "10"]
+      ]), "em_motorIn1")
+      .appendField(Blockly.EM_DOUBLEDCIN2)
+      .appendField(new Blockly.FieldDropdown([
+        ['D6', "6"],
+        ['D5', "5"],
+        ['D9', "9"],
+        ['D10', "10"]
+      ]), "em_motorIn2")
+      .appendField(Blockly.EM_DOUBLEDCIN3)
+      .appendField(new Blockly.FieldDropdown([
+        ['D9', "9"],
+        ['D5', "5"],
+        ['D6', "6"],
+        ['D10', "10"],
+      ]), "em_motorIn3")
+      .appendField(Blockly.EM_DOUBLEDCIN4)
+      .appendField(new Blockly.FieldDropdown([
+        ['D10', "10"],
+        ['D5', "5"],
+        ['D6', "6"],
+        ['D9', "9"]
+      ]), "em_motorIn4")
+      .appendField(Blockly.EM_DOUBLEDCSTOP)
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('');
   }
-
+}
 /* 
 //智能模块
 */

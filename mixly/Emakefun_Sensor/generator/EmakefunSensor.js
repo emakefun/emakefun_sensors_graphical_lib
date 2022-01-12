@@ -290,22 +290,36 @@ Blockly.Arduino.em_iictube = function () {
 };
 
 Blockly.Arduino.em_doubleDcMotorDriver = function () {
-	var motorPin = this.getFieldValue('em_motorPin');
-	var speed = Blockly.Arduino.valueToCode(this, 'em_speed', Blockly.Arduino.ORDER_ATOMIC);
+	var motorPin1 = this.getFieldValue('em_motorIn1');
+	var motorPin2 = this.getFieldValue('em_motorIn2');
+	var motorPin3 = this.getFieldValue('em_motorIn3');
+	var motorPin4 = this.getFieldValue('em_motorIn4');
+	var speed1 = Blockly.Arduino.valueToCode(this, 'em_speed1', Blockly.Arduino.ORDER_ATOMIC);
+	var speed2 = Blockly.Arduino.valueToCode(this, 'em_speed2', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_doubleDcMotor'] = `#define IN1_PIN${motorPin1} ${motorPin1}\n#define IN2_PIN${motorPin2} ${motorPin2}\n#define IN3_PIN${motorPin3} ${motorPin3}\n#define IN4_PIN${motorPin4} ${motorPin4}\n`;
+	Blockly.Arduino.setups_['setup_doubleDcMotor'] = `pinMode(IN1_PIN${motorPin1}, OUTPUT);\n  digitalWrite(IN1_PIN${motorPin1}, LOW);\n  pinMode(IN2_PIN${motorPin2}, OUTPUT);\n  digitalWrite(IN2_PIN${motorPin2}, LOW);\n  pinMode(IN4_PIN${motorPin3}, OUTPUT);\n  digitalWrite(IN3_PIN${motorPin3}, LOW);\n  pinMode(IN4_PIN${motorPin4}, OUTPUT);\n  digitalWrite(IN4_PIN${motorPin4}, LOW);\n`;
 	var code = '';
-	if (speed > 0) {
-	    if (motorPin == 1 || motorPin == 2) {
-	        code = "analogWrite(5," + speed + ");\nanalogWrite(6, 0);\n";
-	    } else {
-	        code = "analogWrite(9," + speed + ");\nanalogWrite(10, 0);\n";
-	    }
+	if (speed1 > 0) {
+		code += `analogWrite(IN1_PIN${motorPin1}, LOW);\n  analogWrite(IN2_PIN${motorPin2}, ${speed1});\n`;
 	} else {
-	    if (motorPin == 1 || motorPin == 2) {
-		code = "analogWrite(6,abs" + speed + ");\nanalogWrite(5, 0);\n";
-	    } else {
-		code = "analogWrite(10,abs" + speed + ");\nanalogWrite(9, 0);\n";
-	    }
+		code += `analogWrite(IN1_PIN${motorPin2}, LOW);\n  analogWrite(IN2_PIN${motorPin1}, ${speed1});\n`;
 	}
+	if (speed2 > 0) {
+		code += `analogWrite(IN3_PIN${motorPin3}, LOW);\n  analogWrite(IN4_PIN${motorPin4}, ${speed2});\n`;
+	} else {
+		code += `analogWrite(IN4_PIN${motorPin4}, LOW);\n  analogWrite(IN3_PIN${motorPin3}, ${speed2});\n`;
+	}
+	return code;
+};
+
+Blockly.Arduino.em_doubleDcMotorDriverStop = function () {
+	var motorPin1 = this.getFieldValue('em_motorIn1');
+	var motorPin2 = this.getFieldValue('em_motorIn2');
+	var motorPin3 = this.getFieldValue('em_motorIn3');
+	var motorPin4 = this.getFieldValue('em_motorIn4');
+	Blockly.Arduino.definitions_['define_doubleDcMotor'] = `#define IN1_PIN${motorPin1} ${motorPin1}\n#define IN2_PIN${motorPin2} ${motorPin2}\n#define IN3_PIN${motorPin3} ${motorPin3}\n#define IN4_PIN${motorPin4} ${motorPin4}\n`;
+	Blockly.Arduino.setups_['setup_doubleDcMotor'] = `pinMode(IN1_PIN${motorPin1}, OUTPUT);\n  digitalWrite(IN1_PIN${motorPin1}, LOW);\n  pinMode(IN2_PIN${motorPin2}, OUTPUT);\n  digitalWrite(IN2_PIN${motorPin2}, LOW);\n  pinMode(IN4_PIN${motorPin3}, OUTPUT);\n  digitalWrite(IN3_PIN${motorPin3}, LOW);\n  pinMode(IN4_PIN${motorPin4}, OUTPUT);\n  digitalWrite(IN4_PIN${motorPin4}, LOW);\n`;
+	var code = `analogWrite(IN1_PIN${motorPin1}, HIGH);\nanalogWrite(IN2_PIN${motorPin2}, HIGH);\nanalogWrite(IN3_PIN${motorPin3}, HIGH);\nanalogWrite(IN4_PIN${motorPin4}, HIGH);\n`;
 	return code;
 };
 
@@ -487,6 +501,13 @@ Blockly.Arduino.em_initPiano_v2 = function () {
 	Blockly.Arduino.definitions_['include_ph_piano_' + value_clk + value_dio] = "Piano mPiano_" + value_clk + value_dio + ";\n";
 	Blockly.Arduino.setups_['setup_ph_piano_' + value_clk + value_dio] = 'mPiano_'  + value_clk + value_dio + '.initPiano(' + value_clk + ', ' + value_dio + ');\n';
 	var code = 'mPiano_' + value_clk + value_dio + '.PressBsButton('+dropdown_piano+')';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+// 滑动变阻器
+Blockly.Arduino.em_sliding_potentiometer = function () {
+	var em_slidingPort = this.getFieldValue('em_slidingPort');
+	var code = 'round(analogRead(' + em_slidingPort + ')*0.098)';
     return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 // 
@@ -834,8 +855,11 @@ Blockly.Arduino.em_water_vapor = function () {
 //手柄摇杆传感器
 Blockly.Arduino.em_hand_jobone_header_x= function(){
 	var deacting_one_x=this.getFieldValue('em_decasx');
-	var value_Speed_x = 'joystick.AnalogRead_X()';
-	var value_Speed_y= 'joystick.AnalogRead_Y()';
+	Blockly.Arduino.definitions_['define_maker'] = '#include <JoystickHandle.h>\n';
+	var em_joystick = this.getFieldValue('em_joystick');
+	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
+	var value_Speed_x = em_joystick + '.AnalogRead_X()';
+	var value_Speed_y= em_joystick + '.AnalogRead_Y()';
 	var code = '';
 	if (deacting_one_x== 1) {
 		code = value_Speed_x
@@ -848,8 +872,8 @@ Blockly.Arduino.em_hand_jobone_header_x= function(){
 //手柄键盘传感器
 Blockly.Arduino.em_hand_botton_fore= function(){
 	Blockly.Arduino.definitions_['define_maker'] = '#include <JoystickHandle.h>\n';
-	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
 	var em_joystick = this.getFieldValue('em_joystick');
+	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
 	var btn_four = this.getFieldValue('em_btnfour');
 	var btn_lasts = this.getFieldValue('em_btnlast');
 	var buttonjoge = em_joystick + '.Get_Button_Status('+btn_four+')';
@@ -868,8 +892,9 @@ Blockly.Arduino.em_hand_initalize_header=function(){
 // 手柄左右摇杆
 Blockly.Arduino.em_hand_lr_press= function(){
 	Blockly.Arduino.definitions_['define_maker'] = '#include <JoystickHandle.h>\n';
-	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
 	var em_joystick=this.getFieldValue('em_joystick');
+	Blockly.Arduino.definitions_['define_maker_' + em_joystick] = 'JoystickHandle ' + em_joystick + '(JOYSTICK_I2C_ADDR);\n';
+	
 	var deacting_lr=this.getFieldValue('em_lrpre');
 	var lr_press=this.getFieldValue('em_jobone');
 	var code = '';
@@ -963,7 +988,7 @@ Blockly.Arduino.em_handleSensor_isGetValue=function(){
 	var handleSensor = this.getFieldValue('em_handleSensor');
 	Blockly.Arduino.definitions_['define_handleStatus_init_' + handleSensor] = 'SparkFun_APDS9960 ' + handleSensor + ' = SparkFun_APDS9960();\nint ' + handleSensor + '_gestureStatus;\n';
 	Blockly.Arduino.definitions_['define_handleStatus_' + handleSensor] ='bool ' + handleSensor + '_isGestureAvailable() {\n  ' + handleSensor + '_gestureStatus = ' + handleSensor + '.readGesture();\n  return ' + handleSensor + '.isGestureAvailable();\n}\n';
-	Blockly.Arduino.setups_['setup_gyro'] = handleSensor + '.init();\n  ' + handleSensor + '.enableGestureSensor(true);\n';
+	Blockly.Arduino.setups_['setup_gyro'] = handleSensor + '.init();\n' + handleSensor + '.enableGestureSensor(true);\n';
 	var code = handleSensor + '_isGestureAvailable()';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 }
