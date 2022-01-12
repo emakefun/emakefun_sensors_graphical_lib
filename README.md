@@ -27,7 +27,6 @@ emakefun_sensors_graphical_lib
 │  └─mixly               # mixly图片等静态资源
 ├─mind+                 # mind+图形化库
 ├─mixly                   # mixly图形化库
-└─README.md      # 内容描述
 
 ## 库描述
 
