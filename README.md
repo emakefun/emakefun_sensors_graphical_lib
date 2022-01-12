@@ -19,16 +19,16 @@ Mblock5库
 emakefun_sensors_graphical_lib
 ├─example
 │  ├─mblock5         # mblock5图形化案例
-│  ├─mind+             # mind+图形化案例
-│  └─mixly               # mixly图形化案例
-├─mblock5              # mblock5图形化库
-├─media                  # 图片等静态资源
+│  ├─mind+           # mind+图形化案例
+│  └─mixly           # mixly图形化案例
+├─mblock5            # mblock5图形化库
+├─media              # 图片等静态资源
 │  ├─mblock5         # mblock5图片等静态资源
-│  ├─mind+             # mind+图片等静态资源
-│  └─mixly               # mixly图片等静态资源
-├─mind+                 # mind+图形化库
-├─mixly                   # mixly图形化库
-└─README.md             # 内容描述
+│  ├─mind+           # mind+图片等静态资源
+│  └─mixly           # mixly图片等静态资源
+├─mind+              # mind+图形化库
+├─mixly              # mixly图形化库
+└─README.md          # 内容描述
 ```
 ## 库描述
 
