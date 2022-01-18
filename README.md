@@ -3,7 +3,7 @@
 
 快速链接：
 
-Arduino IDE库
+[Arduino IDE库](https://github.com/emakefun/emakefun_sensors_lib/releases/download/v1.0.0/emakefun_sensors_lib.zip)
 
 [Mixly库](https://github.com/emakefun/emakefun_sensors_graphical_lib/releases/download/v1.0.0/Emakefun_Sensor.zip)
 
