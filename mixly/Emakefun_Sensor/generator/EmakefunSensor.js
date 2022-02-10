@@ -919,6 +919,10 @@ Blockly.Arduino.em_compass_star=function() {
 
 Blockly.Arduino.em_compass_vue=function() {
 	var em_compass=this.getFieldValue('em_compass');
+	var compass_xyz='int ' + em_compass + '_readCompass(int type){\n  int x, y, z;\n  int azimuth, result;\n  ' + em_compass + '.read(&x, &y, &z, &azimuth);\n  if(type == 1){\n    result = x;\n  }else if(type == 2) {\n    result = y;\n  }else if(type == 3) {\n    result = z;\n  }else {\n    result = azimuth;\n  }\n  return result;\n}\n';
+	Blockly.Arduino.setups_['setup_compass_star'] ='Wire.begin();\n  ' + em_compass + '.init();\n';
+	Blockly.Arduino.definitions_['define_compass'] = '#include  <MechaQMC5883.h>\n';
+	Blockly.Arduino.definitions_['define_compass_' + em_compass] = 'MechaQMC5883 ' + em_compass + ';\n' + compass_xyz;
 	var compass_v=this.getFieldValue('em_capa');
     var code=em_compass + "_readCompass(" + compass_v + ")";
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
