@@ -274,11 +274,6 @@
 <category id="catMakeBlockd" name="执行器(Actuator)" colour="100">
 	<!--蜂鸣器-->
 	<block type="em_buzzerpin">
-		<value name="em_freq">
-			<shadow type="math_number">
-				<field name="NUM">300</field>
-			</shadow>
-		</value>
 		<value name="em_buzzerTime">
 			<shadow type="math_number">
 				<field name="NUM">100</field>

@@ -252,7 +252,7 @@ Blockly.Arduino.em_bluetoothsetbuzzer = function () {
 
 Blockly.Arduino.em_buzzerpin = function () {
 	var value_buzzerpin = this.getFieldValue('em_buzzerpin');
-	var value_buzzerFreq = Blockly.Arduino.valueToCode(this, 'em_freq', Blockly.Arduino.ORDER_ATOMIC);
+	var value_buzzerFreq = this.getFieldValue('em_freq');
 	var value_buzzerTime = Blockly.Arduino.valueToCode(this, 'em_buzzerTime', Blockly.Arduino.ORDER_ATOMIC);
 	Blockly.Arduino.definitions_['define_buzzerpin'] = '#include <Buzzer.h>\n';
 	Blockly.Arduino.definitions_['define_buzzerpin_' + value_buzzerpin] = 'Buzzer buzzer_' + value_buzzerpin + '(' + value_buzzerpin + ');\n';

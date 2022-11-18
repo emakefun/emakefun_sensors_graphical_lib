@@ -1852,6 +1852,9 @@ Blockly.Blocks.kw_ds3231setdate = {
       this.setInputsInline(true);
     }
   };
+  
+  var EM_TONE_NOTES = [["NOTE_C3", "131"], ["NOTE_D3", "147"], ["NOTE_E3", "165"], ["NOTE_F3", "175"], ["NOTE_G3", "196"], ["NOTE_A3", "220"], ["NOTE_B3", "247"], ["NOTE_C4", "262"], ["NOTE_D4", "294"], ["NOTE_E4", "330"], ["NOTE_F4", "349"], ["NOTE_G4", "392"], ["NOTE_A4", "440"], ["NOTE_B4", "494"], ["NOTE_C5", "532"], ["NOTE_D5", "587"], ["NOTE_E5", "659"], ["NOTE_F5", "698"], ["NOTE_G5", "784"], ["NOTE_A5", "880"], ["NOTE_B5", "988"], ["NOTE_C6", "1047"], ["NOTE_D6", "1175"], ["NOTE_E6", "1319"], ["NOTE_F6", "1397"], ["NOTE_G6", "1568"], ["NOTE_A6", "1760"], ["NOTE_B6", "1976"], ["NOTE_C7", "2093"], ["NOTE_D7", "2349"], ["NOTE_E7", "2637"], ["NOTE_F7", "2794"], ["NOTE_G7", "3136"], ["NOTE_A7", "3520"], ["NOTE_B7", "3951"]];
+
 //蜂鸣器引脚value
 Blockly.Blocks.em_buzzerpin = {
     init: function () {
@@ -1880,8 +1883,10 @@ Blockly.Blocks.em_buzzerpin = {
           ['A4', "A4"],
           ['A5', "A5"],
         ]), "em_buzzerpin")
-      this.appendValueInput("em_freq", Number)
-    .appendField(Blockly.EM_BUZZERFREQ)
+      this.appendDummyInput("")
+	  .appendField(Blockly.EM_BUZZERFREQ)
+	   .appendField(new Blockly.FieldDropdown(EM_TONE_NOTES), 'em_freq');
+    
     this.appendValueInput("em_buzzerTime", Number)
     .appendField(Blockly.EM_BUZZERTIME);
       this.setInputsInline(true);
