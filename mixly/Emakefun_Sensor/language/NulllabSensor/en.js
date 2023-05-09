@@ -1,3 +1,11 @@
+//左侧分类翻译
+MSG.nulllab_catMakeBlockb = 'Basic Input Module';
+MSG.nulllab_catMakeBlocka = 'Sensor';
+MSG.catMakeBlockc = 'Monitor';
+MSG.catMakeBlockd = 'Actuator';
+MSG.catMakeBlocke = 'Smart Module';
+MSG.catMakeBlockf = 'Wireless Communication';
+
 //图形块名称翻译
 Blockly.KW_DTHPIN = "Temperature and humidity sensor DTH pin";
 KW_GETTEMPERATURE = "DTH get temperature";

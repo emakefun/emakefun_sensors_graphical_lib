@@ -1,3 +1,12 @@
+//左侧分类翻译
+MSG = MSG ?? {};
+MSG.nulllab_catMakeBlockb = '基础输入模块';
+MSG.nulllab_catMakeBlocka = '传感器';
+MSG.catMakeBlockc = '显示器';
+MSG.catMakeBlockd = '执行器';
+MSG.catMakeBlocke = '智能模块';
+MSG.catMakeBlockf = '无线通信';
+
 //图形块名称翻译
 Blockly.EM_DTHPIN = "温湿度传感器DTH引脚";
 Blockly.EM_GETTEMPERATURE = "DTH获取温度";
@@ -432,3 +441,18 @@ Blockly.EM_HTTPGET = "物联网模块发送GET请求";
 Blockly.EM_TIMEOUT = "超时时间(ms)";
 Blockly.EM_HTTPHOST = "HTTP服务器域名";
 Blockly.EM_SLIDINGPOTENTIOMETER = "获取滑动变阻器滑块位置(0-100)";
+Blockly.EM_PM25_READ = "硬件串口读取PM2.5传感器";
+Blockly.EM_PM25_DESC = "值 单位ug/m3";
+
+Blockly.EM_I2C_EXPANSION_BOARD = "I2C扩展板";
+Blockly.EM_INIT_I2C_EXPANSION_BOARD = "初始化I2C地址为 ";
+Blockly.EM_SET_I2C_EXPANSION_PIN = "设置引脚";
+Blockly.EM_SET_I2C_EXPANSION_MODE = "模式";
+Blockly.EM_ADCMODE = "ADC模式";
+Blockly.EM_INPUTPULLUPMODE = "上拉输入模式";
+Blockly.EM_INPUTPULLDOWNMODE = "下拉输入模式";
+Blockly.EM_OUTPUTMODE = "输出模式";
+Blockly.EM_SET_I2C_EXPANSION_LEVEL = "电平";
+Blockly.EM_GET_I2C_EXPANSION_PIN = "获取引脚";
+Blockly.EM_I2C_EXPANSION_LEVEL = "的数字值";
+Blockly.EM_I2C_EXPANSION_ADC = "的模拟值";

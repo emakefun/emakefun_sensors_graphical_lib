@@ -1,0 +1,612 @@
+<!-- type="company" block="block/NulllabSensor.js" generator="generator/NulllabSensor.js"  lib="NulllabSensor" media="media/NulllabSensor" language="language/NulllabSensor"-->
+<script type="text/javascript" src="libraries/ThirdParty/Nulllab_Sensor/block/NulllabSensor.js"></script>
+<script type="text/javascript" src="libraries/ThirdParty/Nulllab_Sensor/generator/NulllabSensor.js"></script>
+<category id="nulllab_catMakeBlock" name="EmakefunSensors" colour="100">
+    <category id="nulllab_catMakeBlockb" colour="100">
+        <!-- 钢琴模块 -->
+        <block type="nulllab_initPiano">
+	</block>
+        <!-- <block type="nulllab_piano"></block> -->
+        <!-- 钢琴模块V2 -->
+        <block type="nulllab_initPiano_v2"> 
+	 </block>
+        <block type="nulllab_sliding_potentiometer"></block>
+        <!-- 旋转编码器 -->
+        <block type="nulllab_digitalInitPort"></block>
+        <block type="nulllab_digital"></block>
+        <block type="nulllab_print"></block>
+        <!--矩阵键盘引脚初始化-->
+        <block type="nulllab_initialize_matrix_keyboard">
+	</block>
+        <!--矩阵键盘状态-->
+        <!-- <block type="nulllab_matrix_keyboard_status">
+	</block> -->
+        <!--获取矩阵键盘的值-->
+        <block type="nulllab_matrix_keyboard_values">
+	</block>
+        <!-- 遥控手柄初始化 -->
+        <!-- <block type="nulllab_hand_initalize_header"></block> -->
+        <!-- 手柄方向控制 -->
+        <block type="nulllab_hand_jobone_header_x" id="jobone_header_x"></block>
+        <!-- 手柄按钮控制 -->
+        <block type="nulllab_hand_botton_fore"></block>
+        <!-- 按下和释放状态判断 -->
+        <!-- <block type="nulllab_hand_press_that"></block>
+	<block type="nulllab_hand_release_that"></block> -->
+        <!-- 手柄左右摇杆 -->
+        <!-- <block type="nulllab_hand_lr_press"></block> -->
+    </category>
+    <category id="nulllab_catMakeBlocka" colour="100">
+        <!-- <blcok type="nulllab_fiveInfraredTracking"></block> -->
+        <!--普通超声波获取距离-->
+        <!--RGB超声波初始化-->
+        <block type="nulllab_initrgbultrasonic">
+            <value name="nulllab_ultrasonicpin">
+                <shadow type="math_number">
+                    <field name="NUM">3</field>
+                </shadow>
+            </value>
+            <value name="nulllab_rgbpin">
+                <shadow type="math_number">
+                    <field name="NUM">2</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- RGB超声波设置灯亮颜色 -->
+        <block type="nulllab_setcolorandstyle">
+	</block>
+        <!--RGB超声波获取距离 -->
+        <block type="nulllab_readultrasonicdistance">
+	</block>
+        <!-- 压力传感器 -->
+        <block type="nulllab_pressure"></block>
+        <!-- 水蒸气传感器 -->
+        <block type="nulllab_water_vapor"></block>
+        <!-- 指南针 -->
+        <!-- <block type="nulllab_compass_star"></block> -->
+        <block type="nulllab_compass_vue"></block>
+        <!-- 五路循迹 -->
+        <block type="nulllab_fiveInfraredTracking"></block>
+        <block type="nulllab_fiveInfraredTrackingData"></block>
+    </category>
+    <category id="catMakeBlockc" colour="100">
+        <!--七段插针式数码管引脚初始化-->
+        <block type="nulllab_7ledinit">
+            <value name="nulllab_pin1">
+                <shadow type="math_number">
+                    <field name="NUM">7</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin2">
+                <shadow type="math_number">
+                    <field name="NUM">6</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin3">
+                <shadow type="math_number">
+                    <field name="NUM">5</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin4">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin5">
+                <shadow type="math_number">
+                    <field name="NUM">11</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin6">
+                <shadow type="math_number">
+                    <field name="NUM">8</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin7">
+                <shadow type="math_number">
+                    <field name="NUM">9</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin8">
+                <shadow type="math_number">
+                    <field name="NUM">4</field>
+                </shadow>
+            </value>
+        </block>
+        <!--7段数码管显示值value-->
+        <block type="nulllab_7leddisplaynum">
+            <value name="nulllab_displaynum">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <!--初始化四位七段数码管引脚-->
+        <block type="nulllab_47ledinit">
+            <value name="nulllab_pin1">
+                <shadow type="math_number">
+                    <field name="NUM">13</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin2">
+                <shadow type="math_number">
+                    <field name="NUM">2</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin3">
+                <shadow type="math_number">
+                    <field name="NUM">3</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin4">
+                <shadow type="math_number">
+                    <field name="NUM">4</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin5">
+                <shadow type="math_number">
+                    <field name="NUM">5</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin6">
+                <shadow type="math_number">
+                    <field name="NUM">6</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin7">
+                <shadow type="math_number">
+                    <field name="NUM">7</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin8">
+                <shadow type="math_number">
+                    <field name="NUM">8</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin9">
+                <shadow type="math_number">
+                    <field name="NUM">9</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin10">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin11">
+                <shadow type="math_number">
+                    <field name="NUM">11</field>
+                </shadow>
+            </value>
+            <value name="nulllab_pin12">
+                <shadow type="math_number">
+                    <field name="NUM">12</field>
+                </shadow>
+            </value>
+        </block>
+        <!--4*7数码管显示数字-->
+        <block type="nulllab_7ledcountnum">
+            <value name="nulllab_count">
+                <shadow type="math_number">
+                    <field name="NUM">1234</field>
+                </shadow>
+            </value>
+        </block>
+        <!--4*7数码管熄灭-->
+        <block type="nulllab_7ledcountnumoff"></block>
+        <!--PH2.0初始化8*8点阵-->
+        <block type="nulllab_dianzhen">
+            <value name="nulllab_count">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <!--8*8点阵显示 -->
+        <block type="nulllab_dianzhenprint">
+		</block>
+        <!-- 8*8插针式点阵初始化引脚 -->
+        <block type="nulllab_x8ledinit">
+		</block>
+        <!-- 8*8插针式点阵显示 -->
+        <block type="nulllab_x8leddisplay">
+		</block>
+        <!-- 8*8插针式点阵扫描 -->
+        <block type="nulllab_x8ledloopscan">
+		</block>
+        <!--  74 595插针式数码管初始化 -->
+        <block type="nulllab_74hinit">
+		</block>
+        <!--  74 595插针式数码管显示 -->
+        <block type="nulllab_74hinitisplay">
+            <value name="nulllab_74hinitisplays">
+                <shadow type="math_number">
+                    <field name="NUM">60</field>
+                </shadow>
+            </value>
+        </block>
+        <!--  74 595插针式数码管关闭 -->
+        <block type="nulllab_74hoff">
+		</block>
+        <!-- OLED初始化 -->
+        <block type= "nulllab_OLED_Model"></block>
+        <!-- OLED清屏
+				<block type= "OLED_Clear"></block> -->
+        <!--OLED显示字符串-->
+        <block type="nulllab_OLED_Display_String">
+            <value name="nulllab_horizontal">
+                <shadow type="math_number">
+                    <field name="NUM">128</field>
+                </shadow>
+            </value>
+            <value name="nulllab_longitudinal">
+                <shadow type="math_number">
+                    <field name="NUM">32</field>
+                </shadow>
+            </value>
+            <value name="nulllab_content">
+                <shadow type="text">
+                    <field name="TEXT">hello</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="nulllab_OLED_Display_String_Row">
+            <value name="nulllab_horizontal">
+                <shadow type="math_number">
+                    <field name="NUM">128</field>
+                </shadow>
+            </value>
+            <value name="nulllab_content">
+                <shadow type="text">
+                    <field name="TEXT">hello</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category id="catMakeBlockd" colour="100">
+        <!--蜂鸣器-->
+        <block type="nulllab_buzzerpin">
+            <value name="nulllab_buzzerTime">
+                <shadow type="math_number">
+                    <field name="NUM">100</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 单路电机驱动板 
+	<block type="kw_dcMotorDriver">
+		<value name="speed">
+			<shadow type="math_number">
+				<field name="NUM">255</field>
+			</shadow>
+		</value>
+	</block>-->
+        <!-- 双路电机驱动板 -->
+        <block type="nulllab_doubleDcMotorDriver">
+            <value name="nulllab_speed1">
+                <shadow type="math_number">
+                    <field name="NUM">255</field>
+                </shadow>
+            </value>
+            <value name="nulllab_speed2">
+                <shadow type="math_number">
+                    <field name="NUM">255</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="nulllab_doubleDcMotorDriverStop">
+	</block>
+        <!-- 步进电机初始化引脚 -->
+        <!-- <block type="nulllab_stepper">
+		<value name="nulllab_ste">
+			<shadow type="math_number">
+				<field name="NUM">64</field>
+			</shadow>
+		</value>
+		<value name="nulllab_in1">
+			<shadow type="math_number">
+				<field name="NUM">8</field>
+			</shadow>
+		</value>
+		<value name="nulllab_in2">
+			<shadow type="math_number">
+				<field name="NUM">9</field>
+			</shadow>
+		</value>
+		<value name="nulllab_in3">
+			<shadow type="math_number">
+				<field name="NUM">10</field>
+			</shadow>
+		</value>
+		<value name="nulllab_in4">
+			<shadow type="math_number">
+				<field name="NUM">11</field>
+			</shadow>
+		</value>
+	</block> -->
+        <!-- 步进电机设置速度 -->
+        <!-- <block type="nulllab_stepperspeed">
+		<value name="nulllab_speed1">
+			<shadow type="math_number">
+				<field name="NUM">200</field>
+			</shadow>
+		</value>
+	</block> -->
+        <!-- 步进电机步数 -->
+        <!-- <block type="nulllab_stepperspeed2">
+		<value name="nulllab_step1">
+			<shadow type="math_number">
+				<field name="NUM">1024</field>
+			</shadow>
+		</value>
+	</block> -->
+    </category>
+    <category id="catMakeBlocke" colour="100">
+		<!-- 硬件串口获取PM25传感器的数据 -->
+		<block type="nulllab_PM25_sensor_data"></block>
+        <!-- 初始化颜色传感器 -->
+        <!-- <block type = "nulllab_colorview_init"></block> -->
+        <!-- 颜色传感器读取的值 -->
+        <block type="nulllab_colorview_value"></block>
+        <!-- 初始化语音识别传感器 -->
+        <!-- <block type = "nulllab_VoiceRecognition_init"></block> -->
+        <!--语音识别模式设置-->
+        <block type="nulllab_VoiceRecognition_Mode"></block>
+        <!--语音识别设置词条和编号-->
+        <block type="nulllab_VoiceRecognition_Content">
+            <value name="nulllab_Key">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="nulllab_content">
+                <shadow type="text">
+                    <field name="TEXT">xiao yi xiao yi</field>
+                </shadow>
+            </value>
+        </block>
+        <!--语音识别开始识别-->
+        <block type="nulllab_VoiceRecognition_Start"></block>
+        <!--语音识别进行复位-->
+        <block type="nulllab_VoiceRecognition_Reset"></block>
+        <!-- 语音识别获取识别到词条的对应编号 -->
+        <block type= "nulllab_VoiceRecognition_Number"></block>
+        <!-- 语音识别设置唤醒时间 -->
+        <block type= "nulllab_VoiceRecognition_Time">
+            <value name="nulllab_time">
+                <shadow type="math_number">
+                    <field name="NUM">5</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 设置唤醒词 -->
+        <block type= "nulllab_VoiceRecognition_wake_word">
+            <value name="nulllab_wakeWordContent">
+                <shadow type="text">
+                    <field name="TEXT">xiao ai tong xue</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 发送数据并播放 -->
+        <block type= "nulllab_speech_synthesisStart">
+            <value name="nulllab_content">
+                <shadow type="text">
+                    <field name="TEXT">小爱同学</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- <block type= "speech_synthesisStatus"></block> -->
+        <!-- 语音合成到缓存 -->
+        <block type= "nulllab_speech_synthesisCache">
+            <value name="nulllab_content">
+                <shadow type="text">
+                    <field name="TEXT">小爱同学</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 语音合成播放缓存内容 -->
+        <block type= "nulllab_speech_cplay">
+            <value name="nulllab_freq">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <!--da3231ʱ�ӻ�ȡʱ��
+			<block type="kw_ds3231gettime">
+			</block>-->
+        <!--da3231ʱ�Ӷ�ȡ������
+			<block type="kw_ds3231readyear">
+			</block>-->
+        <!--da3231ʱ�Ӷ�ȡʱ�����¶�
+			<block type="kw_ds3231readhour">
+			</block>-->
+        <!-- 六轴陀螺仪 -->
+        <!-- <block type="nulllab_gyro_init"></block>
+	<block type="nulllab_gyro_getvalue"></block> -->
+        <!-- 手势传感器 -->
+        <!-- <block type="nulllab_handleStatus_init"></block> -->
+        <!-- 是否获取到值 -->
+        <block type="nulllab_handleSensor_isGetValue"></block>
+        <!-- 获取值 -->
+        <!-- <block type="nulllab_handleSensor_getValue"></block> -->
+        <!-- 获取状态 -->
+        <block type="nulllab_handleSensor_getStatus"></block>
+        <!-- 物联网模块ESP8266 初始化引脚 -->
+        <block type="nulllab_esp8266_init"></block>
+        <!-- 物联网模块ESP8266 设置WiFi -->
+        <block type="nulllab_esp8266_wifi">
+            <value name="nulllab_wifiSsid">
+                <shadow type="text">
+                    <field name="TEXT">emakefun</field>
+                </shadow>
+            </value>
+            <value name="nulllab_wifiPwd">
+                <shadow type="text">
+                    <field name="TEXT">12345678</field>
+                </shadow>
+            </value>
+            <value name="nulllab_host">
+                <shadow type="text">
+                    <field name="TEXT">a1gVfAJo2pv.iot-as-mqtt.cn-shanghai.aliyuncs.com</field>
+                </shadow>
+            </value>
+            <value name="nulllab_port">
+                <shadow type="math_number">
+                    <field name="NUM">1883</field>
+                </shadow>
+            </value>
+            <value name="nulllab_productKey">
+                <shadow type="text">
+                    <field name="TEXT">a1gVfAJo2pv</field>
+                </shadow>
+            </value>
+            <value name="nulllab_deviceName">
+                <shadow type="text">
+                    <field name="TEXT">emakefun</field>
+                </shadow>
+            </value>
+            <value name="nulllab_deviceSecret">
+                <shadow type="text">
+                    <field name="TEXT">abc12345</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 物联网模块ESP8266 设置域名 -->
+        <block type="nulllab_esp8266_otherHost">
+            <value name="nulllab_wifiSsid">
+                <shadow type="text">
+                    <field name="TEXT">emakefun</field>
+                </shadow>
+            </value>
+            <value name="nulllab_wifiPwd">
+                <shadow type="text">
+                    <field name="TEXT">12345678</field>
+                </shadow>
+            </value>
+            <value name="nulllab_host">
+                <shadow type="text">
+                    <field name="TEXT">192.168.1.1</field>
+                </shadow>
+            </value>
+            <value name="nulllab_port">
+                <shadow type="math_number">
+                    <field name="NUM">1883</field>
+                </shadow>
+            </value>
+            <value name="nulllab_userClientId">
+                <shadow type="text">
+                    <field name="TEXT">emakefun</field>
+                </shadow>
+            </value>
+            <value name="nulllab_username">
+                <shadow type="text">
+                    <field name="TEXT">emakefun</field>
+                </shadow>
+            </value>
+            <value name="nulllab_password">
+                <shadow type="text">
+                    <field name="TEXT">12345678</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 物联网模块ESP8266 连接wifi -->
+        <block type="nulllab_esp8266_connection"></block>
+        <!-- 物联网模块ESP8266 是否连接WIFI成功 -->
+        <block type="nulllab_esp8266_isConnection"></block>
+        <!-- 物联网模块ESP8266 订阅 -->
+        <block type="nulllab_esp8266_sub">
+            <value name="nulllab_subStr">
+                <shadow type="text">
+                    <field name="TEXT">/a1gVfAJo2pv/emakefun/user/get</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 物联网模块ESP8266 发布 -->
+        <block type="nulllab_esp8266_pub">
+            <value name="nulllab_pubStr">
+                <shadow type="text">
+                    <field name="TEXT">/a1gVfAJo2pv/emakefun/user/add</field>
+                </shadow>
+            </value>
+            <value name="nulllab_data">
+                <shadow type="text">
+                    <field name="TEXT">helloMqtt</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 物联网模块ESP8266 是否接收到数据 -->
+        <block type="nulllab_esp8266_isReceive"></block>
+        <!--  物联网模块ESP8266 解析数据 -->
+        <block type="nulllab_esp8266_getSubMsg"></block>
+        <!-- 物联网模块ESP8266 设置HTTP服务器域名 -->
+        <block type="nulllab_esp8266_httpHost">
+            <value name="nulllab_wifiSsid">
+                <shadow type="text">
+                    <field name="TEXT">emakefun</field>
+                </shadow>
+            </value>
+            <value name="nulllab_wifiPwd">
+                <shadow type="text">
+                    <field name="TEXT">12345678</field>
+                </shadow>
+            </value>
+            <value name="nulllab_httpHost">
+                <shadow type="text">
+                    <field name="TEXT">192.168.1.1</field>
+                </shadow>
+            </value>
+            <value name="nulllab_httpPort">
+                <shadow type="math_number">
+                    <field name="NUM">8080</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="nulllab_esp8266_connectHttpServer"></block>
+        <block type="nulllab_esp8266_get">
+            <value name="nulllab_getStr">
+                <shadow type="text">
+                    <field name="TEXT">/index</field>
+                </shadow>
+            </value>
+            <value name="nulllab_timeout">
+                <shadow type="math_number">
+                    <field name="NUM">2000</field>
+                </shadow>
+            </value>
+        </block>
+		
+		<!-- I2C扩展板 初始化 -->
+		<block type="nulllab_init_i2c_expansion_board" id="nulllab_init_i2c_expansion_board" >
+            <value name="nulllab_i2cAddr">
+                <shadow type="math_number">
+                    <field name="NUM">0x24</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置模式 -->
+		<block type="nulllab_set_i2c_expansion_board_mode" id="nulllab_set_i2c_expansion_board_mode" />
+		<!-- I2C扩展板 设置GPIO电平 -->
+		<block type="nulllab_set_i2c_expansion_board_level" id="nulllab_set_i2c_expansion_board_level" />
+		<!-- I2C扩展板 获取GPIO电平 -->
+		<block type="nulllab_get_i2c_expansion_board_level" id="nulllab_get_i2c_expansion_board_level" />
+		<!-- I2C扩展板 获取GPIO ADC -->
+		<block type="nulllab_get_i2c_expansion_board_adc" id="nulllab_get_i2c_expansion_board_adc" />
+    </category>
+    <category id="catMakeBlockf" colour="100">
+ 
+        <!--红外遥控器初始化引脚-->
+        <block type="nulllab_initir">
+            <value name="nulllab_initir">
+                <shadow type="math_number">
+                    <field name="NUM">12</field>
+                </shadow>
+            </value>
+        </block>
+        <!--普通红外遥控器按键按下值 -->
+        <block type="nulllab_irKeyPress"></block>
+        <!--EMAKEFUN红外遥控器按键按下值 -->
+        <block type="nulllab_irKeyPress2"></block>
+        <!-- 读取红外遥控值 -->
+        <block type="nulllab_irKeyPress3"></block>
+    </category>
+</category>

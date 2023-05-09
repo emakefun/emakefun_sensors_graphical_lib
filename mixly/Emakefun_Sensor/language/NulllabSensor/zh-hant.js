@@ -1,3 +1,11 @@
+//左侧分类翻译
+MSG.nulllab_catMakeBlockb = '基礎輸入模塊';
+MSG.nulllab_catMakeBlocka = '傳感器';
+MSG.catMakeBlockc = '顯示器';
+MSG.catMakeBlockd = '執行器';
+MSG.catMakeBlocke = '智能模塊';
+MSG.catMakeBlockf = '無線通信';
+
 //图形块名称翻译
 Blockly.KW_DTHPIN = "溫濕度感測器DTH引脚";
 KW_GETTEMPERATURE = "DTH獲取溫度";

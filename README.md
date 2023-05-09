@@ -321,6 +321,26 @@ http模式发送请求：![http_get](./media/mixly/http_get.png) 物联网模块
 
 **案例说明：** 指定我们的物联网模块用哪几个端口作为RX、TX引脚，配置好wifi名称和密码，配置好ip、端口，连接WiFi;判断是否连上了WIFI，如果连上了WIFI了,再判断是否连接上HTTP服务器，发送一个get请求，并设置超时时间为200ms，并且打印请求的数据；
 
+#### 8 路 ADC/I2C/IO 三合一口扩展板
+
+​	该模块是 Emakefun 为了解决创客在使用中，主板的 ADC/IO/I2C 不够用的场景而开发的一块扩展板，可以扩展4 路 I2C接口，8路IO口可以通过软件分别配置成ADC，输入，输出模式。配置接口为I2C接口，地址为 **0x24**。
+
+**描述:**
+
+初始化I2C扩展板：![](./media/mixly/init_i2c_expansion_board.png)
+
+设置扩展板引脚的输入输出模式：![](./media/mixly/set_mode_i2c_board.png)引脚包含E0~E7八个引脚，模式分别有：ADC模式、上拉输入模式(默认高电平)、下拉输入模式(默认低电平)、输出模式。
+
+设置I2C扩展板引脚的电平：![](./media/mixly/set_level_i2c_board.png) 
+
+获取I2C扩展板对应引脚的数字值：![](./media/mixly/get_i2c_board_data.png)
+
+获取I2C扩展板对应引脚的模拟值：![](./media/mixly/get_i2c_expansion_adc.png)
+
+[Mixly I2C扩展板模块案例](./example/mixly/i2c_expansion_board_mixly.mix)
+
+**案例说明：** 设置I2C扩展板的I2C地址为： 0x24, 设置E0引脚为的模式为输出模式，并且将E0设置低电平输出；在设置E1引脚为ADC模式，即可以读取模拟值，同时也设置E0为下拉输入模式，在无线循环中打印E0引脚获取的数字值和E1引脚获取的模拟值。
+
 #### 无线通信
 
 无线通信模块包含红外接收模块，我们的块兼容了常见的遥控器和我们自己设计的符合我们公司的遥控器。
