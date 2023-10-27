@@ -1,0 +1,5 @@
+{
+    "EM_five_tracker.SetSensitivity|block": "五路循迹模块设置敏感度 [SENSITIVITY]",
+    "EM_five_tracker.getSensorValue|block": "五路循迹模块获取传感器值",
+    "EM_five_tracker.getSensorStates|block": "五路循迹模块获取传感器状态"
+}

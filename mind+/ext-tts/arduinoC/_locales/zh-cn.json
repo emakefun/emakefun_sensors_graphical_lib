@@ -1,0 +1,9 @@
+{
+    "nulllab_tts.initTTs|block": "初始化I2C语音合成模块，I2C地址为0x40",
+    "nulllab_tts.startSynthesizing|block": "语音合成设置音量 [VOICE] 语速 [SPEED] 并播放[TEXT]",
+    "nulllab_tts.stopSynthesizing|block": "停止合成播放",
+    "nulllab_tts.pauseSynthesizing|block": "暂停合成播放",
+    "nulllab_tts.resumeSynthesizing|block": "恢复合成播放",
+    "nulllab_tts.pushTextToCache|block": "将文本设置音量 [VOICE] 语速 [SPEED]内容 [TEXT] 上传到索引为 [INDEX] 的缓存块",
+    "nulllab_tts.startSynthesizingFromCache|block": "从索引0的缓存块开始合成文本并播放，播放次数为 [COUNT]"
+}

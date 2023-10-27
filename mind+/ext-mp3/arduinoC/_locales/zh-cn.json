@@ -1,0 +1,24 @@
+{
+    "EM_MP3.initMP3|block": "初始化MP3模块 TX引脚 [TXPIN] RX引脚 [RXPIN] 设为 [MODE]",
+    "EM_MP3.mp3Play|block": "MP3模块 TX引脚 [TXPIN] RX引脚 [RXPIN] 播放第[NUM]首",
+    "EM_MP3.mp3Equalizer|block": "MP3模块 TX引脚 [TXPIN] RX引脚 [RXPIN]音效设为[EQMODE] ",
+    "EM_MP3.mp3LoopMode|block": "MP3模块 TX引脚 [TXPIN] RX引脚 [RXPIN]循环模式设为[LOOPMODE]",
+    "EM_MP3.mp3SetVolume|block": "MP3模块 TX引脚 [TXPIN] RX引脚 [RXPIN]音量设为[VOLUME]",
+	"EM_MP3.MP3MODE.play|menu": "播放",
+	"EM_MP3.MP3MODE.pause|menu": "暂停",
+	"EM_MP3.MP3MODE.next|menu": "上一首",
+	"EM_MP3.MP3MODE.prev|menu": "下一首",
+	"EM_MP3.MP3MODE.volumeUp|menu": "音量加",
+	"EM_MP3.MP3MODE.volumeDn|menu": "音量减",
+	"EM_MP3.MP3EQMODE.MP3_EQ_NORMAL|menu" :"普通",
+	"EM_MP3.MP3EQMODE.MP3_EQ_POP|menu" :"流行",
+	"EM_MP3.MP3EQMODE.MP3_EQ_ROCK|menu" :"摇滚",
+	"EM_MP3.MP3EQMODE.MP3_EQ_JAZZ|menu" :"爵士",
+	"EM_MP3.MP3EQMODE.MP3_EQ_CLASSIC|menu" :"古典",
+	"EM_MP3.MP3EQMODE.MP3_EQ_BASS|menu" :"低音",
+	"EM_MP3.MP3LOOPMODE.MP3_LOOP_ALL|menu" :"全部循环",
+	"EM_MP3.MP3LOOPMODE.MP3_LOOP_FOLDER|menu" :"文件内循环",
+	"EM_MP3.MP3LOOPMODE.MP3_LOOP_ONE|menu" :"单曲循环",
+	"EM_MP3.MP3LOOPMODE.MP3_LOOP_RAM|menu" :"随机循环"
+	
+}

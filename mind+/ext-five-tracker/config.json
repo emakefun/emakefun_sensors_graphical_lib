@@ -1,0 +1,25 @@
+{
+	"name": {
+		"zh-cn": "五路循迹模块",
+		"en": "Five tracker sensor"
+	},
+	"description": {
+		"zh-cn": "五路循迹模块",
+		"en": ""
+	},
+	"author": "Eamkefun",
+	"email": "leishen@null-lab.com",
+	"license": "MIT",
+	"isBoard": false,
+	"id": "EM_five_tracker",
+	"platform": ["win", "mac", "web"],
+	"version": "0.0.1",
+	"asset": {
+		"arduinoC": {
+			"dir": "arduinoC/",
+			"version": "0.0.1",
+			"board": ["arduino", "arduinonano", "mega2560", "esp32"],
+			"main": "main.ts"
+		}
+	}
+}

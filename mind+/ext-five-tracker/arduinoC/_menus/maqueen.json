@@ -1,0 +1,82 @@
+{
+	"PIN_AnalogWrite": {
+		"menu": [
+			["P0", "0"],
+			["P1", "1"],
+			["P2", "2"],
+			["P3(LED Col1)", "3"],
+			["P4(LED Col2)", "4"],
+			["P5(Button A)", "5"],
+			["P6(LED Col9)", "6"],
+			["P7(LED Col8)", "7"],
+			["P8", "8"],
+			["P9(LED Col7)", "9"],
+			["P10(LED Col3)", "10"],
+			["P11(Button B)", "11"],
+			["P12", "12"],
+			["P13(SCK)", "13"],
+			["P14(MISO)", "14"],
+			["P15(MOSI)", "15"],
+			["P16", "16"]
+		]
+	},
+	"PIN_AnalogRead": {
+		"menu": [
+			["P0", "0"],
+			["P1", "1"],
+			["P2", "2"],
+			["P3(LED Col1)", "3"],
+			["P4(LED Col2)", "4"],
+			["P10(LED Col3)", "10"]
+		]
+	},
+	"PIN_DigitalWrite": {
+		"menu": [
+			["P0", "0"],
+			["P1", "1"],
+			["P2", "2"],
+			["P3(LED Col1)", "3"],
+			["P4(LED Col2)", "4"],
+			["P5(Button A)", "5"],
+			["P6(LED Col9)", "6"],
+			["P7(LED Col8)", "7"],
+			["P8", "8"],
+			["P9(LED Col7)", "9"],
+			["P10(LED Col3)", "10"],
+			["P11(Button B)", "11"],
+			["P12", "12"],
+			["P13(SCK)", "13"],
+			["P14(MISO)", "14"],
+			["P15(MOSI)", "15"],
+			["P16", "16"]
+		]
+	},
+	"PIN_DigitalRead": {
+		"menu": [
+			["P0", "0"],
+			["P1", "1"],
+			["P2", "2"],
+			["P3(LED Col1)", "3"],
+			["P4(LED Col2)", "4"],
+			["P5(Button A)", "5"],
+			["P6(LED Col9)", "6"],
+			["P7(LED Col8)", "7"],
+			["P8", "8"],
+			["P9(LED Col7)", "9"],
+			["P10(LED Col3)", "10"],
+			["P11(Button B)", "11"],
+			["P12", "12"],
+			["P13(SCK)", "13"],
+			["P14(MISO)", "14"],
+			["P15(MOSI)", "15"],
+			["P16", "16"]
+		]
+	},
+	"PINMODE":{
+		"menu": [
+			["OUTPUT", "OUTPUT"],
+			["INPUT", "INPUT"],
+			["INPUT_PULLUP", "INPUT_PULLUP"]
+		]
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"name": {
+		"zh-cn": "MP3语音播报模块",
+		"en": "MP3"
+	},
+	"description": {
+		"zh-cn": "MP3语音播报模块",
+		"en": ""
+	},
+	"author": "Eamkefun",
+	"email": "leishen@null-lab.com",
+	"license": "MIT",
+	"isBoard": false,
+	"id": "EM_MP3",
+	"platform": ["win", "mac", "web"],
+	"version": "0.0.1",
+	"asset": {
+		"arduinoC": {
+			"dir": "arduinoC/",
+			"version": "0.0.1",
+			"board": ["arduino", "esp32"],
+			"main": "main.ts"
+		}
+	}
+}
