@@ -1,0 +1,25 @@
+{
+	"name": {
+		"zh-cn": "LD3320语音识别模块",
+		"en": "TTS"
+	},
+	"description": {
+		"zh-cn": "LD3320语音识别模块",
+		"en": ""
+	},
+	"author": "Emakefun",
+	"email": "leishen@null-lab.com",
+	"license": "MIT",
+	"isBoard": false,
+	"id": "emakefun_ld3320",
+	"platform": ["win", "mac", "web"],
+	"version": "0.0.1",
+	"asset": {
+		"arduinoC": {
+			"dir": "arduinoC/",
+			"version": "0.0.1",
+			"board": ["arduino", "arduinonano", "mega2560", "esp32", "firebeetleesp32"],
+			"main": "main.ts"
+		}
+	}
+}

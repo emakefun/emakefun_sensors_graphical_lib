@@ -1,6 +1,9 @@
 <!-- type="company" block="block/NulllabSensor.js" generator="generator/NulllabSensor.js"  lib="NulllabSensor" media="media/NulllabSensor" language="language/NulllabSensor"-->
-<script type="text/javascript" src="libraries/ThirdParty/Nulllab_Sensor/block/NulllabSensor.js"></script>
-<script type="text/javascript" src="libraries/ThirdParty/Nulllab_Sensor/generator/NulllabSensor.js"></script>
+<script type="text/javascript" src="./language/zh-hans.js"></script>
+<script type="text/javascript" src="./language/zh-hant.js"></script>
+<script type="text/javascript" src="./language/en.js"></script>
+<script type="text/javascript" src="./block/NulllabSensor.js"></script>
+<script type="text/javascript" src="./generator/NulllabSensor.js"></script>
 <category id="nulllab_catMakeBlock" name="EmakefunSensors" colour="100">
     <category id="nulllab_catMakeBlockb" colour="100">
         <!-- 钢琴模块 -->
@@ -17,13 +20,27 @@
         <block type="nulllab_print"></block>
         <!--矩阵键盘引脚初始化-->
         <block type="nulllab_initialize_matrix_keyboard">
-	</block>
+		</block>
         <!--矩阵键盘状态-->
         <!-- <block type="nulllab_matrix_keyboard_status">
 	</block> -->
         <!--获取矩阵键盘的值-->
         <block type="nulllab_matrix_keyboard_values">
-	</block>
+		</block>
+		
+		<!-- 初始化I2C矩阵键盘 -->
+		<block type = "nulllab_init_matrix_keyboard_I2C_V2" >
+			<value name="nulllab_matrix_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x50</field>
+                </shadow>
+            </value>		
+		</block>
+		
+		<!--获取矩阵键盘的值-->
+        <block type="nulllab_matrix_keyboard_values_V2">
+		</block>
+		
         <!-- 遥控手柄初始化 -->
         <!-- <block type="nulllab_hand_initalize_header"></block> -->
         <!-- 手柄方向控制 -->
@@ -65,10 +82,25 @@
         <!-- 指南针 -->
         <!-- <block type="nulllab_compass_star"></block> -->
         <block type="nulllab_compass_vue"></block>
-        <!-- 五路循迹 -->
-        <block type="nulllab_fiveInfraredTracking"></block>
-        <block type="nulllab_fiveInfraredTrackingData"></block>
+		<!-- 五路循迹V2 -->
+		<block type="nulllab_lineTracker_v2" >
+			<value name="nulllab_tracker_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x50</field>
+                </shadow>
+            </value>
+		</block>
+		<block type="nulllab_setSensitivity_v2" >
+			<value name="nulllab_sensitivity">
+                <shadow type="math_number">
+                    <field name="NUM">500</field>
+                </shadow>
+            </value>
+		</block>		
+		<block type="nulllab_getSensorValues_v2" />
+		<block type="nulllab_getSensorStates_v2" />
     </category>
+	
     <category id="catMakeBlockc" colour="100">
         <!--七段插针式数码管引脚初始化-->
         <block type="nulllab_7ledinit">
@@ -228,6 +260,38 @@
         <!--  74 595插针式数码管关闭 -->
         <block type="nulllab_74hoff">
 		</block>
+		
+		<!-- VK16K33 init -->
+		<block type="nulllab_vk16k33_init">
+			<value name="nulllab_vk16k33_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x70</field>
+                </shadow>
+            </value>
+		</block>
+		
+		<!-- VK16K33设置亮度 -->
+		<block type="nulllab_vk16k33_brightness">
+			<value name="nulllab_vk16k33_brightness">
+                <shadow type="math_number">
+                    <field name="NUM">15</field>
+                </shadow>
+            </value>			
+		</block>
+		
+		<!-- VK16K33显示数字 -->
+		<block type="nulllab_vk16k33_showNumber">
+			<value name="nulllab_data">
+                <shadow type="math_number">
+                    <field name="NUM">12.34</field>
+                </shadow>
+            </value>			
+		</block>
+		
+		<!-- VK16K33显示时钟点 -->
+		<block type="nulllab_vk16k33_showColon">	
+		</block>
+		
         <!-- OLED初始化 -->
         <block type= "nulllab_OLED_Model"></block>
         <!-- OLED清屏
@@ -264,6 +328,20 @@
         </block>
     </category>
     <category id="catMakeBlockd" colour="100">
+        <!--geekServo-->
+        <block type="nulllab_geekServo">
+            <value name="nulllab_geekServoAngle">
+                <shadow type="math_number">
+                    <field name="NUM">100</field>
+                </shadow>
+            </value>
+            <value name="nulllab_geekServoDelay">
+                <shadow type="math_number">
+                    <field name="NUM">1000</field>
+                </shadow>
+            </value>
+        </block>
+
         <!--蜂鸣器-->
         <block type="nulllab_buzzerpin">
             <value name="nulllab_buzzerTime">
@@ -295,6 +373,15 @@
         </block>
         <block type="nulllab_doubleDcMotorDriverStop">
 	</block>
+
+    <!-- 单路电机驱动板 -->
+    <block type="nulllab_dcmotordriver">
+        <value name="nulllab_speed">
+            <shadow type="math_number">
+                <field name="NUM">255</field>
+            </shadow>
+        </value>
+    </block>
         <!-- 步进电机初始化引脚 -->
         <!-- <block type="nulllab_stepper">
 		<value name="nulllab_ste">
@@ -347,46 +434,52 @@
         <!-- <block type = "nulllab_colorview_init"></block> -->
         <!-- 颜色传感器读取的值 -->
         <block type="nulllab_colorview_value"></block>
-        <!-- 初始化语音识别传感器 -->
-        <!-- <block type = "nulllab_VoiceRecognition_init"></block> -->
-        <!--语音识别模式设置-->
-        <block type="nulllab_VoiceRecognition_Mode"></block>
+      
+
+        <!-- 新款语音识别 设置触发模式 -->
+        <block type="nulllab_VoiceRecognition_init_V2"></block>
+
         <!--语音识别设置词条和编号-->
-        <block type="nulllab_VoiceRecognition_Content">
-            <value name="nulllab_Key">
+        <block type="nulllab_VoiceRecognition_Content_V2">
+            <value name="nulllab_Key_V2">
                 <shadow type="math_number">
-                    <field name="NUM">1</field>
+                    <field name="NUM">0</field>
                 </shadow>
             </value>
-            <value name="nulllab_content">
+            <value name="nulllab_content_V2">
                 <shadow type="text">
                     <field name="TEXT">xiao yi xiao yi</field>
                 </shadow>
             </value>
         </block>
-        <!--语音识别开始识别-->
-        <block type="nulllab_VoiceRecognition_Start"></block>
-        <!--语音识别进行复位-->
-        <block type="nulllab_VoiceRecognition_Reset"></block>
-        <!-- 语音识别获取识别到词条的对应编号 -->
-        <block type= "nulllab_VoiceRecognition_Number"></block>
+
         <!-- 语音识别设置唤醒时间 -->
-        <block type= "nulllab_VoiceRecognition_Time">
-            <value name="nulllab_time">
+        <block type= "nulllab_VoiceRecognition_time_V2">
+            <value name="nulllab_time_V2">
                 <shadow type="math_number">
-                    <field name="NUM">5</field>
+                    <field name="NUM">10</field>
                 </shadow>
             </value>
         </block>
-        <!-- 设置唤醒词 -->
-        <block type= "nulllab_VoiceRecognition_wake_word">
-            <value name="nulllab_wakeWordContent">
-                <shadow type="text">
-                    <field name="TEXT">xiao ai tong xue</field>
-                </shadow>
-            </value>
-        </block>
-        <!-- 发送数据并播放 -->
+
+        <block type="speech_recognizer_event"></block>
+
+        <!-- <block type="speech_recognizer_event">
+          <statement name="DO">
+            <block type="serial_print_num">
+              <field name="serial_select">Serial</field>
+              <field name="new_line">println</field>
+              <field name="STAT">HEX</field>
+              <value name="CONTENT">
+                <block type="variables_get">
+                  <field name="VAR">result</field>
+                </block>
+              </value>
+            </block>
+          </statement>
+        </block> -->
+
+        <!-- 语音合成 发送数据并播放 -->
         <block type= "nulllab_speech_synthesisStart">
             <value name="nulllab_content">
                 <shadow type="text">
@@ -394,12 +487,17 @@
                 </shadow>
             </value>
         </block>
-        <!-- <block type= "speech_synthesisStatus"></block> -->
+        
         <!-- 语音合成到缓存 -->
         <block type= "nulllab_speech_synthesisCache">
             <value name="nulllab_content">
                 <shadow type="text">
                     <field name="TEXT">小爱同学</field>
+                </shadow>
+            </value>
+            <value name="nulllab_index">
+                <shadow type="math_number">
+                    <field name="TEXT">1</field>
                 </shadow>
             </value>
         </block>
@@ -426,11 +524,26 @@
         <!-- 手势传感器 -->
         <!-- <block type="nulllab_handleStatus_init"></block> -->
         <!-- 是否获取到值 -->
-        <block type="nulllab_handleSensor_isGetValue"></block>
+        <!-- <block type="nulllab_handleSensor_isGetValue"></block> -->
         <!-- 获取值 -->
         <!-- <block type="nulllab_handleSensor_getValue"></block> -->
         <!-- 获取状态 -->
-        <block type="nulllab_handleSensor_getStatus"></block>
+        <!-- <block type="nulllab_handleSensor_getStatus"></block> -->
+		<!-- 手势传感器初始化 -->
+		<block type="nulllab_gesture_sensor_init">
+            <value name="nulllab_gesture_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x39</field>
+                </shadow>
+            </value>		
+		</block>
+		
+		<!-- 获取手势识别传感器状态 -->
+		<block type="nulllab_get_gesture"></block>
+		
+		<!-- 手势识别传感器的状态 -->
+		<block type="nulllab_gesture_sensor_status"></block>
+		
         <!-- 物联网模块ESP8266 初始化引脚 -->
         <block type="nulllab_esp8266_init"></block>
         <!-- 物联网模块ESP8266 设置WiFi -->
@@ -585,6 +698,30 @@
         </block>
 		<!-- I2C扩展板 设置模式 -->
 		<block type="nulllab_set_i2c_expansion_board_mode" id="nulllab_set_i2c_expansion_board_mode" />
+		<!-- I2C扩展板 设置PWM模式频率 -->
+		<block type="nulllab_set_i2c_expansion_board_PWM_freq" id="nulllab_set_i2c_expansion_board_PWM_freq" >
+			<value name="nulllab_i2cPwmFreq">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置PWM模式占空比 -->
+		<block type="nulllab_set_i2c_expansion_board_PWM_duty" id="nulllab_set_i2c_expansion_board_PWM_duty" >
+			<value name="nulllab_i2cPwmDuty">
+                <shadow type="math_number">
+                    <field name="NUM">1024</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置舵机模式角度 -->
+		<block type="nulllab_set_i2c_expansion_board_servo" id="nulllab_set_i2c_expansion_board_servo" >
+			<value name="nulllab_i2cServoAngle">
+                <shadow type="math_number">
+                    <field name="NUM">90</field>
+                </shadow>
+            </value>
+        </block>
 		<!-- I2C扩展板 设置GPIO电平 -->
 		<block type="nulllab_set_i2c_expansion_board_level" id="nulllab_set_i2c_expansion_board_level" />
 		<!-- I2C扩展板 获取GPIO电平 -->

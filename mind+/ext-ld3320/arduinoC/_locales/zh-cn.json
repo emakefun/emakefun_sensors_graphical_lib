@@ -1,0 +1,10 @@
+{
+    "emakefun_ld3320.initLD3320|block": "初始化I2C语音识别模块 识别模式为 [MODE] I2C地址为0x30",
+    "emakefun_ld3320.LD3320MODE.kRecognitionAuto|menu": "循环模式",
+    "emakefun_ld3320.LD3320MODE.kButtonTrigger|menu": "按键模式",
+    "emakefun_ld3320.LD3320MODE.kKeywordTrigger|menu": "关键词模式",
+    "emakefun_ld3320.LD3320MODE.kKeywordOrButtonTrigger|menu": "关键词或按键模式",
+    "emakefun_ld3320.addKeyword|block": "添加词条为 [KEYWORD] 编号为 [CODE]",
+    "emakefun_ld3320.setWakeupTime|block": "设置唤醒时间为 [TIME] 毫秒",
+    "emakefun_ld3320.ld3320Recognize|block": "识别一次语音获取对应编号"
+}

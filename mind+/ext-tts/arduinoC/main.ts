@@ -73,7 +73,7 @@ namespace nulllab_tts {
 
     //% block="init tts [ADDR]" blockType="command"
     export function initTTs(parameter: any, block: any) {
-        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDeviceI2cAddress);\n`);
+        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDefaultI2cAddress);\n`);
     }
 
     //% block="tts start synthesizing voice [VOICE] speed [SPEED] text [TEXT]" blockType="command"
@@ -81,7 +81,7 @@ namespace nulllab_tts {
     //% VOICE.shadow="range" VOICE.defl=5 VOICE.params.min=1 VOICE.params.max=10
     //% SPEED.shadow="range" SPEED.defl=5 SPEED.params.min=1 SPEED.params.max=10
     export function startSynthesizing(parameter: any, block: any) {
-        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDeviceI2cAddress);\n`);
+        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDefaultI2cAddress);\n`);
         Generator.addSetup("ttsSetup", `g_tts.Initialize();\n`); 
         let text = parameter.TEXT.code;
         let voice = parameter.VOICE.code;
@@ -92,21 +92,21 @@ namespace nulllab_tts {
 
     //% block="tts stop synthesizing" blockType="command"
      export function stopSynthesizing(parameter: any, block: any) {
-        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDeviceI2cAddress);\n`);
+        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDefaultI2cAddress);\n`);
         Generator.addSetup("ttsSetup", `g_tts.Initialize();\n`); 
         Generator.addCode(`g_tts.Stop();\n`);
     }
 
 	//% block="tts pause synthesizing" blockType="command"
     export function pauseSynthesizing(parameter: any, block: any) {
-        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDeviceI2cAddress);\n`);
+        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDefaultI2cAddress);\n`);
         Generator.addSetup("ttsSetup", `g_tts.Initialize();\n`); 
         Generator.addCode(`g_tts.Pause();\n`);
     }
 
     //% block="tts resume synthesizing" blockType="command"
     export function resumeSynthesizing(parameter: any, block: any) {
-        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDeviceI2cAddress);\n`);
+        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDefaultI2cAddress);\n`);
         Generator.addSetup("ttsSetup", `g_tts.Initialize();\n`); 
         Generator.addCode(`g_tts.Resume();\n`);
     }
@@ -117,7 +117,7 @@ namespace nulllab_tts {
     //% VOICE.shadow="range" VOICE.defl=5 VOICE.params.min=1 VOICE.params.max=10
     //% SPEED.shadow="range" SPEED.defl=5 SPEED.params.min=1 SPEED.params.max=10
     export function pushTextToCache(parameter: any, block: any) {
-        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDeviceI2cAddress);\n`);
+        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDefaultI2cAddress);\n`);
         Generator.addSetup("ttsSetup", `g_tts.Initialize();\n`); 
 		let text = parameter.TEXT.code;
 		let index = parameter.INDEX.code;
@@ -130,7 +130,7 @@ namespace nulllab_tts {
     //% block="tts start from cache speak count [COUNT]" blockType="command"
 	//% COUNT.shadow="range" COUNT.params.min=1 COUNT.params.max=15 COUNT.defl=1
     export function startSynthesizingFromCache(parameter: any, block: any) {
-        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDeviceI2cAddress);\n`);
+        Generator.addInclude(`ttsInit`, `#include <tts.h>\nemakefun::Tts g_tts(emakefun::Tts::kDefaultI2cAddress);\n`);
         Generator.addSetup("ttsSetup", `g_tts.Initialize();\n`); 
         let count = parameter.COUNT.code;
         Generator.addCode(`g_tts.PlayFromCache();\n`);
