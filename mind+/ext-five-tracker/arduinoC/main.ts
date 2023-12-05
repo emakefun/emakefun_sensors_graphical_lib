@@ -1,5 +1,16 @@
 
-
+enum INDEXPROBE {
+    //% block="0"
+    0,
+    //% block="1"
+    1,
+    //% block="2"
+    2,
+    //% block="3"
+    3,
+    //% block="4"
+    4
+}
 
 //% color="#0099CC" iconWidth=50 iconHeight=40
 namespace EM_five_tracker {
@@ -22,5 +33,21 @@ namespace EM_five_tracker {
     export function getSensorStates(parameter: any, block: any) {
 		Generator.addInclude(`fiveTrackerInit`, `#include <line_tracker.h>\nLineTracker line_tracker;\n`);
 		Generator.addCode(`line_tracker.GetSensorStates()`);
+    }
+	
+	//% block="five tracker get [INDEX] sensor value" blockType="reporter"
+	//% INDEX.shadow="dropdown" INDEX.options="INDEXPROBE" INDEX.defl="INDEXPROBE.0"
+    export function getSingleSensorValue(parameter: any, block: any) {
+		let index = parameter.INDEX.code;
+		Generator.addInclude(`fiveTrackerInit`, `#include <line_tracker.h>\nLineTracker line_tracker;\n`);
+		Generator.addCode(`line_tracker.GetSensorValue(${index})`);
+    }
+	
+	//% block="five tracker get [INDEX] sensor state" blockType="reporter"
+	//% INDEX.shadow="dropdown" INDEX.options="INDEXPROBE" INDEX.defl="INDEXPROBE.0"
+    export function getSingleSensorState(parameter: any, block: any) {
+		let index = parameter.INDEX.code;
+		Generator.addInclude(`fiveTrackerInit`, `#include <line_tracker.h>\nLineTracker line_tracker;\n`);
+		Generator.addCode(`line_tracker.GetSensorState(${index})`);
     }
 }
