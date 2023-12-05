@@ -43,7 +43,7 @@ namespace EM_five_tracker {
 		Generator.addCode(`line_tracker.GetSensorValue(${index})`);
     }
 	
-	//% block="five tracker get [INDEX] sensor state" blockType="reporter"
+	//% block="five tracker get [INDEX] sensor state" blockType="boolean"
 	//% INDEX.shadow="dropdown" INDEX.options="INDEXPROBE" INDEX.defl="INDEXPROBE.0"
     export function getSingleSensorState(parameter: any, block: any) {
 		let index = parameter.INDEX.code;

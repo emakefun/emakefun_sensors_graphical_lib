@@ -3,5 +3,5 @@
     "EM_five_tracker.getSensorValue|block": "五路循迹模块获取传感器值",
     "EM_five_tracker.getSensorStates|block": "五路循迹模块获取传感器状态",
 	"EM_five_tracker.getSingleSensorValue|block": "五路循迹模块获取第 [INDEX] 探头的值",
-	"EM_five_tracker.getSingleSensorState|block": "五路循迹模块获取第 [INDEX] 探头的状态"
+	"EM_five_tracker.getSingleSensorState|block": "五路循迹模块第 [INDEX] 探头寻到黑线？"
 }
