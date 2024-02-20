@@ -1,24 +1,24 @@
 {
 	"name": {
-		"zh-cn": "五路循迹模块",
-		"en": "Five tracker sensor"
+		"zh-cn": "PS3手柄",
+		"en": "PS3"
 	},
 	"description": {
-		"zh-cn": "五路循迹模块",
-		"en": ""
+		"zh-cn": "Emakefun PS3手柄",
+		"en": "PS3"
 	},
-	"author": "Eamkefun",
+	"author": "Emakefun",
 	"email": "leishen@null-lab.com",
 	"license": "MIT",
 	"isBoard": false,
-	"id": "EM_five_tracker",
+	"id": "EM_PS3",
 	"platform": ["win", "mac", "web"],
 	"version": "0.0.1",
 	"asset": {
 		"arduinoC": {
 			"dir": "arduinoC/",
 			"version": "0.0.1",
-			"board": ["arduino", "arduinonano", "mega2560", "esp32","firebeetleesp32e"],
+			"board": ["esp32", "telloesp32", "firebeetleesp32", "firebeetleesp32e"],
 			"main": "main.ts"
 		}
 	}

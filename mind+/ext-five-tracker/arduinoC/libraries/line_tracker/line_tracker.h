@@ -49,7 +49,7 @@ class LineTracker {
 
   bool GetSensorState(const uint8_t index) {
     GetSensorStates();
-    return (sensor_data_.sensor_states & (1 << index)) != 0;
+    return (sensor_data_.sensor_states & (1 << index)) == 0;
   }
 
  private:

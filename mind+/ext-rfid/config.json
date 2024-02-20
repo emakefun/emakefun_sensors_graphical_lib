@@ -1,0 +1,27 @@
+{
+  "name": {
+    "zh-cn":"RFID通信模块",
+    "en": "RFID"
+  },
+  "description": {
+    "zh-cn": "近距离读取卡片",
+    "en": "Upload mode"
+  },
+  "author": "Emakefun",
+  "email": "leishen@null-lab.com",
+  "license": "MIT",
+  "isBoard": false,
+  "id": "RFID",
+  "platform": ["win","mac","web"],
+  "version": "0.0.1",
+  "asset": 
+  {
+    "arduinoC": 
+    {
+      "dir": "arduinoC/",
+      "version": "0.0.1",
+      "board": ["arduino","arduinonano","arduinounor3","mega2560"],
+      "main": "main.ts"
+    }
+  }
+}

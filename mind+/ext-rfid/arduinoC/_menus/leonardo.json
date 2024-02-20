@@ -1,0 +1,9 @@
+{
+	"ALLPIN": {
+		"menu": [["A0", "A0"], ["A1", "A1"], ["A2", "A2"]]
+	},
+	"PINA": {
+		"menu":	[["A0", "A0"], ["A1", "A1"], ["A2", "A2"]],
+		"default_setBrightness": "A2"
+	}
+}
