@@ -37,7 +37,7 @@
 #if defined __AVR__ || defined(ESP8266) 
 #include <SoftwareSerial.h>
 #elif defined (ESP32)
-#include <ESP32SoftwareSerial.h>
+#include "ESP32SoftwareSerial.h"
 #endif
 
 
@@ -48,10 +48,6 @@
 #define MP3_EQ_CLASSIC    4
 #define MP3_EQ_BASS       5
 
-
-#define MP3_DEVICE_UDISK  0
-#define MP3_DEVICE_FLASH  3
-#define MP3_DEVICE_FLASH_PLAY  4
 
 // Looping options, ALL, FOLDER, ONE and ONE_STOP are the 
 // only ones that appear to do much interesting
@@ -162,7 +158,7 @@ class GD5800_Serial : public SoftwareSerial
 
     
     void playFileByIndexNumber(unsigned int fileNumber);        
-    void PushPlayFileByIndexNumber(unsigned int fileNumber); 
+    
    
     
     /** Increase the volume by 1 (volume ranges 0 to 30). */
@@ -208,19 +204,6 @@ class GD5800_Serial : public SoftwareSerial
     
     void setLoopMode(byte loopMode);
  
-    
-     /** Set play device.
-     * 
-     * @param device One of the device,
-     * 
-     *  *  MP3_DEVICE_UDISK       - Set device to USB disk
-     *  *  MP3_DEVICE_FLASH_PLAY  - Set device to flash chip and play
-     *  *  MP3_DEVICE_FLASH       - Set device to flash chip
-     */
-     
-    void setDevice(byte device);
-    
-    
     
     // Status querying commands
     /** Get the status from the device.
@@ -330,7 +313,7 @@ class GD5800_Serial : public SoftwareSerial
 
 #elif defined ESP32
 
-class GD5800_Serial : public ESP32SoftwareSerial
+class GD5800_Serial : public Esp32SoftwareSerial
 {
   
   public: 
@@ -362,7 +345,7 @@ class GD5800_Serial : public ESP32SoftwareSerial
      * and all the other commands :-)
      */
     
-    GD5800_Serial(short rxPin, short txPin) : ESP32SoftwareSerial(rxPin,txPin) { };
+    GD5800_Serial(short rxPin, short txPin) : Esp32SoftwareSerial(rxPin,txPin) { };
     
     /** Start playing the current file.
      */
@@ -405,7 +388,7 @@ class GD5800_Serial : public ESP32SoftwareSerial
 
     
     void playFileByIndexNumber(unsigned int fileNumber);        
-    void PushPlayFileByIndexNumber(unsigned int fileNumber); 
+    
    
     
     /** Increase the volume by 1 (volume ranges 0 to 30). */
@@ -450,19 +433,7 @@ class GD5800_Serial : public ESP32SoftwareSerial
      */
     
     void setLoopMode(byte loopMode);
-  
-    
-     /** Set play device.
-     * 
-     * @param device One of the device,
-     * 
-     *  *  MP3_DEVICE_UDISK       - Set device to USB disk
-     *  *  MP3_DEVICE_FLASH_PLAY  - Set device to flash chip and play
-     *  *  MP3_DEVICE_FLASH       - Set device to flash chip
-     */
-     
-    void setDevice(byte device);
-    
+ 
     
     // Status querying commands
     /** Get the status from the device.

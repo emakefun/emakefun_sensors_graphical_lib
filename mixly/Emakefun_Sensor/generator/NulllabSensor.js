@@ -608,11 +608,29 @@ Blockly.Arduino.forBlock['nulllab_matrix_keyboard_values_V2'] = function () {
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+//初始化矩阵键盘v3
+Blockly.Arduino.forBlock['nulllab_init_matrix_keyboard_I2C_V3']  = function () {
+	var myKeyBoardV3 = this.getFieldValue('nulllab_keyboard_v3');
+	var nulllab_matrix_addr = Blockly.Arduino.valueToCode(this,'nulllab_matrix_addr',Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_matrix_keyboard_v2'] = '#include <matrix_keyboard_v3.h>\n';
+	Blockly.Arduino.definitions_['matrix_keyboard_V2_' + myKeyBoardV3] = 'MatrixKeyboard ' + myKeyBoardV3 + '(' + nulllab_matrix_addr + ');\n';
+	Blockly.Arduino.setups_['matrix_keyboard_I2C_' + myKeyBoardV3] = myKeyBoardV3 + '.Setup();\n';
+	var code = '';
+    return code;
+};
+
+//获取矩阵键盘V3按下的值
+Blockly.Arduino.forBlock['nulllab_matrix_keyboard_values_V3'] = function () {
+	var nulllab_keyboard_v3 = this.getFieldValue('nulllab_keyboard_v3');
+	var code = nulllab_keyboard_v3 + '.GetTouchedKey()';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 
 //初始化发送
 Blockly.Arduino.forBlock['nulllab_nrf24l01send'] = function(){
 	var value_address = Blockly.Arduino.valueToCode(this,'nulllab_address',Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['md_nrf24l01'] = '#include<SPI.h>\n#include <RF24.h>\n'   
+	Blockly.Arduino.definitions_['md_nrf24l01'] = '#include<SPI.h>\n#include <RF24.h>\n#include <printf.h>\n';
 	Blockly.Arduino.setups_['Address'] = '';
 	var code = 'radio.openWritingPipe('+value_address+');\n';
 	return code;
@@ -621,7 +639,7 @@ Blockly.Arduino.forBlock['nulllab_nrf24l01send'] = function(){
 //初始化接收
 Blockly.Arduino.forBlock['nulllab_nrf24l01rec'] = function(){
 	var value_address2 = Blockly.Arduino.valueToCode(this,'nulllab_address2',Blockly.Arduino.ORDER_ATOMIC);
-	Blockly.Arduino.definitions_['md_nrf24l01'] = '#include<SPI.h>\n#include <RF24.h>\n';
+	Blockly.Arduino.definitions_['md_nrf24l01'] = '#include<SPI.h>\n#include <RF24.h>\n#include <printf.h>\n';
 	// Blockly.Arduino.setups_['begin'] ='radio.begin();\n';
 	Blockly.Arduino.setups_['Address2'] = '';
 	var code = 'radio.openReadingPipe(1, ' + value_address2 + ');\n';
@@ -637,10 +655,10 @@ Blockly.Arduino.forBlock['nulllab_power_consumption_level'] = function(){
 
 //初始化引脚块
 Blockly.Arduino.forBlock['nulllab_initialize_pins'] = function(){
-	Blockly.Arduino.definitions_['md_nrf24l01'] = '#include<SPI.h>\n#include <RF24.h>\n'
+	Blockly.Arduino.definitions_['md_nrf24l01'] = '#include<SPI.h>\n#include <RF24.h>\n#include <printf.h>\n';
 	var ce = this.getFieldValue('nulllab_CE');
 	var cs = this.getFieldValue('nulllab_CS');
-	Blockly.Arduino.setups_['begin'] ='radio.begin();\n';
+	Blockly.Arduino.setups_['begin'] ='radio.begin();\n  Serial.begin(115200);\n  printf_begin();\n';
 	Blockly.Arduino.definitions_['initialize'] = 'RF24 radio(' + ce + ', ' + cs + ');\n';
 	return '';
 }
@@ -649,7 +667,7 @@ Blockly.Arduino.forBlock['nulllab_initialize_pins'] = function(){
 Blockly.Arduino.forBlock['nulllab_nrf24l01senddatass'] = function(){
 	var value_senddatass = Blockly.Arduino.valueToCode(this, 'nulllab_nrfdatass', Blockly.Arduino.ORDER_ATOMIC);
 	var value_genre = this.getFieldValue('nulllab_GENRE');
-	var code = 'radio.write(&'+value_senddatass+', sizeof(' + value_senddatass + ') );\n';
+	var code = 'radio.write(&'+value_senddatass+', sizeof(' + value_senddatass + '));\n';
 	return code;
 };
 
@@ -658,7 +676,7 @@ Blockly.Arduino.forBlock['nulllab_nrf24l01senddatass_string'] = function(){
 	var value_senddatass_string = Blockly.Arduino.valueToCode(this,'nulllab_nrfdatass_string',Blockly.Arduino.ORDER_ATOMIC);
 	var value_genre = this.getFieldValue('nulllab_GENRE');
 	//Blockly.Arduino.definitions_['md_string'] = 'char value[];'
-	var code = 'char value[] = ' + value_senddatass_string + ';\nradio.write(value, sizeof(value) );\n';
+	var code = 'char value[] = ' + value_senddatass_string + ';\nradio.write(value, sizeof(value));\n';
 	return code;
 };
 
@@ -666,6 +684,11 @@ Blockly.Arduino.forBlock['nulllab_nrf24l01senddatass_string'] = function(){
 Blockly.Arduino.forBlock['nulllab_eavesdrop'] = function(){
 	var listen = this.getFieldValue('nulllab_EAVESDROP');
 	var code = 'radio.' + listen + 'Listening();\n';
+	return code;
+}
+
+Blockly.Arduino.forBlock['nulllab_nrf24l01PrintDetails'] = function(){
+	var code = 'radio.printDetails();;\n';
 	return code;
 }
 
@@ -684,8 +707,8 @@ Blockly.Arduino.forBlock['nulllab_nrfrecdatas'] = function(){
 
 //接收字符串数据
 Blockly.Arduino.forBlock['nulllab_nrfrecdatas_string'] = function(){
-	Blockly.Arduino.definitions_['receiving_string'] = 'char aary[100]={0};\nString receiving(){\nradio.read(aary, sizeof(aary) );\nString data = aary;\nreturn data;\n}';
-	var code = 'receiving()';
+	Blockly.Arduino.definitions_['receiving_string'] = 'byte rf24_res_array[32];\nbyte rf24_receiving(){\n  radio.read(rf24_res_array, sizeof(rf24_res_array));\n  return rf24_res_array[0];\n}';
+	var code = 'rf24_receiving()';
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -1099,6 +1122,18 @@ Blockly.Arduino.forBlock['nulllab_getSensorStates_v2'] = function() {
 	return [nulllab_fiveInfraredTracking + '.GetSensorStates()', Blockly.Arduino.ORDER_ATOMIC];
 }
 
+Blockly.Arduino.forBlock['nulllab_getSensorValues_v2_index'] = function() {
+	var nulllab_fiveInfraredTracking = this.getFieldValue('nulllab_fiveInfraredTracking_V2');
+	var index = this.getFieldValue('index');
+	return [nulllab_fiveInfraredTracking + '.GetSensorValue(' + index + ')', Blockly.Arduino.ORDER_ATOMIC];
+}
+
+Blockly.Arduino.forBlock['nulllab_getSensorStates_v2_index'] = function() {
+	var nulllab_fiveInfraredTracking = this.getFieldValue('nulllab_fiveInfraredTracking_V2');
+	var index = this.getFieldValue('index');
+	return [nulllab_fiveInfraredTracking + '.GetSensorState(' + index + ')',Blockly.Arduino.ORDER_ATOMIC];
+}
+
 // PM2.5激光粉尘传感器
 Blockly.Arduino.forBlock['nulllab_PM25_sensor_data']=function() {
 	var nulllab_pmValue = this.getFieldValue('nulllab_pmValue');
@@ -1354,4 +1389,36 @@ Blockly.Arduino.forBlock['nulllab_set_i2c_expansion_board_servo'] = function() {
 	var code = i2cName + '.SetServoAngle(' + pin + ' ,' + angle + ');\n';
 	return code;
 }
+
+//初始化RFID
+Blockly.Arduino.forBlock['nulllab_init_RFID_I2C']  = function () {
+
+	Blockly.Arduino.definitions_['define_Emakefun_RFID'] = '#include "Emakefun_RFID.h"';
+	Blockly.Arduino.definitions_['define_Wire'] = '#include "Wire.h"\n';
+	var nulllab_RFID = Blockly.Arduino.valueToCode(this,'nulllab_RFID',Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['Emakefun_RFID'] = 'MFRC522 ' + 'mfrc522(' + nulllab_RFID + ');\n';
+
+	Blockly.Arduino.setups_['setup_RFID_Serial'] = 'Serial.begin(115200);';
+	Blockly.Arduino.setups_['setup_RFID_Wire'] = 'Wire.begin();';
+	Blockly.Arduino.setups_['setup_RFID_PCD_Init'] = 'mfrc522.PCD_Init();';
+	
+	var code = '';
+	
+    return code;
+};
+
+//RFID检测到卡片？
+Blockly.Arduino.forBlock['nulllab_RFID_detection'] = function () {
+
+    var code = '(mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial())';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//RFID读取UID
+Blockly.Arduino.forBlock['nulllab_RFID_ReadUID'] = function () {
+
+    var code = 'mfrc522.Read_Uid()';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 })();

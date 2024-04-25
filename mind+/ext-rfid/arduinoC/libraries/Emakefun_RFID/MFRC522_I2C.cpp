@@ -77,7 +77,7 @@ byte MFRC522::PCD_ReadRegister(	byte reg	///< The register to read from. One of 
 	Wire.write(reg);
 	Wire.endTransmission();
 
-	Wire.requestFrom(_chipAddress, 1);
+	Wire.requestFrom((int)_chipAddress, 1);
 	value = Wire.read();
 	return value;
 } // End PCD_ReadRegister()
@@ -1759,7 +1759,7 @@ bool MFRC522::PICC_ReadCardSerial() {
 	return (result == STATUS_OK);
 } // End PICC_ReadCardSerial()
 
-String MFRC522::Read_Uid()
+String MFRC522::read_uid()
 {
   String rfid_str = "";  //字符串清空
   for (byte i = 0; i < uid.size; i++) // 转储 UID

@@ -41,6 +41,16 @@ class LineTracker {
    *         位的顺序为从右到左：传感器 1、传感器 2、传感器 3、传感器 4、传感器 5。
    */
   uint8_t GetSensorStates();
+  
+  uint16_t GetSensorValue(const uint8_t index) {
+    GetSensorValues();
+    return sensor_data_.sensor_values[index];
+  }
+
+  bool GetSensorState(const uint8_t index) {
+    GetSensorStates();
+    return (sensor_data_.sensor_states & (1 << index)) == 0;
+  }
 
  private:
   /**

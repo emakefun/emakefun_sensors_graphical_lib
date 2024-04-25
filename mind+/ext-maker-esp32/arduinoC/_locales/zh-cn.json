@@ -1,0 +1,10 @@
+{
+    "em_maker_esp32.SetSensitivity|block": "五路循迹模块设置敏感度 [SENSITIVITY]",
+    "em_maker_esp32.getSensorValue|block": "五路循迹模块获取传感器值",
+    "em_maker_esp32.getSensorStates|block": "五路循迹模块获取传感器状态",
+	"em_maker_esp32.getSingleSensorValue|block": "五路循迹模块获取第 [INDEX] 探头的值",
+	"em_maker_esp32.getSingleSensorState|block": "五路循迹模块第 [INDEX] 探头寻到黑线？",
+    "em_maker_esp32.setMotorSpeed|block": "设置电机[MOTORPIN] 速度为[MOTORSPEED]",
+    "em_maker_esp32.doubleDriverMechanicalArm|block": "舵机引脚为[SERVOPIN1] 角度为[LEFTRIGHTANGLE] 延时[SERVODELAY1]毫秒"
+
+}

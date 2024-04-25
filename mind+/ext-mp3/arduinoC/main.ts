@@ -86,8 +86,8 @@ namespace EM_MP3 {
 
     //% block="init MP3 TX[TXPIN] RX[RXPIN] set [MODE]" blockType="command"
 	//% MODE.shadow="dropdown" MODE.options="MP3MODE" MODE.defl="MP3MODE.PLAY"
-	//% RXPIN.shadow="dropdown" RXPIN.options="MP3RXPIN" RXPIN.defl="MP3RXPIN.3"
-	//% TXPIN.shadow="dropdown" TXPIN.options="MP3TXPIN" TXPIN.defl="MP3MODE.2"
+	//% RXPIN.shadow="dropdown" RXPIN.options="PIN_DigitalRead" RXPIN.defl="PIN_DigitalRead.3"
+	//% TXPIN.shadow="dropdown" TXPIN.options="PIN_DigitalRead1" TXPIN.defl="PIN_DigitalRead1.2"
     export function initMP3(parameter: any, block: any) {
 		let rxPin = parameter.RXPIN.code;
 		let txPin = parameter.TXPIN.code;
@@ -99,8 +99,8 @@ namespace EM_MP3 {
 	
 	//% block="MP3 TX[RXPIN] RX[TXPIN] play [NUM]" blockType="command"
 	//% NUM.shadow="range" NUM.params.min=1 NUM.defl=1
-	//% RXPIN.shadow="dropdown" RXPIN.options="MP3RXPIN" RXPIN.defl="MP3RXPIN.3"
-	//% TXPIN.shadow="dropdown" TXPIN.options="MP3TXPIN" TXPIN.defl="MP3MODE.2"
+	//% RXPIN.shadow="dropdown" RXPIN.options="PIN_DigitalRead" RXPIN.defl="PIN_DigitalRead.3"
+	//% TXPIN.shadow="dropdown" TXPIN.options="PIN_DigitalRead1" TXPIN.defl="PIN_DigitalRead1.2"
     export function mp3Play(parameter: any, block: any) {
 		let rxPin = parameter.RXPIN.code;
 		let txPin = parameter.TXPIN.code;
@@ -112,8 +112,8 @@ namespace EM_MP3 {
 	
 	//% block="MP3 TX[RXPIN] RX[TXPIN] set equalizer [EQMODE]" blockType="command"
 	//% EQMODE.shadow="dropdown" EQMODE.options="MP3EQMODE" EQMODE.defl="MP3EQMODE.NORMAL"
-	//% RXPIN.shadow="dropdown" RXPIN.options="MP3RXPIN" RXPIN.defl="MP3RXPIN.3"
-	//% TXPIN.shadow="dropdown" TXPIN.options="MP3TXPIN" TXPIN.defl="MP3MODE.2"
+	//% RXPIN.shadow="dropdown" RXPIN.options="PIN_DigitalRead" RXPIN.defl="PIN_DigitalRead.3"
+	//% TXPIN.shadow="dropdown" TXPIN.options="PIN_DigitalRead1" TXPIN.defl="PIN_DigitalRead1.2"
     export function mp3Equalizer(parameter: any, block: any) {
 		let rxPin = parameter.RXPIN.code;
 		let txPin = parameter.TXPIN.code;
@@ -125,8 +125,8 @@ namespace EM_MP3 {
 	
 	//% block="MP3 TX[RXPIN] RX[TXPIN] loop mode [LOOPMODE]" blockType="command"
 	//% LOOPMODE.shadow="dropdown" LOOPMODE.options="MP3LOOPMODE" LOOPMODE.defl="MP3LOOPMODE.LOOPALL"
-	//% RXPIN.shadow="dropdown" RXPIN.options="MP3RXPIN" RXPIN.defl="MP3RXPIN.3"
-	//% TXPIN.shadow="dropdown" TXPIN.options="MP3TXPIN" TXPIN.defl="MP3MODE.2"
+	//% RXPIN.shadow="dropdown" RXPIN.options="PIN_DigitalRead" RXPIN.defl="PIN_DigitalRead.3"
+	//% TXPIN.shadow="dropdown" TXPIN.options="PIN_DigitalRead1" TXPIN.defl="PIN_DigitalRead1.2"
     export function mp3LoopMode(parameter: any, block: any) {
 		let rxPin = parameter.RXPIN.code;
 		let txPin = parameter.TXPIN.code;
@@ -138,8 +138,8 @@ namespace EM_MP3 {
   
 	//% block="MP3 TX[RXPIN] RX[TXPIN] set volume [VOLUME]" blockType="command"
 	//% VOLUME.shadow="range" VOLUME.params.min=1 VOLUME.params.max=30 VOLUME.defl=20
-	//% RXPIN.shadow="dropdown" RXPIN.options="MP3RXPIN" RXPIN.defl="MP3RXPIN.3"
-	//% TXPIN.shadow="dropdown" TXPIN.options="MP3TXPIN" TXPIN.defl="MP3MODE.2"
+	//% RXPIN.shadow="dropdown" RXPIN.options="PIN_DigitalRead" RXPIN.defl="PIN_DigitalRead.3"
+	//% TXPIN.shadow="dropdown" TXPIN.options="PIN_DigitalRead1" TXPIN.defl="PIN_DigitalRead1.2"
     export function mp3SetVolume(parameter: any, block: any) {
 		let rxPin = parameter.RXPIN.code;
 		let txPin = parameter.TXPIN.code;

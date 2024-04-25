@@ -404,7 +404,7 @@ public:
 	bool PICC_IsNewCardPresent();
 	bool PICC_ReadCardSerial();
 
-	String MFRC522::Read_Uid();
+	String read_uid();
 
 private:
 	byte _chipAddress;

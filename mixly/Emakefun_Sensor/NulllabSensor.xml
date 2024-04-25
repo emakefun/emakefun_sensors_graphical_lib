@@ -41,6 +41,19 @@
         <block type="nulllab_matrix_keyboard_values_V2">
 		</block>
 		
+		<!-- 初始化I2C矩阵键盘 -->
+		<block type = "nulllab_init_matrix_keyboard_I2C_V3" >
+			<value name="nulllab_matrix_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x65</field>
+                </shadow>
+            </value>		
+		</block>
+		
+		<!--获取矩阵键盘的值-->
+        <block type="nulllab_matrix_keyboard_values_V3">
+		</block>
+		
         <!-- 遥控手柄初始化 -->
         <!-- <block type="nulllab_hand_initalize_header"></block> -->
         <!-- 手柄方向控制 -->
@@ -99,6 +112,9 @@
 		</block>		
 		<block type="nulllab_getSensorValues_v2" />
 		<block type="nulllab_getSensorStates_v2" />
+		
+		<block type="nulllab_getSensorValues_v2_index" />
+		<block type="nulllab_getSensorStates_v2_index" />
     </category>
 	
     <category id="catMakeBlockc" colour="100">
@@ -427,6 +443,8 @@
 		</value>
 	</block> -->
     </category>
+
+<!--智能模块-->
     <category id="catMakeBlocke" colour="100">
 		<!-- 硬件串口获取PM25传感器的数据 -->
 		<block type="nulllab_PM25_sensor_data"></block>
@@ -728,7 +746,25 @@
 		<block type="nulllab_get_i2c_expansion_board_level" id="nulllab_get_i2c_expansion_board_level" />
 		<!-- I2C扩展板 获取GPIO ADC -->
 		<block type="nulllab_get_i2c_expansion_board_adc" id="nulllab_get_i2c_expansion_board_adc" />
+
+        <!-- 初始化RFID I2C -->
+		<block type = "nulllab_init_RFID_I2C" >
+			<value name="nulllab_RFID">
+                <shadow type="math_number">
+                    <field name="NUM">0x28</field>
+                </shadow>
+            </value>		
+		</block>
+
+        <!-- 检测到卡片？ -->
+        <block type="nulllab_RFID_detection">
+        </block>
+
+        <!-- 读取卡片UID -->
+        <block type="nulllab_RFID_ReadUID">
+        </block>
     </category>
+<!-- 无线通信 --> 
     <category id="catMakeBlockf" colour="100">
  
         <!--红外遥控器初始化引脚-->
@@ -745,5 +781,91 @@
         <block type="nulllab_irKeyPress2"></block>
         <!-- 读取红外遥控值 -->
         <block type="nulllab_irKeyPress3"></block>
+		
+		
+		<block type="nulllab_initialize_pins"></block>
+
+	<!--第十三个图形块：NRF24L01+初始接收地址value 发送数组value-->
+	<block type="nulllab_nrf24l01send">
+		<value name="nulllab_address">
+			<shadow type="math_number">
+				<field name="NUM">1234</field>
+			</shadow>
+		</value>
+	</block>
+	<!--第十三个图形块：NRF24L01+初始接收地址value 接收数组value-->
+	<block type="nulllab_nrf24l01rec">
+		<value name="nulllab_address2">
+			<shadow type="math_number">
+				<field name="NUM">1234</field>
+			</shadow>
+		</value>
+	</block>
+	<!--功耗等级块-->
+	<block type="nulllab_power_consumption_level"></block>
+	
+	<!--第十三个图形块：NRF24L01+发送数据 value-->
+	<block type="nulllab_nrf24l01senddatass">
+		<value name="nulllab_nrfdatass">
+			<shadow type="math_number">
+				<field name="NUM">0</field>
+			</shadow>
+		</value>
+	</block>
+	<!--  打印所有参数配置 -->
+	<block type="nulllab_nrf24l01PrintDetails">
+	</block>
+	<!--第十三个图形块：NRF24L01+发送字符串数据 value-->
+	<block type="nulllab_nrf24l01senddatass_string">
+		<value name="nulllab_nrfdatass_string">
+			<shadow type="math_number">
+				<field name="NUM">0</field>
+			</shadow>
+		</value>
+	</block>
+	<!--监听块-->
+	<block type="nulllab_eavesdrop"></block>
+	<!--是否有数据可读-->
+	<block type= "nulllab_nrfdataradys"></block>
+	<!--第十三个图形块：NRF24L01+接收数据 value-->
+	<block type= "nulllab_nrfrecdatas">
+				<value name="nulllab_nrfdatasss">
+			<shadow type="math_number">
+				<field name="NUM">0</field>
+			</shadow>
+		</value>
+		</block>
+	<!-- 第十三个图形块：NRF24L01+接收字符串数据 value -->
+	<block type= "nulllab_nrfrecdatas_string"></block>
+	<!--发送速率-->
+	<block type= "nulllab_transmission_rate"></block>
+	<!--设置通道频率-->
+	<block type="nulllab_channel_frequency">
+		<value name="nulllab_channel">
+			<shadow type="math_number">
+				<field name="NUM">115</field>
+			</shadow>
+		</value>
+	</block>
+
+    <!-- RFID 初始化 -->
+		<block type="nulllab_init_i2c_expansion_board" id="nulllab_init_i2c_expansion_board" >
+            <value name="nulllab_i2cAddr">
+                <shadow type="math_number">
+                    <field name="NUM">0x24</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置模式 -->
+		<block type="nulllab_set_i2c_expansion_board_mode" id="nulllab_set_i2c_expansion_board_mode" />
+		<!-- I2C扩展板 设置PWM模式频率 -->
+		<block type="nulllab_set_i2c_expansion_board_PWM_freq" id="nulllab_set_i2c_expansion_board_PWM_freq" >
+			<value name="nulllab_i2cPwmFreq">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+        </block>
+
     </category>
 </category>

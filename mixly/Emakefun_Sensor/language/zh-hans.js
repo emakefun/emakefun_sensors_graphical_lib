@@ -88,6 +88,11 @@ Blockly.Msg.EM_I2C_MATRIX_KEYBOARD_V2_ADDR = "设置I2C地址为";
 Blockly.Msg.EM_MATRIX_KEYBOARD_V2 = "矩阵键盘V2(I2C)";
 Blockly.Msg.EM_MATRIX_KEYBOARD_VALUES_V2 = "获取当前按下的按键值";
 
+Blockly.Msg.EM_INITIALIZE_MATRIX_KEYBOARD_V3 = "初始化矩阵键盘V3(I2C)"
+Blockly.Msg.EM_I2C_MATRIX_KEYBOARD_V2_ADDR = "设置I2C地址为";
+Blockly.Msg.EM_MATRIX_KEYBOARD_V3 = "矩阵键盘V3(I2C)";
+Blockly.Msg.EM_MATRIX_KEYBOARD_VALUES_V2 = "获取当前按下的按键值";
+
 Blockly.Msg.EM_IRKEYPRESS = "普通红外遥控器按键按下";
 Blockly.Msg.EM_IRKEYPRESS2 = "emakefun红外遥控器按键按下";
 Blockly.Msg.EM_IRKEYPRESS3 = "获取红外遥控的物理值";
@@ -255,6 +260,7 @@ Blockly.Msg.EM_PEWER_CONS_LEVELA = "最低功耗";
 Blockly.Msg.EM_PEWER_CONS_LEVELB = "低功耗";
 Blockly.Msg.EM_PEWER_CONS_LEVELC = "高功耗";
 Blockly.Msg.EM_PEWER_CONS_LEVELD = "最大功耗";
+Blockly.Msg.EM_RF24_PRINT_DETAILS = "串口打印所有参数配置";
 Blockly.Msg.EM_RF24_READABILITY = "nRF24是否有数据可读";
 Blockly.Msg.EM_RF24_INITNRF24L01RECDATASSS = "nRF24接收数据";
 Blockly.Msg.EM_RF24_INITNRF24L01RECDATASSS_STRING = "nRF24接收字符串数据";
@@ -399,6 +405,10 @@ Blockly.Msg.EM_FIVEINFRAREDTRACKING_V2_ADDR = "设置地址为";
 Blockly.Msg.EM_SETSENSITIVITY = "设置敏感度为";
 Blockly.Msg.EM_FIVEINFRAREDTRACKINGVALUE = "获取寻迹模块的传感器值";
 Blockly.Msg.EM_FIVEINFRAREDTRACKINGSTATES = "获取寻迹模块的传感器状态";
+Blockly.Msg.EM_FIVEINFRAREDTRACKINGGET = "获取第";
+Blockly.Msg.EM_FIVEINFRAREDTRACKINGGETSTA= "第";
+Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXVALUE = "个探头的值";
+Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXSTATUS = "个探头寻到黑线";
 
 Blockly.Msg.EM_DIGITALPORTINIT = "初始化旋转编码器";
 Blockly.Msg.EM_ENCODER = "旋转编码器";

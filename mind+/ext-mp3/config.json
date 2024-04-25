@@ -7,7 +7,7 @@
 		"zh-cn": "MP3语音播报模块",
 		"en": ""
 	},
-	"author": "Eamkefun",
+	"author": "Emakefun",
 	"email": "leishen@null-lab.com",
 	"license": "MIT",
 	"isBoard": false,
@@ -18,7 +18,7 @@
 		"arduinoC": {
 			"dir": "arduinoC/",
 			"version": "0.0.1",
-			"board": ["arduino", "esp32"],
+			"board": ["arduino", "esp32", "firebeetleesp32e"],
 			"main": "main.ts"
 		}
 	}

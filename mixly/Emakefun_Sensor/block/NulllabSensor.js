@@ -313,6 +313,47 @@ Blockly.Blocks.nulllab_getSensorStates_v2={
   }
 }
 
+// 获取寻迹模块的传感器值
+Blockly.Blocks.nulllab_getSensorValues_v2_index={
+  init:function(){
+    this.setColour(220);
+		this.appendDummyInput("")
+        .appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V2)
+        .appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV2'), 'nulllab_fiveInfraredTracking_V2')
+        .appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGGET)
+		.appendField(new Blockly.FieldDropdown([ 
+		 ['0', "0"],
+		 ['1', "1"],
+		 ['2', "2"],
+		 ['3', "3"],
+		 ['4', "4"],
+		]), "index")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXVALUE)
+    this.setOutput(true, Number);
+    this.setInputsInline(true);
+  }
+}
+
+Blockly.Blocks.nulllab_getSensorStates_v2_index={
+  init:function(){
+    this.setColour(220);
+		this.appendDummyInput("")
+        .appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V2)
+        .appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV2'), 'nulllab_fiveInfraredTracking_V2')
+        .appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGGETSTA)
+		.appendField(new Blockly.FieldDropdown([ 
+		 ['0', "0"],
+		 ['1', "1"],
+		 ['2', "2"],
+		 ['3', "3"],
+		 ['4', "4"],
+		]), "index")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXSTATUS)
+    this.setOutput(true, Boolean);
+    this.setInputsInline(true);
+  }
+}
+
 /* 
 //基础输入块
 */
@@ -766,6 +807,37 @@ Blockly.Blocks.nulllab_init_matrix_keyboard_I2C_V2 = {
       this.appendDummyInput("")
       .appendField(Blockly.Msg.EM_MATRIX_KEYBOARD_V2)
       .appendField(new Blockly.FieldTextInput('myMatrixKeyboardV2'), 'nulllab_keyboard_v2')
+        .appendField(Blockly.Msg.EM_MATRIX_KEYBOARD_VALUES_V2)
+      this.setOutput(true, Number);
+      this.setInputsInline(true);
+    }
+  };
+  
+  //矩阵键盘初始化 V3
+Blockly.Blocks.nulllab_init_matrix_keyboard_I2C_V3 = {
+    init: function () {
+      this.setColour(190);
+      this.appendDummyInput("")
+        .appendField(Blockly.Msg.EM_INITIALIZE_MATRIX_KEYBOARD_V3)
+        .appendField(new Blockly.FieldTextInput('myMatrixKeyboardV3'), 'nulllab_keyboard_v3')
+		.appendField(Blockly.Msg.EM_I2C_MATRIX_KEYBOARD_V2_ADDR)
+		this.appendDummyInput("")
+		this.appendValueInput("nulllab_matrix_addr", Number)
+		this.setOutput(false);
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setTooltip('');
+	}
+}
+
+  //获取矩阵键盘按键值 V3
+  Blockly.Blocks.nulllab_matrix_keyboard_values_V3 = {
+    init: function () {
+      this.setColour(190);
+      this.appendDummyInput("")
+      .appendField(Blockly.Msg.EM_MATRIX_KEYBOARD_V3)
+      .appendField(new Blockly.FieldTextInput('myMatrixKeyboardV3'), 'nulllab_keyboard_v3')
         .appendField(Blockly.Msg.EM_MATRIX_KEYBOARD_VALUES_V2)
       this.setOutput(true, Number);
       this.setInputsInline(true);
@@ -3390,12 +3462,12 @@ Blockly.Blocks.kw_getbluetoothvalue = {
 
 
 //第十三个图形块的样式 NRF24L01发送数据地址value 数据value
-Blockly.Blocks.nrf24l01send = {
+Blockly.Blocks.nulllab_nrf24l01send = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_INITNRF24L01ADDRESS1);
-      this.appendValueInput("address", Number)
+        .appendField(Blockly.Msg.EM_RF24_INITNRF24L01ADDRESS1);
+      this.appendValueInput("nulllab_address", Number)
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT);
       this.setInputsInline(true);
@@ -3405,12 +3477,12 @@ Blockly.Blocks.nrf24l01send = {
     }
   };
   //初始化接收数组
-  Blockly.Blocks.nrf24l01rec = {
+  Blockly.Blocks.nulllab_nrf24l01rec = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_INITNRF24L01ADDRESS2);
-      this.appendValueInput("address2", Number)
+        .appendField(Blockly.Msg.EM_RF24_INITNRF24L01ADDRESS2);
+      this.appendValueInput("nulllab_address2", Number)
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT);
       this.setInputsInline(true);
@@ -3420,29 +3492,29 @@ Blockly.Blocks.nrf24l01send = {
     }
   };
   //功耗等级块样式  
-  Blockly.Blocks.power_consumption_level = {
+  Blockly.Blocks.nulllab_power_consumption_level = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_SETUP)
+        .appendField(Blockly.Msg.EM_RF24_SETUP)
         .appendField(new Blockly.FieldDropdown(
           [
-            [Blockly.PEWER_CONS_LEVELA, 'RF24_PA_MIN'],
-            [Blockly.PEWER_CONS_LEVELB, 'RF24_PA_LOW'],
-            [Blockly.PEWER_CONS_LEVELC, 'RF24_PA_HIGH'],
-            [Blockly.PEWER_CONS_LEVELD, 'RF24_PA_MAX'],
-          ]), "version")
+            [Blockly.Msg.EM_PEWER_CONS_LEVELA, 'RF24_PA_MIN'],
+            [Blockly.Msg.EM_PEWER_CONS_LEVELB, 'RF24_PA_LOW'],
+            [Blockly.Msg.EM_PEWER_CONS_LEVELC, 'RF24_PA_HIGH'],
+            [Blockly.Msg.EM_PEWER_CONS_LEVELD, 'RF24_PA_MAX'],
+          ]), "nulllab_version")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setTooltip('');
     }
   };
   //初始化引脚
-  Blockly.Blocks.initialize_pins = {
+  Blockly.Blocks.nulllab_initialize_pins = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_PINSCE)
+        .appendField(Blockly.Msg.EM_RF24_PINSCE)
         .appendField(new Blockly.FieldDropdown(
           [
             ['2', '2'],
@@ -3455,12 +3527,12 @@ Blockly.Blocks.nrf24l01send = {
             ['9', '9'],
             ['10', '10']
           ]
-        ), "CE")
-        .appendField(Blockly.RF24_PINSCS)
+        ), "nulllab_CE")
+        .appendField(Blockly.Msg.EM_RF24_PINSCS)
         .appendField(new Blockly.FieldDropdown(
           [
+			['3', '3'],
             ['2', '2'],
-            ['3', '3'],
             ['4', '4'],
             ['5', '5'],
             ['6', '6'],
@@ -3469,19 +3541,19 @@ Blockly.Blocks.nrf24l01send = {
             ['9', '9'],
             ['10', '10']
           ]
-        ), "CS")
+        ), "nulllab_CS")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setTooltip('');
     }
   };
   //nrf发送数据
-  Blockly.Blocks.nrf24l01senddatass = {
+  Blockly.Blocks.nulllab_nrf24l01senddatass = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_SENDDATA);
-      this.appendValueInput("nrfdatass", Number)
+        .appendField(Blockly.Msg.EM_RF24_SENDDATA);
+      this.appendValueInput("nulllab_nrfdatass", Number)
       this.setInputsInline(true);
       //   this.appendDummyInput("")
       //   .appendField(Blockly.RF24_GENRE)
@@ -3506,13 +3578,26 @@ Blockly.Blocks.nrf24l01send = {
       this.setTooltip('');
     }
   };
+  
+	Blockly.Blocks.nulllab_nrf24l01PrintDetails = {
+		init: function () {
+		  this.setColour(200);
+		  this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_RF24_PRINT_DETAILS);
+		  this.setInputsInline(true);
+		  this.setPreviousStatement(true, null);
+		  this.setNextStatement(true, null);
+		  this.setTooltip('');
+		}
+	}
+  
   //nrf发送字符串数据
-  Blockly.Blocks.nrf24l01senddatass_string = {
+  Blockly.Blocks.nulllab_nrf24l01senddatass_string = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_SENDDATA_STRING);
-      this.appendValueInput("nrfdatass_string", String)
+        .appendField(Blockly.Msg.EM_RF24_SENDDATA_STRING);
+      this.appendValueInput("nulllab_nrfdatass_string", String)
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -3520,38 +3605,38 @@ Blockly.Blocks.nrf24l01send = {
     }
   };
   //监听块样式
-  Blockly.Blocks.eavesdrop = {
+  Blockly.Blocks.nulllab_eavesdrop = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_EAVESDROP)
+        .appendField(Blockly.Msg.EM_RF24_EAVESDROP)
         .appendField(new Blockly.FieldDropdown(
           [
-            [Blockly.RF24_EAVESDROPUP, 'start'],
-            [Blockly.RF24_EAVESDROPDOWN, 'stop']
-          ]), "EAVESDROP")
+            [Blockly.Msg.EM_RF24_EAVESDROPUP, 'start'],
+            [Blockly.Msg.EM_RF24_EAVESDROPDOWN, 'stop']
+          ]), "nulllab_EAVESDROP")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setTooltip('');
     }
   };
   //是否有数据可读
-  Blockly.Blocks.nrfdataradys = {
+  Blockly.Blocks.nulllab_nrfdataradys = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_READABILITY)
+        .appendField(Blockly.Msg.EM_RF24_READABILITY)
       this.setOutput(true, Boolean);
       this.setTooltip('');
     }
   };
   //nrf接收数据
-  Blockly.Blocks.nrfrecdatas = {
+  Blockly.Blocks.nulllab_nrfrecdatas = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_INITNRF24L01RECDATASSS);
-      this.appendValueInput("nrfdatasss", Number)
+        .appendField(Blockly.Msg.EM_RF24_INITNRF24L01RECDATASSS);
+      this.appendValueInput("nulllab_nrfdatasss", Number)
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -3559,39 +3644,39 @@ Blockly.Blocks.nrf24l01send = {
     }
   };
   //nrf接收字符串数据
-  Blockly.Blocks.nrfrecdatas_string = {
+  Blockly.Blocks.nulllab_nrfrecdatas_string = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_INITNRF24L01RECDATASSS_STRING)
+        .appendField(Blockly.Msg.EM_RF24_INITNRF24L01RECDATASSS_STRING)
       this.setOutput(true, String);
       this.setTooltip(true);
     }
   };
   //速率块
-  Blockly.Blocks.transmission_rate = {
+  Blockly.Blocks.nulllab_transmission_rate = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_SPEED)
+        .appendField(Blockly.Msg.EM_RF24_SPEED)
         .appendField(new Blockly.FieldDropdown(
           [
             ['1MB', 'RF24_1MBPS'],
             ['2MB', 'RF24_2MBPS'],
             ['250KB', 'RF24_250KBPS']
-          ]), "Transmission_Rate")
+          ]), "nulllab_Transmission_Rate")
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setTooltip('');
     }
   };
   //设置通道速率
-  Blockly.Blocks.channel_frequency = {
+  Blockly.Blocks.nulllab_channel_frequency = {
     init: function () {
       this.setColour(200);
       this.appendDummyInput("")
-        .appendField(Blockly.RF24_CHANNEL_FREQUENCY);
-      this.appendValueInput("channel", Number)
+        .appendField(Blockly.Msg.EM_RF24_CHANNEL_FREQUENCY);
+      this.appendValueInput("nulllab_channel", Number)
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT);
       this.setInputsInline(true);
@@ -3600,4 +3685,47 @@ Blockly.Blocks.nrf24l01send = {
       this.setTooltip('');
     }
   };
+
+  //RFID_IIC初始化
+ Blockly.Blocks.nulllab_init_RFID_I2C = {
+  init: function () {
+    this.setColour(200);
+    this.appendDummyInput("")
+      .appendField("RFID初始化 IIC地址")
+     // .appendField(new Blockly.FieldTextInput('RFID_IIC'), 'Emakefun_RIFD')//创建文本输入对象
+
+    this.appendDummyInput("")
+    this.appendValueInput("nulllab_RFID", Number)
+    this.setOutput(false);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('');
+  }
+}
+
+//RFID检测卡片
+Blockly.Blocks.nulllab_RFID_detection = {
+  init: function() {
+    this.setColour(200);//模块图形颜色
+    this.appendDummyInput("")//此行代码刚需,为模块创建提供入口
+      .appendField("RFID检测到卡片？") //代码块上的文字内容
+    
+    this.setOutput(true, Number);
+    this.setInputsInline(true);
+  }
+};
+
+//RFID读取卡片UID
+Blockly.Blocks.nulllab_RFID_ReadUID = {
+  init: function() {
+    this.setColour(200);//模块图形颜色
+    this.appendDummyInput("")//此行代码刚需,为模块创建提供入口
+      .appendField("RFID读取卡片UID") //代码块上的文字内容
+    
+    this.setOutput(true, Number);
+    this.setInputsInline(true);
+  }
+};
+
 })();

@@ -49,7 +49,7 @@ namespace Emakefun_RIFD
     //% block="RFID读取卡片UID" blockType="reporter"
     export function RFID_Read_UID(parameter: any, block: any) 
     {
-        Generator.addCode(`mfrc522.Read_Uid()`);
+        Generator.addCode(`mfrc522.read_uid()`);
         
     }
 

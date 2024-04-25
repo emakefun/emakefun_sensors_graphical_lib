@@ -1,0 +1,53 @@
+{
+	"PIN_AnalogWrite": {
+		"menu": [
+			["A0", "A0"],
+			["A1", "A1"],
+			["A2", "A2"],
+			["A3", "A3"],
+			["A4", "A4"]
+		]
+	},
+	"PIN_AnalogRead": {
+		"menu": [
+			["A0", "A0"],
+			["A1", "A1"],
+			["A2", "A2"],
+			["A3", "A3"],
+			["A4", "A4"]
+		]
+	},
+	"PIN_DigitalWrite": {
+		"menu": [
+			["D2", "D2"],
+			["D3", "D3"],
+			["D4", "D4"],
+			["D7", "D7"],
+			["D8", "D8"],
+			["D9", "D9"]
+		]
+	},
+	"PIN_DigitalRead": {
+		"menu": [
+			["D2", "D2"],
+			["D3", "D3"],
+			["D4", "D4"],
+			["D7", "D7"],
+			["D8", "D8"],
+			["D9", "D9"]
+		]
+	},
+	"PINMODE":{
+		"menu": [
+			["INPUT", "INPUT"],
+			["OUTPUT", "OUTPUT"],
+			["PULLUP", "PULLUP"],
+			["INPUT_PULLUP", "INPUT_PULLUP"],
+			["PULLDOWN", "PULLDOWN"],
+			["INPUT_PULLDOWN", "INPUT_PULLDOWN"],
+			["OPEN_DRAIN", "OPEN_DRAIN"],
+			["OUTPUT_OPEN_DRAIN", "OUTPUT_OPEN_DRAIN"],
+			["SPECIAL", "SPECIAL"]
+		]
+	}
+}

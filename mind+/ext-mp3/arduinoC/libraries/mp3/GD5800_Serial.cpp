@@ -51,10 +51,6 @@ void  GD5800_Serial::playFileByIndexNumber(unsigned int fileNumber)
   this->sendCommand(0x41, (fileNumber>>8) & 0xFF, fileNumber & (byte)0xFF);
 }
 
-void  GD5800_Serial::PushPlayFileByIndexNumber(unsigned int fileNumber)
-{  
-  this->sendCommand(0x43, (fileNumber>>8) & 0xFF, fileNumber & (byte)0xFF);
-}
 
 void  GD5800_Serial::volumeUp()
 {
@@ -81,11 +77,6 @@ void  GD5800_Serial::setLoopMode(byte loopMode)
   this->sendCommand(0x33, loopMode);
 }
 
-
-void  GD5800_Serial::setDevice(byte device)
-{
-  this->sendCommand(0x35, device);
-}
 
 
 
@@ -163,17 +154,12 @@ byte  GD5800_Serial::getStatus()
       // These ones do
       switch(command)
       {        
-        case 0x41: args = 2; break;//指定曲目指播放
-        case 0x43: args = 2; break;//指定索引插播
-        	
+        case 0x41: args = 2; break;//指定曲目
         case 0x31: args = 1; break;//指定音量
-        case 0x32: args = 1; break;//指定EQ   
-        case 0x33: args = 1; break;//循环播放   
-        	        	
-        case 0x35: args = 1; break;//指定设备 
-        case 0x38: args = 1; break;//设置Busy状态   
-        	
-        default :args=0;break;
+        case 0x32: args = 1; break;//指定EQ        
+        case 0x09: args = 1; break;//指定设备
+        case 0x33: args = 1; break;//循环播放
+        default :args=1;break;
       }
       
       #if MP3_DEBUG
