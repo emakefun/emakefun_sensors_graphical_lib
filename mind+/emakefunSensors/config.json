@@ -1,0 +1,44 @@
+{
+  "name": {
+    "zh-cn": "emakefun sensors kit库",
+    "en": "emakefun sensors kit"
+  },
+  "description": {
+    "zh-cn": "emakefun公司出的Arduino模块库",
+    "en": "The Arduino module library from emakefun."
+  },
+  "author": "Emakefun",
+  "email": "leishen@null-lab.com",
+  "license": "MIT",
+  "isBoard": false,
+  "id": "sensors_kit",
+  "version": "0.0.1",
+  "platform": [
+    "win",
+    "mac",
+    "web"
+  ],
+  "asset": {
+    "arduinoC": {
+      "dir": "arduinoC/",
+      "version": "0.0.1",
+      "board": [
+        "esp32",
+        "arduino"
+      ],
+      "main": "main.ts",
+      "files": [
+        "_images/featured.png",
+        "_images/icon.svg",
+        "_locales/zh-cn.json",
+        "_menus/arduino.json",
+        "_menus/arduinonano.json",
+        "_menus/esp32.json",
+        "_menus/leonardo.json",
+        "_menus/mega2560.json",
+        "_menus/microbit.json",
+        "libraries/libraries.zip"
+      ]
+    }
+  }
+}
