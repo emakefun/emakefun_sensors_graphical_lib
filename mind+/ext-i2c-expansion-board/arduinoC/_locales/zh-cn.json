@@ -1,0 +1,18 @@
+{
+
+    "i2cExpansionBoard.initI2C|block": "初始化I2C扩展板[name] I2C地址为[address]",
+    "i2cExpansionBoard.setI2CMode|block": "I2C扩展板[name] 设置引脚[pin]模式[mode]",
+    "i2cExpansionBoard.setI2CSteeringAngle|block": "I2C扩展板[name] 引脚[servoMotorPin]舵机角度设置为[angle]",
+    "i2cExpansionBoard.setI2CPinLevel|block": "I2C扩展板[name] 引脚[pin]舵机角度设置为[level]",
+    "i2cExpansionBoard.setI2CPWMFreq|block": "I2C扩展板[name] 设置PWM模式频率(1-10000)为 [freq]",
+    "i2cExpansionBoard.setI2CPWMDuty|block": "I2C扩展板[name] 引脚[pin]设置PWM模式的占空比为 [duty]",
+    "i2cExpansionBoard.I2CPinDigital|block": "I2C扩展板[name]引脚[pin]的数字值",
+    "i2cExpansionBoard.I2CPinAnalog|block": "I2C扩展板[name]引脚[pin]的模拟值",
+    "i2cExpansionBoard.I2Cmode.kAdc|menu": "ADC模式",
+    "i2cExpansionBoard.I2Cmode.kInputFloating|menu": "浮空输入模式",
+    "i2cExpansionBoard.I2Cmode.kInputPullUp|menu": "上拉输入模式",
+    "i2cExpansionBoard.I2Cmode.kInputPullDown|menu": "下拉输入模式",
+    "i2cExpansionBoard.I2Cmode.kOutput|menu": "输出模式",
+    "i2cExpansionBoard.I2Cmode.kPwm|menu": "PWM模式(仅支持E1、E2)",
+    "i2cExpansionBoard.I2Cmode.kPwm1|menu": "舵机模式(仅支持E1、E2)"
+}

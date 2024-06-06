@@ -536,7 +536,11 @@ enum SETSHOW {
 //% color="#FF8C00" iconWidth=50 iconHeight=40
 namespace Sensors_kit {
 
-    //% block=" ▶基础输入模块" blockType="tag"
+    //空行
+    //% block="---"
+    export function speace0() {}
+
+    //% block=" ▶ 基础输入模块" blockType="tag"
     export function baseInputModule() {}
 // 基础输入模块
 // 触摸模块
@@ -551,6 +555,9 @@ namespace Sensors_kit {
         }else{
         }
     }
+
+    //% block="---"
+    export function baseSpeace1() {}
 
 // 矩阵键盘
     //% block="actuator_keyborad_pin initialize [keyboard_ID] I2C [I2C_address]" blockType="command"
@@ -578,6 +585,9 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function baseSpeace2() {}
+
 //按键模块
     //% block="Button init pins [PIN] is it detected [STATUS]" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -598,6 +608,9 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function baseSpeace3() {}
+
 //碰撞开关
     //% block="crashButton init pins [PIN] whether a collision was detected?" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -610,6 +623,9 @@ namespace Sensors_kit {
         }else{
         }
     }
+
+    //% block="---"
+    export function baseSpeace4() {}
 
 //滑动变阻器
     //% block="slideRheostat pins [PIN] gets the location of the slider(0~100)" blockType="reporter"
@@ -624,6 +640,9 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function baseSpeace5() {}
+
 //旋钮电位计
     //% block="rotaryPotentiometer init pins [PIN] read the value(V)" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -636,6 +655,9 @@ namespace Sensors_kit {
         }else{
         }
     }
+
+    //% block="---"
+    export function baseSpeace6() {}
 
 //旋转编码器
     //% block="rotaryEncoder init interfaceA [PIN_A] interfaceB [PIN_B] interfaceC [PIN_D]" blockType="command"
@@ -675,6 +697,9 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function baseSpeace7() {}
+
 //遥杆
     //% block="rocker module init pins X[X_PIN] Y[Y_PIN] B[B_PIN] status [DIRECTION] value " blockType="reporter"
     //% X_PIN.shadow="dropdown" X_PIN.options="PIN_AnalogRead" 
@@ -703,6 +728,9 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function baseSpeace8() {}
+
 // 触摸钢琴V2
     //% block="basic_piano_play pins CLK[C_PIN] DIO[D_PIN] press the button [PIANO_BTN]" blockType="boolean"
     //% C_PIN.shadow="dropdown" C_PIN.options="PIN_DigitalWrite" 
@@ -721,10 +749,13 @@ namespace Sensors_kit {
         }
     }
 
-    //% block=" ▶执行器" blockType="tag"
+    //空行
+    //% block="---"
+    export function speace1() {}
+    //% block=" ▶ 执行器" blockType="tag"
     export function actuatorModule() {}
-// 执行器
-// 有源蜂鸣器
+    // 执行器
+    // 有源蜂鸣器
     //% block="actuator_buzzer0 [PIN] status [BTN]" blockType="command"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalWrite"
     //% BTN.shadow="dropdown" BTN.options="BT" BTN.defl="BT.A"
@@ -740,6 +771,8 @@ namespace Sensors_kit {
         }else{
         }
     }
+    //% block="---"
+    export function actuatorSpeace1() {}
 
 // 无源蜂鸣器 
     //% block="actuator_buzzer1 [PIN] status [STR] time of duration [SUSTAIN]" blockType="command"
@@ -757,6 +790,8 @@ namespace Sensors_kit {
         }else{
         }
     }
+    //% block="---"
+    export function actuatorSpeace2() {}
 
 // 继电器
     //% block="actuator_relay [PIN] status [BTN]" blockType="command"
@@ -775,6 +810,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function actuatorSpeace3() {}
 // 单路电机驱动
     //% block="actuator_motor_run INA [PIN_A] INB [PIN_B] speed [SPEED]" blockType="command"
     //% PIN_A.shadow="dropdown" PIN_A.options="PIN_AnalogWrite" PIN_A.defl="PIN_AnalogWrite.3"
@@ -798,6 +835,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function actuatorSpeace4() {}
     // 双路电机驱动
     //% block="Dual_Motors initialization interface IN1 [IN_1] IN2 [IN_2] IN3 [IN_3] IN4 [IN_4] IN1-IN2 speed [SPEED1] IN3-IN4 speed [SPEED2]" blockType="command"
     //% IN_1.shadow="dropdown" IN_1.options="PIN_AnalogWrite" 
@@ -836,6 +875,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function actuatorSpeace5() {}
     // 舵机 
     //% block="actuator_servo pin [PIN] angel [ANGEL]" blockType="command"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalWrite" 
@@ -852,6 +893,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function actuatorSpeace6() {}
 // 激光发射
     //% block="Laser Emission Sensor Interface Initialization [PIN] [SWITCHS]" blockType="command"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalWrite" 
@@ -867,7 +910,10 @@ namespace Sensors_kit {
         }
     }
 
-    //% block=" ▶显示器" blockType="tag"
+    //空行
+    //% block="---"
+    export function speace2() {}
+    //% block=" ▶ 显示器" blockType="tag"
     export function displayModule() {}
     // 显示器
     //OLED
@@ -976,6 +1022,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace1() {}
 // LED灯
     //% block="Led pins [PIN] [SWITCH]" blockType="command"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalWrite" 
@@ -991,6 +1039,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace2() {}
 // RGB灯
     //% block="setRGBpin pins R[R_PIN] G[G_PIN] B[B_PIN] color [COLOR]" blockType="command"
     //% R_PIN.shadow="dropdown" R_PIN.options="PIN_DigitalWrite" 
@@ -1015,6 +1065,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace3() {}
 // 交通灯
     //% block="traffic light pins G[G_PIN] Y[Y_PIN] R[R_PIN] red [R_BTN] green [G_BTN] yellow [Y_BTN] time [TIME]" blockType="command"
     //% G_PIN.shadow="dropdown" G_PIN.options="PIN_DigitalWrite" 
@@ -1042,6 +1094,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace4() {}
 // I2C lcd1602
     //% block="i2cLcdInit location [LOCATION]" blockType="command"
     //% LOCATION.shadow="number" LOCATION.defl=0x27 
@@ -1085,6 +1139,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace5() {}
 // tm1637数码管
     //% block="TM1637_set_init  ID[TM1637_ID] CLK [C_PIN] DIO [D_PIN]" blockType="command"
     //% TM1637_ID.shadow="number" TM1637_ID.defl="1" 
@@ -1161,6 +1217,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace6() {}
 // TM1650数码管
     //% block="TM1650_set_init interface I2C" blockType="command"
     export function TM1650_set_init(parameter: any, block: any) {
@@ -1227,6 +1285,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace7() {}
 //8x8点阵
     //% block="Dot matrix init interface DIN [DIN] CS [CS] CLK [CLK] Dot matrix number [MN]" blockType="command"
     //% DIN.shadow="dropdown" DIN.options="PIN_DigitalWrite" 
@@ -1277,6 +1337,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function displaySpeace8() {}
 //RGB灯环
     //% block="RGB ring initialization IO interface [PIN] num [NUM]" blockType="command"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalWrite" 
@@ -1324,7 +1386,10 @@ namespace Sensors_kit {
         }
     }
 
-    //% block="▶传感器" blockType="tag"
+    //空行
+    //% block="---"
+    export function speace3() {}
+    //% block=" ▶ 传感器" blockType="tag"
     export function sensorModule() {}
     // 传感器
     //压力传感器
@@ -1340,6 +1405,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace1() {}
 //水蒸气传感器
     //% block="STEAM_SENSOR Steam pin [PRES] " blockType="reporter"
     //% PRES.shadow="dropdown" PRES.options="PIN_AnalogRead"
@@ -1353,29 +1420,8 @@ namespace Sensors_kit {
         }
     }
 
-//颜色识别
-    //% block="COLOR_CGQ1 Initialize the color sensor" blockType="command"
-    export function COLOR_CGQ1(parameter: any, block: any){
-        if(Generator.board === 'arduino'){
-            Generator.addInclude( 'color1' ,`#include <EM_TCS34725.h>\nEM_TCS34725 tcs34725;`);
-            Generator.addSetup('color1',`tcs34725.begin();`);
-        }else{
-
-        }
-    }
-    //% block="COLOR_CGQ2 Read color sensor [COL1] [COL2]" blockType="reporter"
-    //% COL1.shadow="dropdown" COL1.options="COLOR_ONE"
-    //% COL2.shadow="dropdown" COL2.options="COLOR_two"
-    export function COLOR_CGQ2(parameter: any, block: any){
-        let col1 = parameter.COL1.code
-        let col2 = parameter.COL2.code
-        if(Generator.board === 'arduino'){
-            col2 = col2 ==1?'':col2;
-            Generator.addCode(`tcs34725.get${col1}${col2}()`);
-        }else{
-
-        }
-    }
+    //% block="---"
+    export function sensorSpeace2() {}
 
 // 指南针
     //% block="compass_that compass init" blockType="command"
@@ -1406,6 +1452,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace3() {}
 //DS18B20温度
     //% block="DS18B20_sensor_temperature_init pins [PIN]" blockType="command"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1425,6 +1473,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace4() {}
 //LM35温度
     //% block="read interface [PIN] temperature of LM35 temperature sensor" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1437,6 +1487,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace5() {}
 //火焰
     //% block="flame_sensors_value interface [PIN] analog value" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1461,6 +1513,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace6() {}
 //单路红外循迹
     //% block="sensor_infraredTracking interface [PIN] whether black lines are detected?" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1474,6 +1528,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace7() {}
 //倾斜
     //% block="sensor_incline init interface [PIN] is it inclined?" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1487,6 +1543,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace8() {}
 //光敏
     //% block="sensor_illumination init interface [PIN] read the light intensity (analog value)" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1500,6 +1558,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace9() {}
 //热敏
     //% block="sensor_thermosensitive init interface [PIN] read the heat (analog value)" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1513,6 +1573,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace10() {}
 //水深
     //% block="sensor_waterLevel init interface [PIN] depth of reading (analog value)" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1526,6 +1588,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace11() {}
 //土壤湿度A
     //% block="sensor_soilMoisture init interface [PIN] depth of reading (analog value)" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1539,6 +1603,8 @@ namespace Sensors_kit {
         }
     }
     
+    //% block="---"
+    export function sensorSpeace12() {}
 //避障传感器
     //% block="sensor_obstacleAvoid interface [PIN] analog value" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead"
@@ -1564,6 +1630,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace13() {}
 // 磁簧开关传感器
     //% block="sensor_reedSwitch interface [PIN] is the magnetic field detected?" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1577,6 +1645,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace14() {}
 // 人体热释电运动传感器
     //% block="sensor_humanBody interface [PIN] are human signals detected?" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1590,6 +1660,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace15() {}
 // 震动传感器
     //% block="sensor_quake interface [PIN] analog value" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1614,6 +1686,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace16() {}
 // 灰度传感器
     //% block="sensor_grayLevel init interface [PIN] analog value" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1627,6 +1701,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace17() {}
 // 声音传感器
     //% block="sensor_sound interface [PIN] analog value" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1652,6 +1728,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace18() {}
 // 雨滴传感器
     //% block="sensor_rain interface [PIN] analog value" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1676,6 +1754,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace19() {}
 // 气体传感器
     //% block="sensor_gas interface [PIN] analog value" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_AnalogRead" 
@@ -1700,6 +1780,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace20() {}
 // RGB超声波
     //% block="RGB_Ultrasound initialize pins IO [IO] RGB [RGB]" blockType="command"
     //% IO.shadow="dropdown" IO.options="PIN_DigitalRead" 
@@ -1733,6 +1815,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace21() {}
 // 超声波
     //% block="General_Ultrasound get distance(cm) Echo [E_PIN] Trig [T_PIN]" blockType="reporter"
     //% E_PIN.shadow="dropdown" E_PIN.options="PIN_DigitalRead" 
@@ -1750,6 +1834,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function sensorSpeace22() {}
 // DH11温湿度
     //% block="dht11value interface [PIN] read [DH]" blockType="reporter"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1766,7 +1852,10 @@ namespace Sensors_kit {
         }
     }
 
-    //% block="▶智能模块" blockType="tag"
+    //空行
+    //% block="---"
+    export function speace4() {}
+    //% block=" ▶ 智能模块" blockType="tag"
     // DS1302
     //% block="Clock_Module initialize pins CLK[CLK] DAT[DAT] RST[RST]" blockType="command"
     //% CLK.shadow="dropdown" CLK.options="PIN_DigitalWrite"
@@ -1818,7 +1907,36 @@ namespace Sensors_kit {
         }
     }
 
-    //% block="▶通信模块" blockType="tag"
+    //% block="---"
+    export function smartSpeace1() {}
+    //颜色识别
+    //% block="COLOR_CGQ1 Initialize the color sensor" blockType="command"
+    export function COLOR_CGQ1(parameter: any, block: any){
+        if(Generator.board === 'arduino'){
+            Generator.addInclude( 'color1' ,`#include <EM_TCS34725.h>\nEM_TCS34725 tcs34725;`);
+            Generator.addSetup('color1',`tcs34725.begin();`);
+        }else{
+
+        }
+    }
+    //% block="COLOR_CGQ2 Read color sensor [COL1] [COL2]" blockType="reporter"
+    //% COL1.shadow="dropdown" COL1.options="COLOR_ONE"
+    //% COL2.shadow="dropdown" COL2.options="COLOR_two"
+    export function COLOR_CGQ2(parameter: any, block: any){
+        let col1 = parameter.COL1.code
+        let col2 = parameter.COL2.code
+        if(Generator.board === 'arduino'){
+            col2 = col2 ==1?'':col2;
+            Generator.addCode(`tcs34725.get${col1}${col2}()`);
+        }else{
+
+        }
+    }
+
+    //空行
+    //% block="---"
+    export function speace5() {}
+    //% block=" ▶ 通信模块" blockType="tag"
     export function communicationModule() {}
     // 通信模块
     // 红外发射 
@@ -1835,6 +1953,8 @@ namespace Sensors_kit {
         }else{
         }
     }
+
+
  /*
 //红外接收
     //% block="setREC_pin pin [PIN] whether data has been received" blockType="boolean"
@@ -1858,6 +1978,8 @@ namespace Sensors_kit {
         }
     }
 */
+    //% block="---"
+    export function communicationSpeace1() {}
 // 普通红外遥控
     //% block="Ordinary INFRARED remote receiver initialization interface [PIN] press the ordinary infrared remote control [BUTTON]" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1873,7 +1995,8 @@ namespace Sensors_kit {
         }else{
         }
     }
-
+    //% block="---"
+    export function communicationSpeace2() {}
 // emakerfun红外遥控
     //% block="emakefun INFRARED remote receiver initialization interface [PIN] press the emakefun infrared remote control [BUTTON]" blockType="boolean"
     //% PIN.shadow="dropdown" PIN.options="PIN_DigitalRead" 
@@ -1890,6 +2013,8 @@ namespace Sensors_kit {
         }
     }
 
+    //% block="---"
+    export function communicationSpeace3() {}
 
 // NRF2401
     //% block="NRF24_mind3 NRF24 initializes pin CE [MID3] pin CS [MID3_1] " blockType="command"

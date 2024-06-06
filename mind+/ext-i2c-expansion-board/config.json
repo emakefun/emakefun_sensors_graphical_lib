@@ -1,0 +1,46 @@
+{
+  "name": {
+    "zh-cn": "I2C扩展板模块",
+    "en": "I2C Expansion Board"
+  },
+  "description": {
+    "zh-cn": "I2C扩展板模块",
+    "en": "I2C Expansion Board"
+  },
+  "author": "Emakefun",
+  "email": "leishen@null-lab.com",
+  "license": "MIT",
+  "isBoard": false,
+  "id": "ext-i2c-expansion",
+  "platform": [
+    "win",
+    "mac",
+    "web"
+  ],
+  "version": "2.0.0",
+  "asset": {
+    "arduinoC": {
+      "dir": "arduinoC/",
+      "version": "0.0.3",
+      "board": [
+        "arduino",
+        "mega2560",
+        "arduinonano",
+        "arduinounor3",
+        "esp32",
+        "firebeetleesp32",
+        "firebeetleesp32e",
+        "telloesp32"
+      ],
+      "main": "main.ts",
+      "files": [
+        "_images/featured.png",
+        "_images/icon.svg",
+        "_locales/zh-cn.json",
+        "_menus/arduino.json",
+        "_menus/mega2560.json",
+        "libraries/libraries.zip"
+      ]
+    }
+  }
+}

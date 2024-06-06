@@ -1368,7 +1368,7 @@ Blockly.Arduino.forBlock['nulllab_get_i2c_expansion_board_adc'] = function() {
 
 Blockly.Arduino.forBlock['nulllab_set_i2c_expansion_board_PWM_freq'] = function() {
 	var i2cName = this.getFieldValue('nulllab_i2cBoard');
-	var freq = Blockly.Arduino.valueToCode(this,'nulllab_i2cPwmFreq',Blockly.Arduino.ORDER_ATOMIC);
+	var freq = Blockly.Arduino.valueToCode(this, 'nulllab_i2cPwmFreq', Blockly.Arduino.ORDER_ATOMIC);
 	var code = i2cName + '.SetPwmFrequency(' + freq + ');\n';
 	return code;
 }
@@ -1377,7 +1377,7 @@ Blockly.Arduino.forBlock['nulllab_set_i2c_expansion_board_PWM_duty']  = function
 	var i2cName = this.getFieldValue('nulllab_i2cBoard');
 	var pin = this.getFieldValue('nulllab_pin');
 	var duty = Blockly.Arduino.valueToCode(this,'nulllab_i2cPwmDuty',Blockly.Arduino.ORDER_ATOMIC);
-	duty = duty * 4095;
+	duty = duty > 4095?4095:duty;
 	var code = i2cName + '.SetPwmDuty(' + pin + ' ,' + duty + ');\n';
 	return code;
 }
