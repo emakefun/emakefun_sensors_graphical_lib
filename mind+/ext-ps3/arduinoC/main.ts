@@ -57,17 +57,25 @@ enum PS3ROCK {
 //% color="#E9967A" iconWidth=50 iconHeight=40
 namespace EM_PS3 {
 	
+	//% block="init PS3 set Mac [MAC]" blockType="command"
+	//% MAC.shadow="string" MAC.defl="01:02:03:04:05:06"
+    export function initPS3SetMac(parameter: any, block: any) {
+		Generator.addInclude(`ps3Init`, `#include <Ps3Controller.h>`);
+		let mac = parameter.MAC.code;
+		Generator.addSetup("ps3.begin", `Ps3.begin(${mac});`);
+    }
+	
 	//% block="get esp32 mac" blockType="reporter"
     export function getEsp32Mac(parameter: any, block: any) {
 		Generator.addInclude(`ps3Init`, `#include <Ps3Controller.h>`);
-		Generator.addSetup("ps3.begin", `Ps3.begin();`);
+		// Generator.addSetup("ps3.begin", `Ps3.begin();`);
 		Generator.addCode(`Ps3.getAddress()`);
     }
 	
 	//% block="is connected PS3" blockType="boolean"
     export function isConnectedPS3(parameter: any, block: any) {
 		Generator.addInclude(`ps3Init`, `#include <Ps3Controller.h>`);
-		Generator.addSetup("ps3.begin", `Ps3.begin();`);
+		// Generator.addSetup("ps3.begin", `Ps3.begin();`);
 		Generator.addCode(`Ps3.isConnected()`);
     }
 	
@@ -90,7 +98,7 @@ namespace EM_PS3 {
     export function getPS3ButtonValue(parameter: any, block: any) {
 		let button = parameter.BUTTON.code;
 		Generator.addInclude(`ps3Init`, `#include <Ps3Controller.h>`);
-		Generator.addSetup("ps3.begin", `Ps3.begin();`);
+		// Generator.addSetup("ps3.begin", `Ps3.begin();`);
 		Generator.addCode(`Ps3.data.button.${button}`);
     }
 	
@@ -99,7 +107,7 @@ namespace EM_PS3 {
     export function getPS3RockValue(parameter: any, block: any) {
 		let rock = parameter.ROCK.code;
 		Generator.addInclude(`ps3Init`, `#include <Ps3Controller.h>`);
-		Generator.addSetup("ps3.begin", `Ps3.begin();`);
+		// Generator.addSetup("ps3.begin", `Ps3.begin();`);
 		Generator.addCode(`Ps3.data.analog.stick.${rock}`);
     }
 	

@@ -1,5 +1,6 @@
 {
-    "EM_PS3.getEsp32Mac|block": "获取ESP32主板的Mac地址",
+    "EM_PS3.initPS3SetMac|block": "初始化PS3手柄，设置蓝牙配对码(冒号为英文状态):[MAC]",
+	"EM_PS3.getEsp32Mac|block": "获取ESP32主板的Mac地址",
     "EM_PS3.isConnectedPS3|block": "ESP32是否连上PS3手柄?",
     "EM_PS3.getPS3ButtonSatus|block": "PS3手柄按键 [BUTTON] 状态 [STATUS]",
     "EM_PS3.getPS3ButtonValue|block": "获取PS3手柄按键 [BUTTON] 的值",

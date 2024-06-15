@@ -110,7 +110,7 @@ Blockly.Arduino.forBlock['nulllab_set_i2c_expansion_board_PWM_duty']  = function
 	var i2cName = this.getFieldValue('nulllab_i2cBoard');
 	var pin = this.getFieldValue('nulllab_pin');
 	var duty = Blockly.Arduino.valueToCode(this,'nulllab_i2cPwmDuty',Blockly.Arduino.ORDER_ATOMIC);
-	duty = duty * 4095;
+	duty = duty;
 	var code = i2cName + '.SetPwmDuty(' + pin + ' ,' + duty + ');\n';
 	return code;
 }
@@ -123,23 +123,31 @@ Blockly.Arduino.forBlock['nulllab_set_i2c_expansion_board_servo'] = function() {
 	return code;
 }
 
+Blockly.Arduino.forBlock['emakefun_ps3_mac_init'] = function() {
+    Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
+	var nulllab_ps3_mac = Blockly.Arduino.valueToCode(this,'nulllab_ps3_mac', Blockly.Arduino.ORDER_ATOMIC);
+    Blockly.Arduino.setups_['setup_esp32_ps3'] = `Ps3.begin(${nulllab_ps3_mac});`;
+    // var code = "Ps3.getAddress()";
+	return "";
+};
+
 Blockly.Arduino.forBlock['emakefun_get_esp32_mac'] = function() {
     Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-    Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+    //Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
     var code = "Ps3.getAddress()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino.forBlock['emakefun_esp32_isConnect'] = function() {
     Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-    Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+    // Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
     var code = "Ps3.isConnected()";
     return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino.forBlock['emakefun_esp32_get_button'] = function() {
   Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-  Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+  //Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
   var button = this.getFieldValue('button');
   var status = this.getFieldValue('status');
   var code = "";
@@ -157,7 +165,7 @@ Blockly.Arduino.forBlock['emakefun_esp32_get_button'] = function() {
 
 Blockly.Arduino.forBlock['emakefun_esp32_loop_get_button'] = function() {
   Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-  Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+  //Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
   var button = this.getFieldValue('button');
   var code = "Ps3.data.button." + button;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -165,7 +173,7 @@ Blockly.Arduino.forBlock['emakefun_esp32_loop_get_button'] = function() {
 
 Blockly.Arduino.forBlock['emakefun_esp32_get_rock_analog'] = function() {
   Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-  Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+  //Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
   var ps3Rock = this.getFieldValue('ps3Rock');
   var code = ps3Rock;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -173,15 +181,15 @@ Blockly.Arduino.forBlock['emakefun_esp32_get_rock_analog'] = function() {
 
 Blockly.Arduino.forBlock['emakefun_esp32_get_battey_status'] = function() {
   Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-  Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+  //Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
   // var ps3Rock = this.getFieldValue('ps3Rock');
-  var code = Ps3.data.status.battery;
+  var code = `Ps3.data.status.battery`;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino.forBlock['emakefun_esp32_get_battey_status'] = function() {
+Blockly.Arduino.forBlock['emakefun_esp32_PS3_battey_status'] = function() {
   Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-  Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+  //Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
   var ps3Battery = this.getFieldValue('ps3Battery');
   var code = ps3Battery;
   return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -189,7 +197,7 @@ Blockly.Arduino.forBlock['emakefun_esp32_get_battey_status'] = function() {
 
 Blockly.Arduino.forBlock['emakefun_esp32_PS3_set_player'] = function() {
   Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
-  Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
+  //Blockly.Arduino.setups_['setup_esp32_ps3'] = 'Ps3.begin();\n';
   var emakefun_player = Blockly.Arduino.valueToCode(this, 'emakefun_player', Blockly.Arduino.ORDER_ATOMIC);
   var code = `Ps3.setPlayer(${emakefun_player});\n`;
   return code;
@@ -294,6 +302,31 @@ Blockly.Arduino.forBlock['nulllab_gesture_sensor_status'] = function(){
 	Blockly.Arduino.definitions_['define_handleStatus_init'] = '#include <gesture_recognizer.h>\n';
 	return [gestureStatus, Blockly.Arduino.ORDER_ATOMIC];
 }
+
+//初始化RFID
+Blockly.Arduino.forBlock['nulllab_init_RFID_I2C']  = function () {
+	Blockly.Arduino.definitions_['define_Emakefun_RFID'] = '#include "Emakefun_RFID.h"';
+	Blockly.Arduino.definitions_['define_Wire'] = '#include "Wire.h"\n';
+	var nulllab_RFID = Blockly.Arduino.valueToCode(this,'nulllab_RFID',Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['Emakefun_RFID'] = 'MFRC522 ' + 'mfrc522(' + nulllab_RFID + ');\n';
+	Blockly.Arduino.setups_['setup_RFID_Serial'] = 'Serial.begin(115200);';
+	Blockly.Arduino.setups_['setup_RFID_Wire'] = 'Wire.begin();';
+	Blockly.Arduino.setups_['setup_RFID_PCD_Init'] = 'mfrc522.PCD_Init();';
+	var code = '';
+    return code;
+};
+
+//RFID检测到卡片？
+Blockly.Arduino.forBlock['nulllab_RFID_detection'] = function () {
+    var code = '(mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial())';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//RFID读取UID
+Blockly.Arduino.forBlock['nulllab_RFID_ReadUID'] = function () {
+    var code = 'mfrc522.Read_Uid()';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
 
 //使用帮助
 Blockly.Arduino.forBlock['emakefun_ps3_help'] = function() {

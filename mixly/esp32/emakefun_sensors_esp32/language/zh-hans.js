@@ -37,9 +37,10 @@
 	ZhHans.EM_I2C_EXPANSION_LEVEL = "的数字值";
 	ZhHans.EM_I2C_EXPANSION_ADC = "的模拟值";
 	ZhHans.EM_SET_I2C_EXPANSION_PWM_FREQ = "设置PWM模式频率(1-10000)为";
-	ZhHans.EM_SET_I2C_EXPANSION_PWM_DUTY = "设置PWM模式占空比(0-100)为";
+	ZhHans.EM_SET_I2C_EXPANSION_PWM_DUTY = "设置PWM模式占空比(0-4095)为";
 	ZhHans.EM_SET_I2C_EXPANSION_SERVO_ANGLE = "设置舵机模式的舵机角度(0-180)为";
-    
+	
+	ZhHans.EMAKEFUN_INIT_PS3_MAC = "初始化PS3手柄，设置蓝牙配对码(冒号为英文格式):";
     ZhHans.EMAKEFUN_GET_ESP32_MAC = '获取ESP32主板的MAC地址';
     ZhHans.EMAKEFUN_GET_ESP32_IS_CONNECT = '是否连接上PS3手柄?';
     ZhHans.EMAKEFUN_ESP32_PS3_BUTTON = 'PS3按键';

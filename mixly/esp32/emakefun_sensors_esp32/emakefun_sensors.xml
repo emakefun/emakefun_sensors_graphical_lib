@@ -160,11 +160,35 @@
 		
 		<!-- 手势识别传感器的状态 -->
 		<block type="nulllab_gesture_sensor_status"></block>
+		
+		<!-- 初始化RFID I2C -->
+		<block type = "nulllab_init_RFID_I2C" >
+			<value name="nulllab_RFID">
+                <shadow type="math_number">
+                    <field name="NUM">0x28</field>
+                </shadow>
+            </value>		
+		</block>
+
+        <!-- 检测到卡片？ -->
+        <block type="nulllab_RFID_detection">
+        </block>
+
+        <!-- 读取卡片UID -->
+        <block type="nulllab_RFID_ReadUID">
+        </block>
       
     </category>
 
 
     <category id="emakefun_communication" name="通信模块" colour="#16b886">
+		<block type="emakefun_ps3_mac_init" id = "emakefun_ps3_mac_init" name="初始化PS3手柄Mac地址">
+			<value name="nulllab_ps3_mac">
+                <shadow type="text">
+                    <field name="TEXT">00:01:02:03:04:05</field>
+                </shadow>
+            </value>
+        </block>
         <block type="emakefun_get_esp32_mac" id = "emakefun_get_esp32_mac" name="获取ESP32主板的MAC地址">
         </block>
         <block type="emakefun_esp32_isConnect" id = "emakefun_esp32_isConnect" name="是否连接上PS3手柄?">

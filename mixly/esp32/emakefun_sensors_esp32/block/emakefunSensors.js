@@ -381,6 +381,20 @@ Blockly.Blocks.nulllab_gesture_sensor_status = {
 	}
 }
 
+   //设置服务器地址与端口号
+    Blockly.Blocks.emakefun_ps3_mac_init = {
+        init: function () {
+            this.setColour(133);
+            this.appendDummyInput("")
+                .appendField(Blockly.Msg.EMAKEFUN_INIT_PS3_MAC);
+		    this.appendValueInput("nulllab_ps3_mac", String)
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setInputsInline(true);
+			this.setTooltip('');
+        }
+    };
+	
     //设置服务器地址与端口号
     Blockly.Blocks.emakefun_get_esp32_mac = {
         init: function () {
@@ -705,6 +719,48 @@ Blockly.Blocks.nulllab_VoiceRecognition_init_V2 = {
       this.setTooltip('');
     }
   }
+  
+  //RFID_IIC初始化
+ Blockly.Blocks.nulllab_init_RFID_I2C = {
+  init: function () {
+    this.setColour(200);
+    this.appendDummyInput("")
+      .appendField("RFID初始化 IIC地址")
+     // .appendField(new Blockly.FieldTextInput('RFID_IIC'), 'Emakefun_RIFD')//创建文本输入对象
+
+    this.appendDummyInput("")
+    this.appendValueInput("nulllab_RFID", Number)
+    this.setOutput(false);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('');
+  }
+}
+
+//RFID检测卡片
+Blockly.Blocks.nulllab_RFID_detection = {
+  init: function() {
+    this.setColour(200);//模块图形颜色
+    this.appendDummyInput("")//此行代码刚需,为模块创建提供入口
+      .appendField("RFID检测到卡片？") //代码块上的文字内容
+    
+    this.setOutput(true, Number);
+    this.setInputsInline(true);
+  }
+};
+
+//RFID读取卡片UID
+Blockly.Blocks.nulllab_RFID_ReadUID = {
+  init: function() {
+    this.setColour(200);//模块图形颜色
+    this.appendDummyInput("")//此行代码刚需,为模块创建提供入口
+      .appendField("RFID读取卡片UID") //代码块上的文字内容
+    
+    this.setOutput(true, Number);
+    this.setInputsInline(true);
+  }
+};
 
     //使用帮助
     Blockly.Blocks.emakefun_ps3_help = {
