@@ -36,7 +36,469 @@
 		  this.setInputsInline(true);
 		}
 	};
-  
+		
+//MAX7219点阵屏幕初始化
+Blockly.Blocks.nulllab_MAX7219_init = {
+    init: function () {
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_MAX7219_INIT)	
+        // this.appendDummyInput("")
+        //   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+        //   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+         this.appendValueInput("PIN1")
+             .setCheck(Number)
+             .setAlign(Blockly.ALIGN_RIGHT)
+             .appendField("DIN(MOSI)")
+             .appendField(Blockly.Msg.MIXLY_PIN);
+         this.appendValueInput("PIN2")
+             .setCheck(Number)
+             .setAlign(Blockly.ALIGN_RIGHT)
+             .appendField("CS")
+             .appendField(Blockly.Msg.MIXLY_PIN);
+         this.appendValueInput("PIN3")
+             .setCheck(Number)
+             .setAlign(Blockly.ALIGN_RIGHT)
+             .appendField("CLK(SCK)")
+             .appendField(Blockly.Msg.MIXLY_PIN);
+         this.appendValueInput("hDisplays")
+             .setCheck(Number)
+             .setAlign(Blockly.ALIGN_RIGHT)
+             .appendField(Blockly.Msg.MIXLY_MAX7219_HDISPALY);
+         this.appendValueInput("vDisplays")
+             .setCheck(Number)
+             .setAlign(Blockly.ALIGN_RIGHT)
+             .appendField(Blockly.Msg.MIXLY_MAX7219_VDISPALY);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(Blockly.Msg['DISPLAY_HUE']);
+        this.setInputsInline(false);
+        this.setTooltip(Blockly.Msg.MAX7219_INIT_TOOLTIP);
+        this.setHelpUrl('');
+    }
+};
+	
+	var MATRIX_TYPES = [['MAX7219', 'MAX7219']];
+
+	//点阵屏显示点
+	Blockly.Blocks.nulllab_display_Matrix_DrawPixel = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField(new Blockly.FieldDropdown(MATRIX_TYPES), 'TYPE');
+			// this.appendDummyInput("")
+			//   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+			//   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+			this.appendValueInput('XVALUE')
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_X);
+			this.appendValueInput("YVALUE")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_Y);
+			this.appendValueInput("STAT")
+				.appendField(Blockly.Msg.MIXLY_STAT)
+				.setCheck([Number, Boolean]);
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldDropdown([
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_WRITE_NOW, "ON"],
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_DONT_WRITE, "OFF"]
+				]), "WRITE");
+			this.setInputsInline(true);
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip();
+		}
+	};
+
+
+	//点阵屏 旋转变量
+	var display_Rotation_NUM = [
+		[Blockly.Msg.MIXLY_0DEGREE, "0"],
+		[Blockly.Msg.MIXLY_90DEGREE, "3"],
+		[Blockly.Msg.MIXLY_180DEGREE, "2"],
+		[Blockly.Msg.MIXLY_270DEGREE, "1"]
+	];
+
+	//点阵屏旋转
+	Blockly.Blocks.nulllab_display_Max7219_Rotation = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField('MAX7219');
+			// this.appendDummyInput("")
+			//   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+			//   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+			this.appendValueInput("NO")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_MAX7219_NO);
+			this.appendDummyInput("")
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_ROTATE)
+				.appendField(new Blockly.FieldDropdown(display_Rotation_NUM), "Rotation_TYPE");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setInputsInline(true);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_ROTATION);
+		}
+	};
+	//点阵屏旋转
+	Blockly.Blocks.nulllab_display_Max7219_setPosition = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField('MAX7219');
+			// this.appendDummyInput("")
+			//   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+			//   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+			this.appendValueInput("NO")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_MAX7219_NO);
+			this.appendValueInput("X")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField("X");
+			this.appendValueInput("Y")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField("Y");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setInputsInline(true);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_ROTATION);
+		}
+	};
+	//点阵屏旋转
+	Blockly.Blocks.nulllab_display_HT16K33_Rotation = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField('HT16K33');
+			// this.appendDummyInput("")
+			//   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+			//   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+			this.appendDummyInput("")
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_ROTATE)
+				.appendField(new Blockly.FieldDropdown(display_Rotation_NUM), "Rotation_TYPE");
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setInputsInline(true);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_ROTATION);
+		}
+	};
+
+	//点阵屏滚动显示字符
+	Blockly.Blocks.nulllab_display_Matrix_TEXT = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField(new Blockly.FieldDropdown(MATRIX_TYPES), 'TYPE');
+			this.appendValueInput("TEXT", String)
+				.setCheck([Number, String])
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.texttodisplay);
+			this.appendValueInput("Speed")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_SPEED);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setInputsInline(true);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_TEXT);
+		}
+	};
+
+	//点阵屏滚动显示文本
+	Blockly.Blocks.nulllab_display_Matrix_print = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField(new Blockly.FieldDropdown(MATRIX_TYPES), 'TYPE');
+			this.appendValueInput("TEXT", String)
+				.setCheck([Number, String])
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.texttodisplay);
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldDropdown([
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_WRITE_NOW, "ON"],
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_DONT_WRITE, "OFF"]
+				]), "WRITE");
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setInputsInline(true);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_TEXT);
+		}
+	};
+
+	//点阵屏显示_显示图案
+	Blockly.Blocks.nulllab_display_Matrix_DisplayChar = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField(new Blockly.FieldDropdown(MATRIX_TYPES), 'TYPE')
+				.appendField(new Blockly.FieldDropdown([
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_WRITE_NOW, "ON"],
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_DONT_WRITE, "OFF"]
+				]), "WRITE");
+			// this.appendDummyInput("")
+			//   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+			//   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+			this.appendValueInput("NO")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_MAX7219_NO);
+			this.appendValueInput("LEDArray")
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_PICARRAY);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setInputsInline(false);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_DISPLAYCHAR);
+		}
+	};
+
+	//点阵屏显示_图案数组
+	Blockly.Blocks.nulllab_display_Matrix_LedArray = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_ARRAYVAR)
+				.appendField(new Blockly.FieldTextInput("LedArray1"), "VAR");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a81")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a82")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a83")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a84")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a85")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a86")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a87")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a88");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a71")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a72")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a73")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a74")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a75")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a76")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a77")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a78");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a61")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a62")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a63")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a64")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a65")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a66")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a67")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a68");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a51")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a52")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a53")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a54")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a55")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a56")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a57")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a58");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a41")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a42")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a43")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a44")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a45")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a46")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a47")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a48");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a31")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a32")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a33")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a34")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a35")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a36")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a37")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a38");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a21")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a22")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a23")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a24")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a25")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a26")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a27")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a28");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a11")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a12")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a13")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a14")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a15")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a16")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a17")
+				.appendField(new Blockly.FieldCheckbox("FALSE"), "a18");
+			this.setOutput(true, Number);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_LEDARRAY);
+		}
+	};
+
+	Blockly.Blocks.nulllab_display_matrix_bitmap = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_ARRAYVAR)
+				.appendField(new Blockly.FieldTextInput("LedArray1"), "VAR");
+			this.appendDummyInput("")
+				.setAlign(Blockly.ALIGN_CENTRE)
+				.appendField(new Blockly.FieldBitmap([
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0],
+					[0, 0, 0, 0, 0, 0, 0, 0]
+				], null, {
+					filledColor: '#000',
+					emptyColor: '#5ba5a5',
+					bgColor: '#e5e7f1'
+				}), 'BITMAP');
+			this.setOutput(true, Number);
+			this.setTooltip("");
+		}
+	};
+
+	//点阵屏亮度
+	Blockly.Blocks.nulllab_display_Matrix_Brightness = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField(new Blockly.FieldDropdown(MATRIX_TYPES), 'TYPE');
+			// this.appendDummyInput("")
+			//   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+			//   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+			this.appendValueInput("Brightness")
+				.setCheck(Number)
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(Blockly.Msg.MIXLY_BRIGHTNESS);
+			this.setTooltip(Blockly.Msg.MIXLY_MAX7219_BRIGHTNESS_TOOLTIP);
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setInputsInline(true);
+		}
+	};
+
+	var MAX7219_FILLSCREEN_SELECT = [
+		[Blockly.Msg.MAX7219_FILLSCREEN_ON, "fillScreen(1)"],
+		[Blockly.Msg.MAX7219_FILLSCREEN_OFF, "fillScreen(0)"],
+		//[Blockly.Msg.MAX7219_SHUTDOWN_ON, "shutdown(1)"],
+		// [Blockly.Msg.MAX7219_SHUTDOWN_OFF, "shutdown(0)"]
+	];
+
+	//点阵屏 全屏亮灭
+	Blockly.Blocks.nulllab_display_Matrix_fillScreen = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField(new Blockly.FieldDropdown(MATRIX_TYPES), 'TYPE');
+			// this.appendDummyInput("")
+			//   .appendField(Blockly.Msg.MIXLY_MATRIX_NAME)
+			//   .appendField(new Blockly.FieldTextInput('myMatrix'), 'matrixName');
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_STAT);
+			this.appendDummyInput("")
+				.setAlign(Blockly.ALIGN_RIGHT)
+				.appendField(new Blockly.FieldDropdown(MAX7219_FILLSCREEN_SELECT), "FILLSCREEN_TYPE");
+			this.appendDummyInput("")
+				.appendField(new Blockly.FieldDropdown([
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_WRITE_NOW, "ON"],
+					[Blockly.Msg.MIXLY_DISPLAY_MATRIX_DONT_WRITE, "OFF"]
+				]), "WRITE");
+			this.setInputsInline(true);
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_HK16T33_POS);
+		}
+	};
+
+
+	//点阵屏预设图案
+	Blockly.Blocks.nulllab_Matrix_img = {
+		init: function () {
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MAX7219_IMG)
+				.appendField(new Blockly.FieldDropdown([
+					["↑", "18181818db7e3c18"],
+					["↓", "183c7edb18181818"],
+					["←", "080c06ffff060c08"],
+					["→", "103060ffff603010"],
+					["♥", "183c7effffffe742"],
+					["▲", "00000000ff7e3c18"],
+					["▼", "183c7eff00000000"],
+					["◄", "080c0e0f0f0e0c08"],
+					["►", "103070f0f0703010"],
+					["△", "00000000ff422418"],
+					["▽", "182442ff00000000"],
+					["☺", "3c4299a581a5423c"],
+					["○", "3c4281818181423c"],
+					["◑", "3c72f1f1f1f1723c"],
+					["◐", "3c4e8f8f8f8f4e3c"],
+					["￥", "101010ff10ff2442"],
+					["Χ", "8142241818244281"],
+					["√", "0000010204885020"],
+					["□", "007e424242427e00"],
+					["▣", "007e425a5a427e00"],
+					["◇", "1824428181422418"],
+					["♀", "083e081c2222221c"],
+					["♂", "0e1b111b9ea0c0f0"],
+					["♪", "061f1e1010d07030"],
+					["✈", "203098ffff983020"],
+					["卍", "00f21212fe90909e"],
+					["卐", "009e9090fe1212f2"],
+					["|", "1010101010101010"],
+					["—", "000000ff00000000"],
+					["╱", "0102040810204080"],
+					["＼", "8040201008040201"],
+					["大", "41221408087f0808"],
+					["中", "1010fe9292fe1010"],
+					["小", "0e08492a2a080808"],
+					["米", "00925438fe385492"],
+					["正", "7f0a0a3a08087f00"],
+					["囧", "ffa5a5bdc3a5a5ff"]
+				]), "img_");
+			this.setOutput(true);
+			this.setTooltip('');
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.setTooltip(Blockly.Msg.MIXLY_TOOPTIP_Matrix_MAX7219_PREDEFARR);
+			this.setHelpUrl('');
+		}
+	};
+
+	//点阵屏 设置生效
+	Blockly.Blocks.nulllab_display_Matrix_write = {
+		init: function () {
+			this.setColour(Blockly.Msg['DISPLAY_HUE']);
+			this.appendDummyInput("")
+				.appendField(Blockly.Msg.MIXLY_MATRIX_TYPE)
+				.appendField(new Blockly.FieldDropdown(MATRIX_TYPES), 'TYPE')
+				.appendField(Blockly.Msg.MIXLY_DISPLAY_MATRIX_WRITE);
+			this.setInputsInline(true);
+			this.setPreviousStatement(true);
+			this.setNextStatement(true);
+		}
+	};
 	
 	// 初始化五路循迹V2
 	Blockly.Blocks.nulllab_lineTracker_v2={
@@ -128,6 +590,117 @@
 			this.appendDummyInput("")
 			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V2)
 			.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV2'), 'nulllab_fiveInfraredTracking_V2')
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGGETSTA)
+			.appendField(new Blockly.FieldDropdown([ 
+			 ['0', "0"],
+			 ['1', "1"],
+			 ['2', "2"],
+			 ['3', "3"],
+			 ['4', "4"],
+			]), "index")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXSTATUS)
+		this.setOutput(true, Boolean);
+		this.setInputsInline(true);
+	  }
+	}
+	
+	// 初始化五路循迹V3
+	Blockly.Blocks.nulllab_lineTracker_v3={
+	  init:function(){
+		this.setColour(220);
+			this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_INITFIVEINFRAREDTRACKING_V3)
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+			.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3_ADDR)
+			this.appendDummyInput("")
+			this.appendValueInput("nulllab_tracker_addr", Number)
+			this.setOutput(false);
+			this.setInputsInline(true);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setTooltip('');
+	  }
+	}
+	
+	// 设值敏感度
+	Blockly.Blocks.nulllab_high_thresholds_v3={
+	  init:function(){
+		this.setColour(220);
+			this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+			.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGSET)
+			.appendField(new Blockly.FieldDropdown([ 
+			 ['0', "0"],
+			 ['1', "1"],
+			 ['2', "2"],
+			 ['3', "3"],
+			 ['4', "4"],
+			]), "index")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGHIGHTHRESHOLD)
+			this.appendDummyInput("")
+			this.appendValueInput("nulllab_high_threshold", Number)
+			this.setOutput(false);
+			this.setInputsInline(true);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setTooltip('');
+	  }
+	}
+		// 设值敏感度
+	Blockly.Blocks.nulllab_low_thresholds_v3={
+	  init:function(){
+		this.setColour(220);
+			this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+			.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGSET)
+			.appendField(new Blockly.FieldDropdown([ 
+			 ['0', "0"],
+			 ['1', "1"],
+			 ['2', "2"],
+			 ['3', "3"],
+			 ['4', "4"],
+			]), "index")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGLOWTHRESHOLD)
+			this.appendDummyInput("")
+			this.appendValueInput("nulllab_low_threshold", Number)
+			this.setOutput(false);
+			this.setInputsInline(true);
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setTooltip('');
+	  }
+	}
+	
+	// 获取寻迹模块的传感器值
+	Blockly.Blocks.nulllab_getSensorValues_v3_index={
+	  init:function(){
+		this.setColour(220);
+			this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+			.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGGET)
+			.appendField(new Blockly.FieldDropdown([ 
+			 ['0', "0"],
+			 ['1', "1"],
+			 ['2', "2"],
+			 ['3', "3"],
+			 ['4', "4"],
+			]), "index")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXVALUE)
+		this.setOutput(true, Number);
+		this.setInputsInline(true);
+	  }
+	}
+
+	Blockly.Blocks.nulllab_getSensorStates_v3_index={
+	  init:function(){
+		this.setColour(220);
+			this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+			.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
 			.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGGETSTA)
 			.appendField(new Blockly.FieldDropdown([ 
 			 ['0', "0"],

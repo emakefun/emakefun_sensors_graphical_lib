@@ -115,6 +115,34 @@
 		
 		<block type="nulllab_getSensorValues_v2_index" />
 		<block type="nulllab_getSensorStates_v2_index" />
+		
+		<!-- 五路循迹V3 -->
+		<block type="nulllab_lineTracker_v3" >
+			<value name="nulllab_tracker_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x50</field>
+                </shadow>
+            </value>
+		</block>
+		
+		<block type="nulllab_high_thresholds_v3" >
+			<value name="nulllab_high_threshold">
+                <shadow type="math_number">
+                    <field name="NUM">400</field>
+                </shadow>
+            </value>
+		</block>
+
+		<block type="nulllab_low_thresholds_v3" >
+			<value name="nulllab_low_threshold">
+                <shadow type="math_number">
+                    <field name="NUM">200</field>
+                </shadow>
+            </value>
+		</block>
+		
+		<block type="nulllab_getSensorValues_v3_index" />
+		<block type="nulllab_getSensorStates_v3_index" />
     </category>
 	
     <category id="catMakeBlockc" colour="100">

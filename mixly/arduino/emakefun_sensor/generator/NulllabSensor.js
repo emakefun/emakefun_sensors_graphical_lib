@@ -1134,6 +1134,46 @@ Blockly.Arduino.forBlock['nulllab_getSensorStates_v2_index'] = function() {
 	return [nulllab_fiveInfraredTracking + '.GetSensorState(' + index + ')',Blockly.Arduino.ORDER_ATOMIC];
 }
 
+// 五路循迹 V3
+Blockly.Arduino.forBlock['nulllab_lineTracker_v3']=function() {
+	var nulllab_fiveInfraredTracking_V3 = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var nulllab_tracker_addr = Blockly.Arduino.valueToCode(this,'nulllab_tracker_addr', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_LineTracker'] = '#include <five_line_tracker_v3.h>';
+    Blockly.Arduino.definitions_['define_lineTracker_' + nulllab_fiveInfraredTracking_V3] = 'emakefun::FiveLineTrackerV3 ' + nulllab_fiveInfraredTracking_V3 + '(Wire, ' + nulllab_tracker_addr + ');';
+	Blockly.Arduino.setups_['define_lineTracker_' + nulllab_fiveInfraredTracking_V3] = `Wire.begin();\n  ${nulllab_fiveInfraredTracking_V3}.Initialize();\n`;
+	return '';
+}
+
+// nulllab_high_thresholds_v3
+Blockly.Arduino.forBlock['nulllab_high_thresholds_v3'] = function() {
+	var nulllab_fiveInfraredTracking_V3 = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	var nulllab_high_threshold = Blockly.Arduino.valueToCode(this,'nulllab_high_threshold', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.setups_['define_lineTracker_high_threshold_' + nulllab_fiveInfraredTracking_V3 + '_' + index] = nulllab_fiveInfraredTracking_V3 + '.HighThreshold(' + index + ', ' + nulllab_high_threshold + ');';
+	return '';
+}
+
+// nulllab_low_thresholds_v3
+Blockly.Arduino.forBlock['nulllab_low_thresholds_v3'] = function() {
+	var nulllab_fiveInfraredTracking_V3 = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	var nulllab_low_threshold = Blockly.Arduino.valueToCode(this,'nulllab_low_threshold', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.setups_['define_lineTracker_low_threshold_' + nulllab_fiveInfraredTracking_V3 + '_' + index] = nulllab_fiveInfraredTracking_V3 + '.LowThreshold(' + index + ', ' + nulllab_low_threshold + ');';
+	return '';
+}
+
+Blockly.Arduino.forBlock['nulllab_getSensorValues_v3_index'] = function() {
+	var nulllab_fiveInfraredTracking = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	return [nulllab_fiveInfraredTracking + '.AnalogValue(' + index + ')', Blockly.Arduino.ORDER_ATOMIC];
+}
+
+Blockly.Arduino.forBlock['nulllab_getSensorStates_v3_index'] = function() {
+	var nulllab_fiveInfraredTracking = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	return [nulllab_fiveInfraredTracking + '.DigitalValue(' + index + ')',Blockly.Arduino.ORDER_ATOMIC];
+}
+
 // PM2.5激光粉尘传感器
 Blockly.Arduino.forBlock['nulllab_PM25_sensor_data']=function() {
 	var nulllab_pmValue = this.getFieldValue('nulllab_pmValue');

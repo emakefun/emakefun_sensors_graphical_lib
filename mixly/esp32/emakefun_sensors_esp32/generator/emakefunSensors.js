@@ -22,6 +22,250 @@ Blockly.Arduino.forBlock['nulllab_matrix_keyboard_values_V3'] = function () {
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+//Max7219点阵初始化
+Blockly.Arduino.forBlock['nulllab_MAX7219_init'] = function () {
+    var pin_mosi = Blockly.Arduino.valueToCode(this, 'PIN1', Blockly.Arduino.ORDER_ATOMIC);
+	var pin_cs = Blockly.Arduino.valueToCode(this, 'PIN2', Blockly.Arduino.ORDER_ATOMIC);
+	var pin_clk = Blockly.Arduino.valueToCode(this, 'PIN3', Blockly.Arduino.ORDER_ATOMIC);
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var hDisplays = Blockly.Arduino.valueToCode(this, 'hDisplays', Blockly.Arduino.ORDER_ATOMIC);
+    var vDisplays = Blockly.Arduino.valueToCode(this, 'vDisplays', Blockly.Arduino.ORDER_ATOMIC);
+    Blockly.Arduino.definitions_['include_SPI'] = '#include <SPI.h>';
+    Blockly.Arduino.definitions_['include_Adafruit_GFX'] = '#include <Adafruit_GFX.h>';
+    Blockly.Arduino.definitions_['include_Max72xxPanel'] = '#include <EMMax72xxPanel.h>';
+    Blockly.Arduino.definitions_['var_declare_Max72xxPanel'] = 'EMMax72xxPanel ' + matrixName + ' = EMMax72xxPanel(' + pin_mosi + ',' + pin_clk + ',' + pin_cs + ',' + hDisplays + ',' + vDisplays + ');';
+    var code = '';
+    return code;
+};
+
+//点阵屏画点
+Blockly.Arduino.forBlock['nulllab_display_Matrix_DrawPixel'] = function () {
+    var matrixType = this.getFieldValue('TYPE');
+    var write = this.getFieldValue('WRITE');
+    var pos_x = Blockly.Arduino.valueToCode(this, 'XVALUE', Blockly.Arduino.ORDER_ASSIGNMENT);
+    var pos_y = Blockly.Arduino.valueToCode(this, 'YVALUE', Blockly.Arduino.ORDER_ASSIGNMENT);
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var dropdown_type = Blockly.Arduino.valueToCode(this, 'STAT', Blockly.Arduino.ORDER_ATOMIC);
+    if (matrixType == "HT16K33") {
+        var code = matrixName + '.drawPixel(' + pos_x + ',7-' + pos_y + ',' + dropdown_type + ');\n'
+    }
+    else {
+        var code = matrixName + '.drawPixel(' + pos_x + ',' + pos_y + ',' + dropdown_type + ');\n'
+    }
+    if (write !== 'OFF') {
+        code += matrixName + '.write();\n';
+    }
+    return code;
+};
+
+//点阵屏滚动显示文本
+Blockly.Arduino.forBlock['nulllab_display_Matrix_TEXT'] = function () {
+    var matrixType = this.getFieldValue('TYPE');
+    var matrixName = "myMatrix";
+    var textString = Blockly.Arduino.valueToCode(this, 'TEXT', Blockly.Arduino.ORDER_ASSIGNMENT);
+    var speed = Blockly.Arduino.valueToCode(this, 'Speed', Blockly.Arduino.ORDER_ATOMIC);
+    var code = matrixName + '.scrollMessage(' + textString + ',' + speed + ');\n'
+    return code;
+};
+
+//点阵屏显示文本
+Blockly.Arduino.forBlock['nulllab_display_Matrix_print'] = function () {
+    var matrixType = this.getFieldValue('TYPE');
+    var matrixName = "myMatrix";
+    var write = this.getFieldValue('WRITE');
+    var textString = Blockly.Arduino.valueToCode(this, 'TEXT', Blockly.Arduino.ORDER_ASSIGNMENT);
+    var code = matrixName + '.setCursor(0, 0);\n';
+    code += matrixName + '.print(' + textString + ');\n';
+    if (write !== 'OFF') {
+        code += matrixName + '.write();\n';
+    }
+    return code;
+};
+
+//点阵屏显示_显示图案
+Blockly.Arduino.forBlock['nulllab_display_Matrix_DisplayChar'] = function () {
+    var matrixType = this.getFieldValue('TYPE');
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var write = this.getFieldValue('WRITE');
+    var NO = Blockly.Arduino.valueToCode(this, 'NO', Blockly.Arduino.ORDER_ATOMIC);
+    var dotMatrixArray = Blockly.Arduino.valueToCode(this, 'LEDArray', Blockly.Arduino.ORDER_ASSIGNMENT);
+    Blockly.Arduino.definitions_['var_declare_LEDArray'] = 'uint8_t  LEDArray[8];';
+    var code = '';
+    code += 'memcpy_P(&LEDArray, &' + dotMatrixArray + ', 8);\n';
+    code += 'for(int index_i=0; index_i<8; index_i++)\n';
+    code += '{\n'
+    //code+='  LEDArray[index_i]='+dotMatrixArray+'[index_i];\n';
+    code += '  for(int index_j=' + (NO) + '*8; index_j<' + (NO) + '*8+8; index_j++)\n'
+    //code+='  for(int index_j=7; index_j>=0; index_j--)\n'
+    code += '  {\n'
+    code += '    if((LEDArray[index_i]&0x01)>0)\n';
+    if (matrixType == "HT16K33") {
+        code += '      ' + matrixName + '.drawPixel(index_j, index_i,1);\n';
+        code += '    else\n      ' + matrixName + '.drawPixel(index_j, index_i,0);\n';
+    }
+    else {
+        code += '      ' + matrixName + '.drawPixel(index_j, 7-index_i,1);\n';
+        code += '    else\n      ' + matrixName + '.drawPixel(index_j, 7-index_i,0);\n';
+    }
+    code += '    LEDArray[index_i] = LEDArray[index_i]>>1;\n';
+    code += '  }  \n';
+    code += '}\n';
+    if (write !== 'OFF') {
+        code += matrixName + '.write();\n';
+    }
+    return code;
+};
+
+//点阵屏显示_点阵数组
+Blockly.Arduino.forBlock['nulllab_display_Matrix_LedArray'] = function () {
+    var varName = this.getFieldValue('VAR');
+    var a = new Array();
+    for (var i = 1; i < 9; i++) {
+        a[i] = new Array();
+        for (var j = 1; j < 9; j++) {
+            a[i][9 - j] = (this.getFieldValue('a' + i + j) == "TRUE") ? 1 : 0;
+        }
+    }
+    var code = '{';
+    for (var i = 1; i < 9; i++) {
+        var tmp = ""
+        for (var j = 1; j < 9; j++) {
+            tmp += a[i][j];
+        }
+        tmp = (parseInt(tmp, 2)).toString(16)
+        if (tmp.length == 1) tmp = "0" + tmp;
+        code += '0x' + tmp + ((i != 8) ? ',' : '');
+    }
+    code += '};';
+    //Blockly.Arduino.definitions_[varName] = "uint8_t " + varName + "[8]=" + code;
+    Blockly.Arduino.definitions_[varName] = "const uint8_t " + varName + "[8] PROGMEM =" + code;
+    return [varName, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//点阵位图数据
+Blockly.Arduino.forBlock['nulllab_display_matrix_bitmap'] = function () {
+    var varName = this.getFieldValue('VAR');
+    var a = this.getFieldValue('BITMAP');
+    var code = '{';
+    for (var i = 7; i >= 0; i--) {
+        var tmp = "";
+        for (var j = 7; j >= 0; j--) {
+            tmp += a[i][j];
+        }
+        tmp = (parseInt(tmp, 2)).toString(16);
+        if (tmp.length == 1) tmp = "0" + tmp;
+        code += '0x' + tmp + ((i !== 0) ? ',' : '');
+    }
+    code += '};';
+    Blockly.Arduino.definitions_[varName] = "const uint8_t " + varName + "[8] PROGMEM =" + code;
+    return [varName, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//点阵设置亮度
+Blockly.Arduino.forBlock['nulllab_display_Matrix_Brightness'] = function () {
+    var matrixType = this.getFieldValue('TYPE');
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var BRIGHTNESS = Blockly.Arduino.valueToCode(this, 'Brightness', Blockly.Arduino.ORDER_ATOMIC);
+    if (matrixType == "HT16K33") {
+        var code = matrixName + '.setBrightness(' + BRIGHTNESS + ');\n';
+    }
+    else {
+        var code = matrixName + '.setIntensity(' + BRIGHTNESS + ');\n';
+    }
+    return code;
+};
+
+//点阵 全亮/全灭/关闭/开启
+Blockly.Arduino.forBlock['nulllab_display_Matrix_fillScreen'] = function () {
+    var matrixType = this.getFieldValue('TYPE');
+    var write = this.getFieldValue('WRITE');
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var FILLSCREEN_TYPE = this.getFieldValue('FILLSCREEN_TYPE');
+    var code = matrixName + '.' + FILLSCREEN_TYPE + ';\n'
+    if (write !== 'OFF') {
+        code += matrixName + '.write();\n';
+    }
+    return code;
+};
+
+//点阵屏旋转
+Blockly.Arduino.forBlock['nulllab_display_Max7219_Rotation'] = function () {
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var dropdown_type = this.getFieldValue('Rotation_TYPE');
+    var NO = Blockly.Arduino.valueToCode(this, 'NO', Blockly.Arduino.ORDER_ATOMIC);
+    var code = matrixName + '.setRotation(' + NO + ',' + dropdown_type + ');\n'
+    return code;
+};
+
+//点阵屏位置
+Blockly.Arduino.forBlock['nulllab_display_Max7219_setPosition'] = function () {
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var NO = Blockly.Arduino.valueToCode(this, 'NO', Blockly.Arduino.ORDER_ATOMIC);
+    var X = Blockly.Arduino.valueToCode(this, 'X', Blockly.Arduino.ORDER_ATOMIC);
+    var Y = Blockly.Arduino.valueToCode(this, 'Y', Blockly.Arduino.ORDER_ATOMIC);
+    var code = matrixName + '.setPosition(' + NO + ',' + X + ',' + Y + ');\n'
+    return code;
+};
+
+//点阵屏旋转
+Blockly.Arduino.forBlock['nulllab_display_HT16K33_Rotation'] = function () {
+    //var matrixName = this.getFieldValue('matrixName');
+    var matrixName = "myMatrix";
+    var dropdown_type = this.getFieldValue('Rotation_TYPE');
+    var code = matrixName + '.setRotation(4-' + dropdown_type + ');\n'
+    return code;
+};
+
+//点阵屏 图案数组
+Blockly.Arduino.forBlock['nulllab_LedArray'] = function () {
+    var varName = this.getFieldValue('VAR');
+    var a = new Array();
+    for (var i = 1; i < 9; i++) {
+        a[i] = new Array();
+        for (var j = 1; j < 9; j++) {
+            a[i][j] = (this.getFieldValue('a' + i + j) == "TRUE") ? 1 : 0;
+        }
+    }
+    var code = '{';
+    for (var i = 1; i < 9; i++) {
+        var tmp = ""
+        for (var j = 1; j < 9; j++) {
+            tmp += a[i][j];
+        }
+        tmp = (parseInt(tmp, 2)).toString(16)
+        if (tmp.length == 1) tmp = "0" + tmp;
+        code += '0x' + tmp + ((i != 8) ? ',' : '');
+    }
+    code += '};\n';
+    Blockly.Arduino.definitions_[varName] = "byte " + varName + "[]=" + code;
+    return [varName, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//点阵屏预设图案
+Blockly.Arduino.forBlock['nulllab_Matrix_img'] = function () {
+    var dropdown_img_ = this.getFieldValue('img_');
+    var code = '"' + dropdown_img_ + '"';
+    code = '{';
+    for (var i = 0; i < 15; i += 2) {
+        code += '0x' + dropdown_img_.substr(i, 2) + ((i != 14) ? ',' : '');
+    }
+    code += '};\n';
+    Blockly.Arduino.definitions_['matrix_img_' + dropdown_img_] = "const uint8_t " + 'matrix_img_' + dropdown_img_ + "[8] PROGMEM=" + code;
+    return ['matrix_img_' + dropdown_img_, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+//点阵屏 设置生效
+Blockly.Arduino.forBlock['nulllab_display_Matrix_write'] = function () {
+    return 'myMatrix.write();\n';
+};
+
 // 五路循迹 V2
 Blockly.Arduino.forBlock['nulllab_lineTracker_v2']=function() {
 	var nulllab_fiveInfraredTracking_V2=this.getFieldValue('nulllab_fiveInfraredTracking_V2');
@@ -61,6 +305,47 @@ Blockly.Arduino.forBlock['nulllab_getSensorStates_v2_index'] = function() {
 	var index = this.getFieldValue('index');
 	return [nulllab_fiveInfraredTracking + '.GetSensorState(' + index + ')',Blockly.Arduino.ORDER_ATOMIC];
 }
+
+// 五路循迹 V3
+Blockly.Arduino.forBlock['nulllab_lineTracker_v3']=function() {
+	var nulllab_fiveInfraredTracking_V3 = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var nulllab_tracker_addr = Blockly.Arduino.valueToCode(this,'nulllab_tracker_addr', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_LineTracker'] = '#include <five_line_tracker_v3.h>';
+    Blockly.Arduino.definitions_['define_lineTracker_' + nulllab_fiveInfraredTracking_V3] = 'emakefun::FiveLineTrackerV3 ' + nulllab_fiveInfraredTracking_V3 + '(Wire, ' + nulllab_tracker_addr + ');';
+	Blockly.Arduino.setups_['define_lineTracker_' + nulllab_fiveInfraredTracking_V3] = `Wire.begin();\n  ${nulllab_fiveInfraredTracking_V3}.Initialize();\n`;
+	return '';
+}
+
+// nulllab_high_thresholds_v3
+Blockly.Arduino.forBlock['nulllab_high_thresholds_v3'] = function() {
+	var nulllab_fiveInfraredTracking_V3 = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	var nulllab_high_threshold = Blockly.Arduino.valueToCode(this,'nulllab_high_threshold', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.setups_['define_lineTracker_high_threshold_' + nulllab_fiveInfraredTracking_V3] = nulllab_fiveInfraredTracking_V3 + '.HighThreshold(' + index + ', ' + nulllab_high_threshold + ');\n'
+	return '';
+}
+
+// nulllab_low_thresholds_v3
+Blockly.Arduino.forBlock['nulllab_low_thresholds_v3'] = function() {
+	var nulllab_fiveInfraredTracking_V3 = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	var nulllab_low_threshold = Blockly.Arduino.valueToCode(this,'nulllab_low_threshold', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.setups_['define_lineTracker_low_threshold_' + nulllab_fiveInfraredTracking_V3] = nulllab_fiveInfraredTracking_V3 + '.LowThreshold(' + index + ', ' + nulllab_low_threshold + ');\n'
+	return '';
+}
+
+Blockly.Arduino.forBlock['nulllab_getSensorValues_v3_index'] = function() {
+	var nulllab_fiveInfraredTracking = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	return [nulllab_fiveInfraredTracking + '.AnalogValue(' + index + ')', Blockly.Arduino.ORDER_ATOMIC];
+}
+
+Blockly.Arduino.forBlock['nulllab_getSensorStates_v3_index'] = function() {
+	var nulllab_fiveInfraredTracking = this.getFieldValue('nulllab_fiveInfraredTracking_V3');
+	var index = this.getFieldValue('index');
+	return [nulllab_fiveInfraredTracking + '.DigitalValue(' + index + ')',Blockly.Arduino.ORDER_ATOMIC];
+}
+
 
 Blockly.Arduino.forBlock['nulllab_init_i2c_expansion_board'] = function() {
 	var i2cName = this.getFieldValue('nulllab_i2cBoard');
@@ -126,7 +411,7 @@ Blockly.Arduino.forBlock['nulllab_set_i2c_expansion_board_servo'] = function() {
 Blockly.Arduino.forBlock['emakefun_ps3_mac_init'] = function() {
     Blockly.Arduino.definitions_['include_ESP32_PS3'] = '#include <Ps3Controller.h>\n';
 	var nulllab_ps3_mac = Blockly.Arduino.valueToCode(this,'nulllab_ps3_mac', Blockly.Arduino.ORDER_ATOMIC);
-    Blockly.Arduino.setups_['setup_esp32_ps3'] = `Ps3.begin(${nulllab_ps3_mac});`;
+    Blockly.Arduino.setups_['setup_esp32_ps3'] = `Ps3.begin(${nulllab_ps3_mac});\n`;
     // var code = "Ps3.getAddress()";
 	return "";
 };

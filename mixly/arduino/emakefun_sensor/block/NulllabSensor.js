@@ -354,6 +354,117 @@ Blockly.Blocks.nulllab_getSensorStates_v2_index={
   }
 }
 
+// 初始化五路循迹V3
+Blockly.Blocks.nulllab_lineTracker_v3={
+  init:function(){
+	this.setColour(220);
+		this.appendDummyInput("")
+		.appendField(Blockly.Msg.EM_INITFIVEINFRAREDTRACKING_V3)
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+		.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3_ADDR)
+		this.appendDummyInput("")
+		this.appendValueInput("nulllab_tracker_addr", Number)
+		this.setOutput(false);
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setTooltip('');
+  }
+}
+
+// 设值敏感度
+Blockly.Blocks.nulllab_high_thresholds_v3={
+  init:function(){
+	this.setColour(220);
+		this.appendDummyInput("")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+		.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGSET)
+		.appendField(new Blockly.FieldDropdown([ 
+		 ['0', "0"],
+		 ['1', "1"],
+		 ['2', "2"],
+		 ['3', "3"],
+		 ['4', "4"],
+		]), "index")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGHIGHTHRESHOLD)
+		this.appendDummyInput("")
+		this.appendValueInput("nulllab_high_threshold", Number)
+		this.setOutput(false);
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setTooltip('');
+  }
+}
+	// 设值敏感度
+Blockly.Blocks.nulllab_low_thresholds_v3={
+  init:function(){
+	this.setColour(220);
+		this.appendDummyInput("")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+		.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGSET)
+		.appendField(new Blockly.FieldDropdown([ 
+		 ['0', "0"],
+		 ['1', "1"],
+		 ['2', "2"],
+		 ['3', "3"],
+		 ['4', "4"],
+		]), "index")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGLOWTHRESHOLD)
+		this.appendDummyInput("")
+		this.appendValueInput("nulllab_low_threshold", Number)
+		this.setOutput(false);
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setTooltip('');
+  }
+}
+
+// 获取寻迹模块的传感器值
+Blockly.Blocks.nulllab_getSensorValues_v3_index={
+  init:function(){
+	this.setColour(220);
+		this.appendDummyInput("")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+		.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGGET)
+		.appendField(new Blockly.FieldDropdown([ 
+		 ['0', "0"],
+		 ['1', "1"],
+		 ['2', "2"],
+		 ['3', "3"],
+		 ['4', "4"],
+		]), "index")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXVALUE)
+	this.setOutput(true, Number);
+	this.setInputsInline(true);
+  }
+}
+
+Blockly.Blocks.nulllab_getSensorStates_v3_index={
+  init:function(){
+	this.setColour(220);
+		this.appendDummyInput("")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKING_V3)
+		.appendField(new Blockly.FieldTextInput('myFiveInfraredTrackingV3'), 'nulllab_fiveInfraredTracking_V3')
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGGETSTA)
+		.appendField(new Blockly.FieldDropdown([ 
+		 ['0', "0"],
+		 ['1', "1"],
+		 ['2', "2"],
+		 ['3', "3"],
+		 ['4', "4"],
+		]), "index")
+		.appendField(Blockly.Msg.EM_FIVEINFRAREDTRACKINGINDEXSTATUS)
+	this.setOutput(true, Boolean);
+	this.setInputsInline(true);
+  }
+}
+
 /* 
 //基础输入块
 */
