@@ -613,6 +613,133 @@ Blockly.Arduino.forBlock['nulllab_RFID_ReadUID'] = function () {
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+
+//DS1302
+Blockly.Arduino.forBlock['nulllab_DS1302_init'] = function () {
+    var dropdown_rst = Blockly.Arduino.valueToCode(this, 'RST', Blockly.Arduino.ORDER_ATOMIC);
+    var dropdown_dat = Blockly.Arduino.valueToCode(this, 'DAT', Blockly.Arduino.ORDER_ATOMIC);
+    var dropdown_clk = Blockly.Arduino.valueToCode(this, 'CLK', Blockly.Arduino.ORDER_ATOMIC);
+    Blockly.Arduino.definitions_['include_ThreeWire'] = '#include <ThreeWire.h>';
+    Blockly.Arduino.definitions_['include_RtcDS1302'] = '#include <RtcDS1302.h>';
+    //Blockly.Arduino.definitions_['var_declare_RtcDateTime_dt'] = 'const RtcDateTime dt;';
+    Blockly.Arduino.definitions_['var_declare_ThreeWire'] = 'ThreeWire ' + 'myWire(' + dropdown_dat + ',' + dropdown_clk + ',' + dropdown_rst + ');';
+    Blockly.Arduino.definitions_['var_declare_RtcDS1302'] = 'RtcDS1302<ThreeWire> Rtc(myWire);';
+    Blockly.Arduino.setups_['setup_Rtc.Begin'] = 'Rtc.Begin();\n  Rtc.SetIsRunning(true);';
+    return "";
+};
+
+Blockly.Arduino.forBlock['nulllab_DS1307_init'] = function () {
+    var SDA = Blockly.Arduino.valueToCode(this, 'SDA', Blockly.Arduino.ORDER_ATOMIC);
+    var SCL = Blockly.Arduino.valueToCode(this, 'SCL', Blockly.Arduino.ORDER_ATOMIC);
+    var RTCType = this.getFieldValue('RTCType');
+    Blockly.Arduino.definitions_['include_' + RTCType] = '#include <' + RTCType + '.h>';
+    //Blockly.Arduino.definitions_['var_declare_RtcDateTime_dt'] = 'const RtcDateTime dt;';
+    if (SDA != profile.default.SDA[0][1] || SCL != profile.default.SCL[0][1]) {
+        Blockly.Arduino.definitions_['include_SoftwareWire'] = '#include <SoftwareWire.h>';
+        Blockly.Arduino.definitions_['var_declare_SoftwareWire'] = 'SoftwareWire myWire(' + SDA + ',' + SCL + ');';
+        Blockly.Arduino.definitions_['var_declare_' + RTCType] = RTCType + '<SoftwareWire> Rtc(myWire);';
+    }
+    else {
+        Blockly.Arduino.definitions_['include_Wire'] = '#include <Wire.h>';
+        Blockly.Arduino.definitions_['var_declare_' + RTCType] = RTCType + '<TwoWire> Rtc(Wire);';
+    }
+    Blockly.Arduino.setups_['setup_Rtc.Begin'] = 'Rtc.Begin();\n  Rtc.SetIsRunning(true);';
+    return "";
+}
+                          
+Blockly.Arduino.forBlock['nulllab_rtc_get_time'] = function () {
+    var timeType = this.getFieldValue('TIME_TYPE');
+    var code = 'Rtc.GetDateTime().' + timeType + '()';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+}
+                   
+Blockly.Arduino.forBlock['nulllab_rtc_date'] = function () {
+    var year = Blockly.Arduino.valueToCode(this, "year", Blockly.Arduino.ORDER_ATOMIC);
+    var month = Blockly.Arduino.valueToCode(this, "month", Blockly.Arduino.ORDER_ATOMIC);
+    var day = Blockly.Arduino.valueToCode(this, "day", Blockly.Arduino.ORDER_ATOMIC);
+
+    switch (month) {
+        case '1':
+            month = 'Jan';
+            break;
+        case '2':
+            month = 'Feb';
+            break;
+        case '3':
+            month = 'Mar';
+            break;
+        case '4':
+            month = 'Apr';
+            break;
+        case '5':
+            month = 'May';
+            break;
+        case '6':
+            month = 'Jun';
+            break;
+        case '7':
+            month = 'Jul';
+            break;
+        case '8':
+            month = 'Aug';
+            break;
+        case '9':
+            month = 'Sep';
+            break;
+        case '10':
+            month = 'Oct';
+            break;
+        case '11':
+            month = 'Nov';
+            break;
+        case '12':
+            month = 'Dec';
+            break;
+        default:
+            month = 'Jan';
+    }
+    if (day.length == 1)
+        day = '0' + day;
+    var code = '"' + month + '/' + day + '/' + year + '"';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+}
+						
+Blockly.Arduino.forBlock['nulllab_rtc_time'] = function () {
+    var hour = Blockly.Arduino.valueToCode(this, "hour", Blockly.Arduino.ORDER_ATOMIC);
+    var minute = Blockly.Arduino.valueToCode(this, "minute", Blockly.Arduino.ORDER_ATOMIC);
+    var second = Blockly.Arduino.valueToCode(this, "second", Blockly.Arduino.ORDER_ATOMIC);
+    if (hour.length == 1)
+        hour = '0' + hour;
+    if (minute.length == 1)
+        minute = '0' + minute;
+    if (second.length == 1)
+        second = '0' + second;
+    var code = '"' + hour + ':' + minute + ':' + second + '"';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+}
+
+//设置时间
+Blockly.Arduino.forBlock['nulllab_rtc_set_time'] = function () {
+    var value_date = Blockly.Arduino.valueToCode(this, 'date', Blockly.Arduino.ORDER_ATOMIC);
+    var value_time = Blockly.Arduino.valueToCode(this, 'time', Blockly.Arduino.ORDER_ATOMIC);
+    var code = '';
+    code = 'Rtc.SetDateTime(RtcDateTime(' + value_date + ', ' + value_time + '));\n';
+    return code;
+};
+//获取烧录时间和日期   
+Blockly.Arduino.forBlock['nulllab_get_system_date_time'] = function () {
+    var dropdown_type = this.getFieldValue('type');
+    var code = '__' + dropdown_type + '__';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.forBlock['RTC_set_date'] = function () {
+    var RTCName = "myRTC";
+    var code = RTCName + '.setDate(' + year + ',' + month + ',' + day + ');\n';
+    code += RTCName + '.setDOW(' + year + ',' + month + ',' + day + ');\n';
+    return code;
+}
+
 //使用帮助
 Blockly.Arduino.forBlock['emakefun_ps3_help'] = function() {
   Blockly.Arduino.setups_['emakefun_ps3_help'] = 'Serial.begin(115200);\nSerial.println("help url: https://docs.emakefun.com/esp32/ps3_esp32/");';

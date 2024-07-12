@@ -892,6 +892,22 @@ namespace Sensors_kit {
         }else{
         }
     }
+	
+    // 舵机 
+    //% block="actuator_servo timer2 pin [PIN] angel [ANGEL]" blockType="command"
+    //% PIN.shadow="dropdown" PIN.options="PIN_DigitalWrite" 
+    //% ANGEL.shadow="angle" ANGEL.params.edge=1 
+    export function actuator_servo_timer2(parameter: any, block: any) {
+        let pin = parameter.PIN.code
+        let angel = parameter.ANGEL.code
+        if(Generator.board === 'arduino'){
+            let name = 'Timer2Servo servo_' + pin + ';';
+            Generator.addInclude('Servo', '#include <Timer2ServoPwm.h>\n' + name);
+            Generator.addSetup(`Servopin_${pin}`, `servo_${pin}.attach(${pin});`);
+            Generator.addCode(`servo_${pin}.write(${angel});`);
+        }else{
+        }
+    }
 
     //% block="---"
     export function actuatorSpeace6() {}

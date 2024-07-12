@@ -320,6 +320,126 @@
         <block type="nulllab_RFID_ReadUID">
         </block>
       
+	  
+		<block type="nulllab_DS1302_init">
+            <value name="RST">
+                <shadow type="pins_digital">
+                    <field name="PIN">2</field>
+                </shadow>
+            </value>
+            <value name="DAT">
+                <shadow type="pins_digital">
+                    <field name="PIN">5</field>
+                </shadow>
+            </value>
+            <value name="CLK">
+                <shadow type="pins_digital">
+                    <field name="PIN">4</field>
+                </shadow>
+            </value>
+        </block>
+		
+		<block type="nulllab_DS1307_init">
+            <value name="SDA">
+                <shadow type="pins_digital">
+                    <field name="PIN">2</field>
+                </shadow>
+            </value>
+            <value name="SCL">
+                <shadow type="pins_digital">
+                    <field name="PIN">5</field>
+                </shadow>
+            </value>
+        </block>
+        
+        <block type="nulllab_rtc_get_time"></block>
+		
+        <block type="nulllab_rtc_time">
+            <value name="hour">
+                <shadow type="math_number">
+                    <field name="NUM">8</field>
+                </shadow>
+            </value>
+            <value name="minute">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+            <value name="second">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+        </block>
+		
+        <block type="nulllab_rtc_date">
+            <value name="year">
+                <shadow type="math_number">
+                    <field name="NUM">2020</field>
+                </shadow>
+            </value>
+            <value name="month">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="day">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+		
+        <block type="nulllab_rtc_set_time">
+            <value name="date">
+                <shadow type="text">
+                    <field name="TEXT">Jan/01/2020</field>
+                </shadow>
+                <block type="RTC_date">
+                    <value name="year">
+                        <shadow type="math_number">
+                            <field name="NUM">2020</field>
+                        </shadow>
+                    </value>
+                    <value name="month">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="day">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                </block>
+            </value>
+            <value name="time">
+                <shadow type="text">
+                    <field name="TEXT">12:34:56</field>
+                </shadow>
+                <block type="RTC_time">
+                    <value name="hour">
+                        <shadow type="math_number">
+                            <field name="NUM">8</field>
+                        </shadow>
+                    </value>
+                    <value name="minute">
+                        <shadow type="math_number">
+                            <field name="NUM">0</field>
+                        </shadow>
+                    </value>
+                    <value name="second">
+                        <shadow type="math_number">
+                            <field name="NUM">0</field>
+                        </shadow>
+                    </value>
+                </block>
+            </value>
+        </block>
+		
+        <block type="nulllab_get_system_date_time"></block>
+		
+		
     </category>
 
 

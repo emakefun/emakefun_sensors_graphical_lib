@@ -4,6 +4,7 @@
     "Sensors_kit.actuator_relay|block":"继电器控制引脚 [PIN] 状态 [BTN]",
     "Sensors_kit.actuator_motor_run|block":"直流电机初始化引脚 INA [PIN_A] INB [PIN_B] 速度(0-255) [SPEED]",
     "Sensors_kit.actuator_servo|block":"舵机初始化引脚[PIN] 角度(0-180) [ANGEL]",
+	"Sensors_kit.actuator_servo_timer2|block":"舵机(定时器2)初始化引脚[PIN] 角度(0-180) [ANGEL]",
     "Sensors_kit.Laser_Emission|block":"激光发射传感器接口初始化 [PIN] [SWITCHS]",
     "Sensors_kit.setIR_pin|block":"红外发射传感器接口 [PIN] 编码值 [VALUE]",
     "Sensors_kit.setREC_pin|block":"红外接收传感器接口 [PIN] 是否接到数据？",

@@ -1335,6 +1335,172 @@ Blockly.Blocks.nulllab_RFID_ReadUID = {
   }
 };
 
+//DS1302 RTC
+Blockly.Blocks.nulllab_DS1302_init = {
+    init: function () {
+        this.setColour(Blockly.Msg['SENSOR_HUE']);
+        this.appendDummyInput("")
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField(Blockly.Msg.MIXLY_DS1302_INITPIN);
+        //.appendField(new Blockly.FieldTextInput('myRTC'), 'RTCName');
+        this.appendValueInput("RST", Number)
+            .appendField("RST#")
+            .setCheck(Number);
+        this.appendValueInput("DAT")
+            .appendField("DAT#")
+            .setCheck(Number);
+        this.appendValueInput("CLK")
+            .appendField("CLK#")
+            .setCheck(Number);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setInputsInline(true);
+        this.setTooltip(Blockly.Msg.MIXLY_TOOLTIP_DS1302_INIT);
+    }
+}
+
+var RTCTypeList = [['DS1307', 'RtcDS1307'], ['DS3231', 'RtcDS3231']];
+//DS1307 RTC
+Blockly.Blocks.nulllab_DS1307_init = {
+    init: function () {
+        this.setColour(Blockly.Msg['SENSOR_HUE']);
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_RTCINIT);
+        this.appendDummyInput("").setAlign(Blockly.ALIGN_RIGHT).appendField(new Blockly.FieldDropdown(RTCTypeList), 'RTCType');
+        this.appendDummyInput("")
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField(Blockly.Msg.MIXLY_PIN);
+        //.appendField(new Blockly.FieldTextInput('myRTC'), 'RTCName');
+        this.appendValueInput("SDA")
+            .appendField("SDA#")
+            .setCheck(Number);
+        this.appendValueInput("SCL")
+            .appendField("SCL#")
+            .setCheck(Number);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setInputsInline(true);
+        this.setTooltip(Blockly.Msg.MIXLY_TOOLTIP_DS1307_INIT);
+    },
+};
+//传感器-实时时钟块_时间变量
+var RTC_TIME_TYPE = [
+    [Blockly.Msg.MIXLY_YEAR, "Year"],
+    [Blockly.Msg.MIXLY_MONTH, "Month"],
+    [Blockly.Msg.MIXLY_DAY, "Day"],
+    [Blockly.Msg.MIXLY_HOUR, "Hour"],
+    [Blockly.Msg.MIXLY_MINUTE, "Minute"],
+    [Blockly.Msg.MIXLY_SECOND, "Second"],
+    [Blockly.Msg.MIXLY_WEEK, "DayOfWeek"],
+
+];
+
+
+//传感器-实时时钟块_获取时间
+Blockly.Blocks.nulllab_rtc_get_time = {
+    init: function () {
+        this.setColour(Blockly.Msg['SENSOR_HUE']);
+        this.appendDummyInput("")
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField("RTC" + Blockly.Msg.MIXLY_RTCGETTIME);
+        this.appendDummyInput("")
+            .setAlign(Blockly.ALIGN_RIGHT);
+        //.appendField(new Blockly.FieldTextInput('myRTC'), 'RTCName');
+        this.appendDummyInput("")
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField(new Blockly.FieldDropdown(RTC_TIME_TYPE), "TIME_TYPE");
+        this.setInputsInline(true);
+        this.setOutput(true, Number);
+        this.setTooltip(Blockly.Msg.MIXLY_TOOLTIP_RTC_GETTIME.replace('%1', this.getFieldValue("TIME_TYPE")));
+    }
+};
+// //传感器-实时时钟块_设置时间
+Blockly.Blocks.nulllab_rtc_time = {
+    init: function () {
+        this.setColour(Blockly.Msg['SENSOR_HUE']);
+        this.appendValueInput("hour")
+            .setCheck(Number);
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_HOUR);
+        this.appendValueInput("minute")
+            .setCheck(Number);
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_MINUTE);
+        this.appendValueInput("second")
+            .setCheck(Number);
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_SECOND);
+        this.setInputsInline(true);
+        this.setOutput(true, null);
+        this.setTooltip(Blockly.Msg.MIXLY_TOOLTIP_RTC_SETTIME);
+    }
+};
+
+Blockly.Blocks.nulllab_rtc_date = {
+    init: function () {
+        this.setColour(Blockly.Msg['SENSOR_HUE']);
+        this.appendValueInput("year")
+            .setCheck(Number);
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_YEAR);
+        this.appendValueInput("month")
+            .setCheck(Number);
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_MONTH);
+        this.appendValueInput("day")
+            .setCheck(Number);
+        this.appendDummyInput("")
+            .appendField(Blockly.Msg.MIXLY_DAY);
+        this.setInputsInline(true);
+        this.setOutput(true, null);
+        this.setTooltip(Blockly.Msg.MIXLY_TOOLTIP_RTC_SETTIME);
+    }
+};
+//设置时间
+Blockly.Blocks.nulllab_rtc_set_time = {
+    init: function () {
+        this.appendDummyInput()
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField("RTC" + Blockly.Msg.MIXLY_RTCSETTIME);
+        this.appendValueInput("date")
+            .appendField(Blockly.Msg.MIXLY_GPS_DATE);
+        this.appendValueInput("time")
+            .appendField(Blockly.Msg.MIXLY_GPS_TIME);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(Blockly.Msg['SENSOR_HUE']);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+//获取烧录时间和日期
+Blockly.Blocks.nulllab_get_system_date_time = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField(Blockly.Msg.MIXLY_GET + " " + Blockly.Msg.MIXLY_SYSTEM)
+            .appendField(new Blockly.FieldDropdown([[Blockly.Msg.MIXLY_GPS_DATE, "DATE"], [Blockly.Msg.MIXLY_GPS_TIME, "TIME"]]), "type");
+        this.setInputsInline(false);
+        this.setOutput(true, null);
+        this.setColour(40);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+//传感器-实时时钟块_设置日期
+Blockly.Blocks.RTC_set_date = {
+    init: function () {
+        this.setColour(Blockly.Msg['SENSOR_HUE']);
+        this.appendDummyInput("")
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField(Blockly.Msg.MIXLY_RTCSETDATE);
+        // .appendField(new Blockly.FieldTextInput('myRTC'), 'RTCName');
+
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setTooltip(Blockly.Msg.MIXLY_TOOLTIP_RTC_SETDATE);
+    }
+};
+
     //使用帮助
     Blockly.Blocks.emakefun_ps3_help = {
         init: function () {
