@@ -65,3 +65,18 @@ void LineTracker::setMotorSpeed(uint16_t motorPort, int speed) {
         motorAnalogWrite(in1, abs(speed));
     }
 }
+
+void LineTracker::setMotorBrake(uint16_t motorPort) {
+  int in1,in2;
+    if (motorPort == 1) {
+      in1 = 13; in2 = 27;
+    } else if (motorPort == 2) {
+      in1 = 4; in2 = 2;
+    } else if (motorPort == 3) {
+      in1 = 17; in2 = 12;
+    } else if (motorPort == 4) {
+      in1 = 15; in2 = 14;
+    }
+  motorAnalogWrite(in1, 1023);
+  motorAnalogWrite(in2, 1023);
+}

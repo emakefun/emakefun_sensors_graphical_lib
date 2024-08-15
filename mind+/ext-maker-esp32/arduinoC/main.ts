@@ -95,6 +95,23 @@ namespace em_maker_esp32 {
     }
     Generator.addCode(`line_tracker.setMotorSpeed(${motorPin}, ${motorSpeed});`);
   }
+  
+  //% block="motor [MOTORPIN] brake" blockType="command"
+  //% MOTORPIN.shadow="dropdown" MOTORPIN.options="MOTORPIN" MOTORPIN.defl="MOTORPIN.M1"
+  export function setMotorBrake(parameter: any, block: any) {
+    Generator.addInclude(`fiveTrackerInit`, `#include <line_tracker.h>\nLineTracker line_tracker;`);
+    let motorPin = parameter.MOTORPIN.code;
+    if(motorPin == "M1") {
+      motorPin = 1;
+    }else if(motorPin == "M2") {
+      motorPin = 2;
+    }else if(motorPin == "M3") {
+      motorPin = 3;
+    }else if(motorPin == "M4") {
+      motorPin = 4;
+    }
+    Generator.addCode(`line_tracker.setMotorBrake(${motorPin});`);
+  }
 
   //% block="servo pin1 [SERVOPIN1]  left ar right angle[LEFTRIGHTANGLE] delay [SERVODELAY1]" blockType="command"
   //% SERVOPIN1.shadow="dropdown" SERVOPIN1.options="SERVOPIN" SERVOPIN1.defl="SERVOPIN.18"

@@ -62,6 +62,13 @@ class LineTracker {
    * 
   */
   void setMotorSpeed(uint16_t motorPort, int speed);
+  
+	/**
+	*
+	*   小车刹车
+	*   @param[in] motorPort 电机端口
+	**/
+  void setMotorBrake(uint16_t motorPort);
 
  private:
   /**
