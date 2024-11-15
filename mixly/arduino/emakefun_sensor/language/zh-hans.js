@@ -268,6 +268,7 @@ Blockly.Msg.EM_RF24_SPEED = "nRF24速率";
 Blockly.Msg.EM_RF24_CHANNEL_FREQUENCY = "nRF24设置通信通道";
 Blockly.Msg.EM_COLORVIEW_INIT = "颜色传感器初始化";
 Blockly.Msg.EM_COLORVIEW_VALUE = "颜色传感器";
+Blockly.Msg.EM_COLOR_VIEW_V2_VALUE = "颜色识别传感器V2";
 Blockly.Msg.EM_COLORVIEW = "读取颜色值";
 Blockly.Msg.EM_GAMMACHECK = "校正";
 Blockly.Msg.EM_VOICERECOGNITION_INIT = "初始化语音识别模块(I2C)";

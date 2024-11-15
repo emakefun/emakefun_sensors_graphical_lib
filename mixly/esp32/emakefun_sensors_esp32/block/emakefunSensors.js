@@ -500,6 +500,22 @@ Blockly.Blocks.nulllab_MAX7219_init = {
 		}
 	};
 	
+	  //RGB超声波模块读取超声波距离
+	Blockly.Blocks.nulllab_readultrasonicdistance = {
+		init: function () {
+		  this.setColour(80);
+		  this.appendDummyInput("")
+		  .appendField(Blockly.Msg.EM_RGBULTRASONIC)
+		  this.appendValueInput("DISTANCEPIN", Number)
+            .appendField("PIN #")
+            .setCheck(Number)
+		  this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_READULTRASONICDISTANCE)
+		  this.setOutput(true, Number);
+		  this.setInputsInline(true);
+		}
+    }
+	
 	// 初始化五路循迹V2
 	Blockly.Blocks.nulllab_lineTracker_v2={
 	  init:function(){
@@ -714,6 +730,27 @@ Blockly.Blocks.nulllab_MAX7219_init = {
 		this.setInputsInline(true);
 	  }
 	}
+	
+	    //颜色传感器V2读取的值
+	Blockly.Blocks.nulllab_color_view_v2_value = {
+		init: function () {
+		  this.setColour(50);
+		  this.appendDummyInput("")
+			.appendField(Blockly.Msg.EM_COLOR_VIEW_V2_VALUE)
+			.appendField(new Blockly.FieldTextInput('myColorSensorV2'), 'nulllab_color_view_v2')
+			.appendField(Blockly.Msg.EM_COLORVIEW)
+			.appendField(new Blockly.FieldDropdown(
+			  [
+				['R(红)', 'R'],
+				['G(绿)', 'G'],
+				['B(蓝)', 'B']
+			  ]
+			), "nulllab_color")
+		  this.setOutput(true, Number);
+		  this.setTooltip('');
+		  this.setInputsInline(true);
+	}
+	};
 	
 	// I2C expansion board
 	Blockly.Blocks.nulllab_init_i2c_expansion_board = {

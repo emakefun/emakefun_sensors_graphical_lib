@@ -481,7 +481,9 @@
         <!-- 颜色传感器读取的值 -->
         <block type="nulllab_colorview_value"></block>
       
-
+		<!-- 颜色传感器V2读取的值 -->
+        <block type="nulllab_color_view_v2_value"></block>
+		
         <!-- 新款语音识别 设置触发模式 -->
         <block type="nulllab_VoiceRecognition_init_V2"></block>
 

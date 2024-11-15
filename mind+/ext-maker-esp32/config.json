@@ -7,7 +7,7 @@
     "zh-cn": "Emakefun maker-esp32库",
     "en": "Emakefun maker esp32"
   },
-  "author": "Eamkefun",
+  "author": "Emakefun",
   "email": "leishen@null-lab.com",
   "license": "MIT",
   "isBoard": false,
@@ -17,11 +17,11 @@
     "mac",
     "web"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "asset": {
     "arduinoC": {
       "dir": "arduinoC/",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "board": [
         "esp32",
         "firebeetleesp32e",

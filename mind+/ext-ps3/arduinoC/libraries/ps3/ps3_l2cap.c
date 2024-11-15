@@ -16,8 +16,11 @@
 #define  PS3_TAG "PS3_L2CAP"
 
 
-#define PS3_L2CAP_ID_HIDC 0x40
-#define PS3_L2CAP_ID_HIDI 0x41
+// #define PS3_L2CAP_ID_HIDC 0x40
+// #define PS3_L2CAP_ID_HIDI 0x41
+
+#define L2CAP_PSM_HIDP_CTRL (17)
+#define L2CAP_PSM_HIDP_INTR (19)
 
 
 /********************************************************************************/
@@ -58,6 +61,8 @@ static tL2CAP_CFG_INFO ps3_cfg_info;
 
 bool is_connected = false;
 
+static uint8_t g_control_cid = 0x00;
+static uint8_t g_intr_cid = 0x00;
 
 /********************************************************************************/
 /*                      P U B L I C    F U N C T I O N S                        */
@@ -103,7 +108,7 @@ void ps3_l2cap_deinit_services()
 ** Returns          void
 **
 *******************************************************************************/
-void ps3_l2cap_send_hid( hid_cmd_t *hid_cmd, uint8_t len )
+void ps3_l2cap_send_hid(hid_cmd_t *hid_cmd, uint8_t len, uint8_t cid)
 {
     uint8_t result;
     BT_HDR     *p_buf;
@@ -119,7 +124,7 @@ void ps3_l2cap_send_hid( hid_cmd_t *hid_cmd, uint8_t len )
 
     memcpy ((uint8_t *)(p_buf + 1) + p_buf->offset, (uint8_t*)hid_cmd, p_buf->len);
 
-    result = L2CA_DataWrite( PS3_L2CAP_ID_HIDC, p_buf );
+    result = L2CA_DataWrite(cid, p_buf);
 
     if (result == L2CAP_DW_SUCCESS)
         ESP_LOGI(PS3_TAG, "[%s] sending command: success", __func__);
@@ -131,6 +136,13 @@ void ps3_l2cap_send_hid( hid_cmd_t *hid_cmd, uint8_t len )
         ESP_LOGE(PS3_TAG, "[%s] sending command: failed", __func__);
 }
 
+uint8_t ps3_control_cid() {
+    return g_control_cid;
+}
+
+uint8_t ps3_intr_cid() {
+    return g_intr_cid;
+}
 
 /********************************************************************************/
 /*                      L O C A L    F U N C T I O N S                          */
@@ -193,6 +205,12 @@ static void ps3_l2cap_connect_ind_cback (BD_ADDR  bd_addr, uint16_t l2cap_cid, u
 {
     ESP_LOGI(PS3_TAG, "[%s] bd_addr: %s\n  l2cap_cid: 0x%02x\n  psm: %d\n  id: %d", __func__, bd_addr, l2cap_cid, psm, l2cap_id );
 
+    if (psm == L2CAP_PSM_HIDP_CTRL) {
+        g_control_cid = l2cap_cid;
+    } else if (psm == L2CAP_PSM_HIDP_INTR) {
+        g_intr_cid = l2cap_cid;
+    }
+
     /* Send connection pending response to the L2CAP layer. */
     L2CA_CONNECT_RSP (bd_addr, l2cap_id, l2cap_cid, L2CAP_CONN_PENDING, L2CAP_CONN_PENDING, NULL, NULL);
 
@@ -236,7 +254,7 @@ void ps3_l2cap_config_cfm_cback(uint16_t l2cap_cid, tL2CAP_CFG_INFO *p_cfg)
 
     /* The PS3 controller is connected after    */
     /* receiving the second config confirmation */
-    is_connected = l2cap_cid == PS3_L2CAP_ID_HIDI;
+    is_connected = l2cap_cid == g_control_cid;
 
     if(is_connected){
         ps3Enable();

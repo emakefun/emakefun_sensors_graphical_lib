@@ -2485,6 +2485,27 @@ Blockly.Blocks.nulllab_colorview_init = {
       this.setInputsInline(true);
     }
   };
+  
+    //颜色传感器V2读取的值
+  Blockly.Blocks.nulllab_color_view_v2_value = {
+    init: function () {
+      this.setColour(50);
+      this.appendDummyInput("")
+        .appendField(Blockly.Msg.EM_COLOR_VIEW_V2_VALUE)
+        .appendField(new Blockly.FieldTextInput('myColorSensorV2'), 'nulllab_color_view_v2')
+        .appendField(Blockly.Msg.EM_COLORVIEW)
+        .appendField(new Blockly.FieldDropdown(
+          [
+            ['R(红)', 'R'],
+            ['G(绿)', 'G'],
+            ['B(蓝)', 'B']
+          ]
+        ), "nulllab_color")
+      this.setOutput(true, Number);
+      this.setTooltip('');
+      this.setInputsInline(true);
+    }
+  };
   //初始化语音识别传感器
   Blockly.Blocks.nulllab_VoiceRecognition_init = {
     init: function () {

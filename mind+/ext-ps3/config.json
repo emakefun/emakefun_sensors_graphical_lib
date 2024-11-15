@@ -13,11 +13,11 @@
 	"isBoard": false,
 	"id": "EM_PS3",
 	"platform": ["win", "mac", "web"],
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"asset": {
 		"arduinoC": {
 			"dir": "arduinoC/",
-			"version": "0.0.1",
+			"version": "0.0.3",
 			"board": ["esp32", "telloesp32", "firebeetleesp32", "firebeetleesp32e"],
 			"main": "main.ts"
 		}

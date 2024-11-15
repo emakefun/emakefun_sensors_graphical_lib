@@ -132,6 +132,14 @@ void Ps3Controller::setRumble(float intensity, int duration) {
 
 }
 
+void Ps3Controller::setLed(bool led1, bool led2, bool led3, bool led4) {
+    ps3_cmd_t cmd = {0};
+    cmd.led1 = led1;
+    cmd.led2 = led2;
+    cmd.led3 = led3;
+    cmd.led4 = led4;
+    ps3Cmd(cmd);
+}
 
 void Ps3Controller::attach(callback_t callback)
 {

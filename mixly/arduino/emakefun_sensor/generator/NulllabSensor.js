@@ -745,6 +745,19 @@ Blockly.Arduino.forBlock['nulllab_colorview_value'] = function () {
 	return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+//颜色传感器读值
+Blockly.Arduino.forBlock['nulllab_color_view_v2_value'] = function () {
+	var nulllab_colorView_v2 = this.getFieldValue('nulllab_color_view_v2');
+	Blockly.Arduino.definitions_['EM_color_view_v2'] = '#include <color_sensor.h>\n';
+	Blockly.Arduino.definitions_['EM_color_view_v2_' + nulllab_colorView_v2] = 'emakefun::ColorSensor ' + nulllab_colorView_v2 + ';'
+	Blockly.Arduino.setups_["Wire_begin"] = "Wire.begin();";
+	Blockly.Arduino.setups_['EM_color_view_v2_' + nulllab_colorView_v2] = nulllab_colorView_v2 + '.Initialize();\n';
+	var Color = this.getFieldValue('nulllab_color');
+	var code = nulllab_colorView_v2 + '.' + Color + '()';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+
 //初始化语音识别传感器
 Blockly.Arduino.forBlock['nulllab_VoiceRecognition_init'] = function(){
 	Blockly.Arduino.definitions_['VoiceRecognition'] = '#include <asr_ld3320.h>\n'

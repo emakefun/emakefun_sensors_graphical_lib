@@ -30,6 +30,7 @@ class Ps3Controller
 
         void setPlayer(int player);
         void setRumble(float intensity, int duration = -1);
+        void setLed(bool led1, bool led2, bool led3, bool led4);
 
         void attach(callback_t callback);
         void attachOnConnect(callback_t callback);

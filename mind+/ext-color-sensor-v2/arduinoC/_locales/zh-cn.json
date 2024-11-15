@@ -1,0 +1,5 @@
+{
+    "EM_COLOR_SENSOR_V2.initColorSensorV2|block": "初始化颜色识别V2模块I2C地址0x43",
+	"EM_COLOR_SENSOR_V2.colorSensorV2ReadColor|block" :"读取颜色传感器 [COL1]值"
+	
+}

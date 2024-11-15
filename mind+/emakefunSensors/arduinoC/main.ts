@@ -1598,7 +1598,7 @@ namespace Sensors_kit {
         let pin = parameter.PIN.code
         if(Generator.board === 'arduino'){
             Generator.addInclude(`depthPin`, `#define depthPin_${pin} ${pin}`);
-            Generator.addSetup(`waterLevel_${pin}`,'pinMode(depthPin_${pin}, INPUT);');
+            Generator.addSetup(`waterLevel_${pin}`,`pinMode(depthPin_${pin}, INPUT);`);
             Generator.addCode(`analogRead(depthPin_${pin})`);
         }else{
         }

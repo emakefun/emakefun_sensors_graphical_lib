@@ -1,0 +1,25 @@
+{
+	"name": {
+		"zh-cn": "五路循迹V3模块",
+		"en": "Five tracker sensor V3"
+	},
+	"description": {
+		"zh-cn": "五路循迹V3模块",
+		"en": ""
+	},
+	"author": "Emakefun",
+	"email": "leishen@null-lab.com",
+	"license": "MIT",
+	"isBoard": false,
+	"id": "EM_five_tracker_V3",
+	"platform": ["win", "mac", "web"],
+	"version": "0.0.1",
+	"asset": {
+		"arduinoC": {
+			"dir": "arduinoC/",
+			"version": "0.0.1",
+			"board": ["arduino", "arduinonano", "mega2560", "esp32", "firebeetleesp32e"],
+			"main": "main.ts"
+		}
+	}
+}

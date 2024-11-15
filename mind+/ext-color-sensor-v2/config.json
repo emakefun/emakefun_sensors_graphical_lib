@@ -1,0 +1,25 @@
+{
+	"name": {
+		"zh-cn": "颜色识别V2模块",
+		"en": "color sensor v2"
+	},
+	"description": {
+		"zh-cn": "识别物体表面颜色,输出为RGB值",
+		"en": "color sensor v2"
+	},
+	"author": "Emakefun",
+	"email": "leishen@null-lab.com",
+	"license": "MIT",
+	"isBoard": false,
+	"id": "EM_COLOR_SENSOR",
+	"platform": ["win", "mac", "web"],
+	"version": "0.0.1",
+	"asset": {
+		"arduinoC": {
+			"dir": "arduinoC/",
+			"version": "0.0.1",
+			"board": ["arduino", "arduinonano", "mega2560", "esp32", "firebeetleesp32e"],
+			"main": "main.ts"
+		}
+	}
+}

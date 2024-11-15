@@ -346,6 +346,32 @@ Blockly.Arduino.forBlock['nulllab_getSensorStates_v3_index'] = function() {
 	return [nulllab_fiveInfraredTracking + '.DigitalValue(' + index + ')',Blockly.Arduino.ORDER_ATOMIC];
 }
 
+// 颜色传感器读值
+Blockly.Arduino.forBlock['nulllab_color_view_v2_value'] = function () {
+	var nulllab_colorView_v2 = this.getFieldValue('nulllab_color_view_v2');
+	Blockly.Arduino.definitions_['EM_color_view_v2'] = '#include <color_sensor.h>';
+	Blockly.Arduino.definitions_['EM_color_view_v2_' + nulllab_colorView_v2] = 'emakefun::ColorSensor ' + nulllab_colorView_v2 + ';'
+	Blockly.Arduino.setups_["Wire_begin"] = "Wire.begin();";
+	Blockly.Arduino.setups_['EM_color_view_v2_' + nulllab_colorView_v2] = nulllab_colorView_v2 + '.Initialize();';
+	var Color = this.getFieldValue('nulllab_color');
+	var code = nulllab_colorView_v2 + '.' + Color + '()';
+	return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
+Blockly.Arduino.forBlock["nulllab_readultrasonicdistance"] = function () {
+	var pin = Blockly.Arduino.valueToCode(this, 'DISTANCEPIN', Blockly.Arduino.ORDER_ATOMIC);
+	Blockly.Arduino.definitions_['define_getDistance' ] = `
+float GetUltrasonicDistance(int SignalPin)
+{
+  pinMode(SignalPin, OUTPUT);
+  digitalWrite(SignalPin, HIGH);
+  delayMicroseconds(100);
+  digitalWrite(SignalPin, LOW);
+  pinMode(SignalPin, INPUT);
+  return pulseIn(SignalPin, HIGH, 500000) / 58.00;;
+}`;
+	return ['GetUltrasonicDistance(' + pin + ')',Blockly.Arduino.ORDER_ATOMIC];
+}
 
 Blockly.Arduino.forBlock['nulllab_init_i2c_expansion_board'] = function() {
 	var i2cName = this.getFieldValue('nulllab_i2cBoard');

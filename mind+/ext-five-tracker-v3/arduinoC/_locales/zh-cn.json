@@ -1,0 +1,7 @@
+{
+     
+    "EM_five_tracker_v3.setSensorHighThresholdValue|block": "五路循迹V3模块设置第 [INDEX] 探头转换为高电平的阈值为 [LINENUMBER](获取数字值使用)",
+    "EM_five_tracker_v3.setSensorLowThresholdValue|block": "五路循迹V3模块设置第 [INDEX] 探头转换为低电平的阈值为 [LINENUMBER](获取数字值使用)",
+	"EM_five_tracker_v3.getSingleSensorValueV3|block": "五路循迹V3模块获取第 [INDEX] 探头的值(模拟值)",
+	"EM_five_tracker_v3.getSingleSensorState|block": "五路循迹V3模块第 [INDEX] 探头寻到黑线(数字值)？"
+}

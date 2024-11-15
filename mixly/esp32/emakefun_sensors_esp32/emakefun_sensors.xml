@@ -135,7 +135,15 @@
 	</category>
 	
 	<category id="emakefun_sensor" name="传感器" colour="#9370DB">
-			<!-- 五路循迹V2 -->
+		<!--RGB超声波获取距离-->
+		<block type="nulllab_readultrasonicdistance">
+			<value name="DISTANCEPIN">
+                <shadow type="pins_digital">
+                    <field name="PIN">0</field>
+                </shadow>
+            </value>
+		</block>
+		<!-- 五路循迹V2 -->
 		<block type="nulllab_lineTracker_v2" >
 			<value name="nulllab_tracker_addr">
                 <shadow type="math_number">
@@ -188,6 +196,10 @@
 	
 	
     <category id="emakefun_smart_modules" name="智能模块" colour="#16b886">
+	
+		<!-- 颜色传感器V2读取的值 -->
+        <block type="nulllab_color_view_v2_value"></block>
+		
 		<!-- I2C扩展板 初始化 -->
 		<block type="nulllab_init_i2c_expansion_board" id="nulllab_init_i2c_expansion_board" >
             <value name="nulllab_i2cAddr">
