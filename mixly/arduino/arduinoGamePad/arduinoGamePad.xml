@@ -1,0 +1,76 @@
+<!-- type="company" block="block/NulllabSensor.js" generator="generator/NulllabSensor.js"  lib="NulllabSensor" media="media/NulllabSensor" language="language/NulllabSensor"-->
+<script type="text/javascript" src="./language/zh-hans.js"></script>
+<script type="text/javascript" src="./language/zh-hant.js"></script>
+<script type="text/javascript" src="./language/en.js"></script>
+<script type="text/javascript" src="./block/arduinoGamePad.js"></script>
+<script type="text/javascript" src="./generator/arduinoGamePad.js"></script>
+<category id="arduino_gamepad" name="Arduino手柄" colour="100">
+    <category id="arduino_gamepad_init" name="初始化" colour="#3470DB">
+        <block type = "gamepad_init" >	
+        </block>
+        <block type = "gamepad_enable_gyroscope" >		
+        </block>
+    </category>
+
+
+    <category id="arduino_gamepad_rf24" name="RF24模式" colour="100">
+        <block type = "gamepad_rf24_init" >		
+            <value name="rf24_channel">
+                <shadow type="math_number">
+                    <field name="NUM">115</field>
+                </shadow>
+            </value>
+            <value name="rf24_address">
+                <shadow type="math_number">
+                    <field name="NUM">0x0011000011LL</field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type = "gamepad_rf24_sub_init" >		
+            <value name="rf24_channel">
+                <shadow type="math_number">
+                    <field name="NUM">115</field>
+                </shadow>
+            </value>
+            <value name="rf24_address">
+                <shadow type="math_number">
+                    <field name="NUM">0x0011000011LL</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+
+    <category id="arduino_gamepad_ble" name="ble蓝牙模式" colour="100">
+        <block type = "gamepad_set_ble_mode" >		
+        </block>
+
+        <block type = "gamepad_conn_ble_mac" >	
+            <value name="ble_mac">
+                <shadow type="text">
+                    <field name="TEXT">75:8B:8C:E4:C2:84</field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type = "gamepad_set_client" >		
+        </block>
+    </category>
+
+    <category id="arduino_gamepad_data" name="数据获取" colour="100">
+        <block type = "gamepad_tick" >		
+        </block>
+
+        <block type = "gamepad_button_pressed" >		
+        </block>
+
+        <block type = "gamepad_button_state" >		
+        </block>
+
+        <block type = "gamepad_get_joystick_value" >		
+        </block>
+
+        <block type = "gamepad_get_gravity_acceleration_value" >		
+        </block>
+    </category>
+</category>
