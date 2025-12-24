@@ -1,0 +1,50 @@
+{
+  "name": {
+    "zh-cn": "Emakefun钢琴模块",
+    "en": "emakefun piano module"
+  },
+  "description": {
+    "zh-cn": "Emakefun钢琴模块",
+    "en": "The piano module library from emakefun."
+  },
+  "author": "Emakefun",
+  "email": "leishen@null-lab.com",
+  "license": "MIT",
+  "isBoard": false,
+  "id": "em_piano_module",
+  "version": "0.0.1",
+  "platform": [
+    "win",
+    "mac",
+    "web"
+  ],
+  "asset": {
+    "arduinoC": {
+      "dir": "arduinoC/",
+      "version": "0.0.1",
+      "board": [
+        "esp32",
+        "arduino",
+        "mega2560",
+        "microbit",
+        "telloesp32",
+        "arduinonano",
+        "firebeetleesp32e",
+        "firebeetleesp32"
+      ],
+      "main": "main.ts",
+      "files": [
+        "_images/featured.png",
+        "_images/icon.svg",
+        "_locales/zh-cn.json",
+        "_menus/arduino.json",
+        "_menus/arduinonano.json",
+        "_menus/esp32.json",
+        "_menus/leonardo.json",
+        "_menus/mega2560.json",
+        "_menus/microbit.json",
+        "libraries/libraries.zip"
+      ]
+    }
+  }
+}

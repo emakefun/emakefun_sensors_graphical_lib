@@ -1,0 +1,50 @@
+{
+  "name": {
+    "zh-cn": "Emakefun maker-esp32-pro编码电机库",
+    "en": "Emakefun maker esp32 pro"
+  },
+  "description": {
+    "zh-cn": "Emakefun maker-esp32-pro编码电机库",
+    "en": "Emakefun maker esp32 pro"
+  },
+  "author": "Emakefun",
+  "email": "leishen@null-lab.com",
+  "license": "MIT",
+  "isBoard": false,
+  "id": "em_maker_esp32_pro",
+  "platform": [
+    "win",
+    "mac",
+    "web"
+  ],
+  "version": "0.0.2",
+  "asset": {
+    "arduinoC": {
+      "dir": "arduinoC/",
+      "version": "0.0.2",
+      "board": [
+        "esp32",
+        "firebeetleesp32e",
+        "firebeetleesp32"
+      ],
+      "main": "main.ts",
+      "files": [
+        "_images/featured.png",
+        "_images/icon.svg",
+        "_locales/zh-cn.json",
+        "_menus/arduino.json",
+        "_menus/arduinonano.json",
+        "_menus/arduinounor3.json",
+        "_menus/esp32.json",
+        "_menus/firebeetleesp32.json",
+        "_menus/leonardo.json",
+        "_menus/maqueen.json",
+        "_menus/maxbot.json",
+        "_menus/mega2560.json",
+        "_menus/microbit.json",
+        "_menus/romeo.json",
+        "_menus/telloesp32.json"
+      ]
+    }
+  }
+}

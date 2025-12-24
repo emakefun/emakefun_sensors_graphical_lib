@@ -1,0 +1,5 @@
+{
+    "EM_COLOR_SENSOR_NLCS11.initColorSensorNLCS11|block": "初始化NLCS11颜色识别模块I2C地址0x43",
+	"EM_COLOR_SENSOR_NLCS11.colorSensoNLCS11ReadColor|block" :"读取NLCS11颜色识别模块 [COL1]值"
+	
+}

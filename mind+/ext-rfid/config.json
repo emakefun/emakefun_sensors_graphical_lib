@@ -1,6 +1,6 @@
 {
   "name": {
-    "zh-cn":"RFID通信模块",
+    "zh-cn": "RFID通信模块",
     "en": "RFID"
   },
   "description": {
@@ -12,16 +12,46 @@
   "license": "MIT",
   "isBoard": false,
   "id": "RFID",
-  "platform": ["win","mac","web"],
+  "platform": [
+    "win",
+    "mac",
+    "web"
+  ],
   "version": "0.0.1",
-  "asset": 
-  {
-    "arduinoC": 
-    {
+  "asset": {
+    "arduinoC": {
       "dir": "arduinoC/",
       "version": "0.0.1",
-      "board": ["arduino","arduinonano","arduinounor3","mega2560","esp32","firebeetleesp32","firebeetleesp32e","telloesp32"],
-      "main": "main.ts"
+      "board": [
+        "arduino",
+        "arduinonano",
+        "arduinounor3",
+        "mega2560",
+        "esp32",
+        "firebeetleesp32",
+        "firebeetleesp32e",
+        "telloesp32"
+      ],
+      "main": "main.ts",
+      "files": [
+        "_images/featured.png",
+        "_images/icon.svg",
+        "_locales/zh-cn.json",
+        "_menus/arduino.json",
+        "_menus/arduinonano.json",
+        "_menus/arduinounor3.json",
+        "_menus/esp32.json",
+        "_menus/firebeetleesp32.json",
+        "_menus/firebeetleesp32e.json",
+        "_menus/leonardo.json",
+        "_menus/maqueen.json",
+        "_menus/maxbot.json",
+        "_menus/mega2560.json",
+        "_menus/microbit.json",
+        "_menus/romeo.json",
+        "_menus/telloesp32.json",
+        "libraries/libraries.zip"
+      ]
     }
   }
 }

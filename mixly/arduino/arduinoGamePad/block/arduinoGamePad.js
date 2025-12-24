@@ -148,7 +148,7 @@
             this.setColour(200);
             this.appendDummyInput("")
                 .appendField("主机模式时连接从机的Mac地址 ")    
-            this.appendValueInput("ble_mac", String)
+            this.appendValueInput("ble_mac", Number)
             this.setOutput(false);
             this.setInputsInline(true);
             this.setPreviousStatement(true, null);
@@ -220,14 +220,15 @@
             .appendField("获取按键") 
             .appendField(new Blockly.FieldDropdown(
                 [
+                    ['Joystick Button', '0'],
                     ['L', '1'],
                     ['R', '2'],
-                    ['A', '3'],
-                    ['B', '4'],
-                    ['C', '5'],
-                    ['D', '6'],
-                    ['SELECT', '7'],
-                    ['MODE', '8'],
+                    ['A', '5'],
+                    ['B', '6'],
+                    ['C', '7'],
+                    ['D', '8'],
+                    ['SELECT', '3'],
+                    ['MODE', '4'],
                 ]), "button")
                 .appendField("的值") 
             this.setOutput(true, Number);

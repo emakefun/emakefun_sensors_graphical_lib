@@ -1,0 +1,12 @@
+{
+	"uno": false,
+	"nano": false,
+	"mpython": false,
+	"microbit": true,
+	"microbitV2": true,
+	"leonardo": false,
+	"mega2560": false,
+	"beetleProMini": false,
+	"fireBeetleEsp32":false,
+	"include": "EM_Microbit_Motor.h"
+}

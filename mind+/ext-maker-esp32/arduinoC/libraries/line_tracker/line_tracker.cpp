@@ -77,6 +77,7 @@ void LineTracker::setMotorBrake(uint16_t motorPort) {
     } else if (motorPort == 4) {
       in1 = 15; in2 = 14;
     }
+  printf("motor brake: in1： %d  in2： %d\n", in1, in2);
   motorAnalogWrite(in1, 1023);
   motorAnalogWrite(in2, 1023);
 }

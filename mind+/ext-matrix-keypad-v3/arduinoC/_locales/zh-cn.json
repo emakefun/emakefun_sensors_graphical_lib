@@ -1,0 +1,4 @@
+{
+    "em_matrix_keypad_v3.em_matrix_keyborad_v3_init|block":"初始化矩阵键盘V3 ID[keyboard_ID] 设置I2C地址为[I2C_address]",
+    "em_matrix_keypad_v3.em_matrix_keyborad_v3_read|block":"获取矩阵键盘V3 ID[keyboard_ID]当前被触摸的值"
+}

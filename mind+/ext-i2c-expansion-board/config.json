@@ -27,6 +27,7 @@
         "mega2560",
         "arduinonano",
         "arduinounor3",
+		"microbit",
         "esp32",
         "firebeetleesp32",
         "firebeetleesp32e",

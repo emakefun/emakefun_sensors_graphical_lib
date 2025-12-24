@@ -47,8 +47,8 @@
 
         <block type = "gamepad_conn_ble_mac" >	
             <value name="ble_mac">
-                <shadow type="text">
-                    <field name="TEXT">75:8B:8C:E4:C2:84</field>
+                <shadow type="math_number">
+                    <field name="NUM">75:8B:8C:E4:C2:84</field>
                 </shadow>
             </value>
         </block>

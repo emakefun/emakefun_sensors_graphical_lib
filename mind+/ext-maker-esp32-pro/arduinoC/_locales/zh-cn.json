@@ -1,0 +1,15 @@
+{
+    "em_maker_esp32_pro.setEncoderMotorPPR|block": "初始化编码电机 设置编码电机脉冲数(ppr) [PPR]",
+    "em_maker_esp32_pro.setEncoderMotorRation|block": "初始化编码电机 设置编码电机减速比(ratio) [RATIO]",
+    "em_maker_esp32_pro.setEncoderMotorChannel|block": "初始化编码电机 设置编码电机 [ENCODERMOTORPIN] 管道(Channel)组号 [CHANNEL]",
+	"em_maker_esp32_pro.setEncoderMotorSpeedPID|block": "设置编码电机 [ENCODERMOTORPIN] 的速度PID算法 比例(P) [P] 积分(I) [I] 微分(D) [D]",
+	"em_maker_esp32_pro.setEncoderMotorPWMDuty|block": "设置编码电机 [ENCODERMOTORPIN] 设置编码电机的PWM占空比(-1023-1023)为 [DUTY]",
+    "em_maker_esp32_pro.setEncoderMotorSpeed|block": "设置编码电机 [ENCODERMOTORPIN] 速度为 [SPEED]",
+	"em_maker_esp32_pro.setEncoderMotorStop|block": "停止编码电机 [ENCODERMOTORPIN]",
+    "em_maker_esp32_pro.getEncoderMotorPulseCount|block": "获取编码电机 [ENCODERMOTORPIN] 的脉冲数",
+    "em_maker_esp32_pro.getEncoderMotorSpeedRpm|block": "获取编码电机 [ENCODERMOTORPIN] 当前转速",
+    "em_maker_esp32_pro.getEncoderMotorPwmDuty|block": "获取编码电机 [ENCODERMOTORPIN] PWM的占空比",
+    "em_maker_esp32_pro.getEncoderMotorTargetRpm|block": "获取编码电机 [ENCODERMOTORPIN] 目标速度",
+    "em_maker_esp32_pro.makerEsp32ProServo|block": "舵机引脚为[SERVOPIN1] 角度为[ANGLE] 延时[SERVODELAY1]毫秒"
+
+}

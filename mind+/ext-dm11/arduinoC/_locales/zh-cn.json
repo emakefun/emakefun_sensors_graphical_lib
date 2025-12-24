@@ -1,0 +1,12 @@
+{
+    "oled12864.buttonPress|block": "当 [BUTTON] 按钮按下",
+    "oled12864.qrcode|block": "在坐标x [X] y [Y] 绘制二维码[STR] 尺寸 [SIZE]",
+    "oled12864.println|block": "在第 [LINE] 显示 [STR]",
+    "oled12864.print|block": "在坐标x [X] y [Y] 显示 [STR]",
+    "oled12864.setLineWidth|block": "设置线宽为 [WIDTH] 像素",
+    "oled12864.getLineWidth|block": "获取线宽",
+    "oled12864.buttonIsPressed|block": "按钮 [BUTTON] 被按下？",
+	"oled12864.notTrue|block": "非 [Flag]",
+    "oled12864.SIZE.1|menu": "29*29(1)",
+    "oled12864.SIZE.2|menu": "58*58(2)"
+}

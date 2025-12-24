@@ -1,0 +1,5 @@
+{
+    "EM_COLOR_SENSOR.initColorSensor|block": "初始化颜色识别TCS34725模块I2C地址0x29",
+   "EM_COLOR_SENSOR.colorSensorReadColor|block" :"获取颜色识别TCS34725模块 [COL1]值"
+	
+}

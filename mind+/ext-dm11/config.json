@@ -1,0 +1,27 @@
+{
+  "name": {
+    "zh-cn":"DM11 I2C双路电机驱动模块",
+    "en": "DM11"
+  },
+  "description": {
+    "zh-cn": "I2C双路电机驱动模块",
+    "en": "I2C Dual Motor Driver Module"
+  },
+  "author": "Emakefun",
+  "email": "leishen@null-lab.com",
+  "license": "MIT",
+  "isBoard": false,
+  "id": "dm11",
+  "platform": ["win","mac","web"],
+  "version": "0.0.1",
+  "asset": 
+  {
+    "arduinoC": 
+    {
+      "dir": "arduinoC/",
+      "version": "0.0.1",
+      "board": ["arduino","arduinonano","arduinounor3","mega2560","microbit","esp32","firebeetleesp32","firebeetleesp32e","telloesp32"],
+      "main": "main.ts"
+    }
+  }
+}

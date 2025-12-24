@@ -1,0 +1,82 @@
+<link rel="stylesheet" type="text/css" href="./media/emakefun/css/emakefun.css"></link>
+<script type="text/javascript" src="./language/zh-hans.js"></script>
+<script type="text/javascript" src="./language/zh-hant.js"></script>
+<script type="text/javascript" src="./language/en.js"></script>
+<script type="text/javascript" src="./block/maker-esp32-pro.js"></script>
+<script type="text/javascript" src="./generator/maker-esp32-pro.js"></script>
+
+
+<category id="mixly_emakefun_maker_esp32_pro" name="maker_esp32_pro" colour="68">
+	<category id="maker_esp32_pro_encoder_motor" name="编码电机" colour="#3470DB">
+		<block type = "maker_esp32_pro_set_encoder_motor_ppr" >	
+			<value name="encoder_motor_ppr">
+                <shadow type="math_number">
+                    <field name="NUM">12</field>
+                </shadow>
+            </value>
+		</block>
+
+		<block type = "maker_esp32_pro_set_encoder_motor_radio" >	
+			<value name="encoder_motor_radio">
+                <shadow type="math_number">
+                    <field name="NUM">90</field>
+                </shadow>
+            </value>
+		</block>
+
+		<block type = "maker_esp32_pro_set_encoder_motor_channel" >	
+		</block>
+
+        <block type = "maker_esp32_pro_set_speed_pid" >
+            <value name="encoder_motor_speed_pid_p">
+                <shadow type="math_number">
+                    <field name="NUM">3.0</field>
+                </shadow>
+            </value>
+            <value name="encoder_motor_speed_pid_i">
+                <shadow type="math_number">
+                    <field name="NUM">1.0</field>
+                </shadow>
+            </value>
+            <value name="encoder_motor_speed_pid_d">
+                <shadow type="math_number">
+                    <field name="NUM">1.0</field>
+                </shadow>
+            </value>
+		</block>
+
+        <block type = "maker_esp32_pro_set_encoder_motor_pwm_duty" >	
+			<value name="encoder_motor_pwm_duty">
+                <shadow type="math_number">
+                    <field name="NUM">90</field>
+                </shadow>
+            </value>
+		</block>
+
+        <block type = "maker_esp32_pro_encoder_motor_run_speed" >	
+			<value name="encoder_motor_speed">
+                <shadow type="math_number">
+                    <field name="NUM">90</field>
+                </shadow>
+            </value>
+		</block>
+
+        <block type = "maker_esp32_pro_encoder_motor_stop" >	
+		</block>
+
+        <block type = "maker_esp32_pro_get_encoder_pluse_count" >	
+		</block>
+
+        <block type = "maker_esp32_pro_get_encoder_motor_rpm" >	
+		</block>
+
+        <block type = "maker_esp32_pro_get_encoder_motor_pwm_duty" >	
+		</block>
+
+        <block type = "maker_esp32_pro_get_encoder_motor_target_rpm" >	
+		</block>
+
+	</category>
+	
+    
+</category>

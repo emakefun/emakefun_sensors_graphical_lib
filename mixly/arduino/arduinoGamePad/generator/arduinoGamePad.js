@@ -49,7 +49,7 @@
         var rf24_address = Blockly.Arduino.valueToCode(this,'rf24_address',Blockly.Arduino.ORDER_ATOMIC); 
         Blockly.Arduino.definitions_['define_gamepad_define_sub'] = `emakefun::GamepadSubscriberRf24 g_gamepad_subscriber(${rf24_CE}, ${rf24_CS});`;
         Blockly.Arduino.setups_['setup_gamepad_Initialize_sub'] = `g_gamepad_subscriber.Initialize(${rf24_channel}, 5, ${rf24_address});\n  g_gamepad_subscriber.AttachModel(&g_gamepad_model);`;
-        return "";
+        return "g_gamepad_subscriber.Tick();";
     };
 
     Blockly.Arduino.forBlock["gamepad_set_ble_mode"] = function () {
@@ -77,7 +77,7 @@
         Blockly.Arduino.definitions_['define_gamepad_define'] = 'emakefun::Gamepad g_gamepad;\nemakefun::GamepadModel g_gamepad_model;';
         Blockly.Arduino.definitions_['define_gamepad_publisher_ble'] = 'emakefun::GamepadSubscriberBle g_gamepad_subscriber;';
         Blockly.Arduino.setups_['setup_gamepad_ble_role'] = `Serial.begin(115200);\n  g_gamepad_subscriber.Initialize(Serial);\n   g_gamepad_subscriber.AttachModel(&g_gamepad_model);`;
-        return "";
+        return "g_gamepad_subscriber.Tick();\n";
     };
 
     Blockly.Arduino.forBlock["gamepad_tick"] = function () {

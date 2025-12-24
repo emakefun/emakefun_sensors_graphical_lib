@@ -1,0 +1,12 @@
+
+#emakefun_smart_modules.blocklyTreeRow > div.blocklyTreeRowContentContainer > span.blocklyTreeIcon{
+	background:url('../index/smarts.svg') no-repeat;
+	background-size: 100% auto; 
+}
+
+#emakefun_communication.blocklyTreeRow > div.blocklyTreeRowContentContainer > span.blocklyTreeIcon{
+	background:url('../index/communication.svg') no-repeat;
+	background-size: 100% auto; 
+}
+
+

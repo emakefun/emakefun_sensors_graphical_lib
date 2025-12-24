@@ -1,0 +1,551 @@
+<script type="text/javascript" src="./language/zh-hans.js"></script>
+<script type="text/javascript" src="./language/zh-hant.js"></script>
+<script type="text/javascript" src="./language/en.js"></script>
+<script type="text/javascript" src="./block/NulllabSensor.js"></script>
+<script type="text/javascript" src="./generator/NulllabSensor.js"></script>
+
+<category id="mixly_emakefun_esp32_sensors" name="EmakefunSensors" colour="20">
+	<category id="emakefun_input" name="基础输入模块" colour="#3470DB">
+	<!-- 初始化I2C矩阵键盘 -->
+		<block type = "nulllab_init_matrix_keyboard_I2C_V3" >
+			<value name="nulllab_matrix_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x65</field>
+                </shadow>
+            </value>		
+		</block>
+		
+		<!--获取矩阵键盘的值-->
+        <block type="nulllab_matrix_keyboard_values_V3">
+		</block>
+
+        <!-- 钢琴模块V2 -->
+        <block type="nulllab_initPiano_v2"> 
+            <value name="nulllab_clk">
+            <shadow type="pins_digital">
+                <field name="PIN">23</field>
+            </shadow>
+            </value>
+            <value name="nulllab_dio">
+            <shadow type="pins_digital">
+                <field name="PIN">32</field>
+            </shadow>
+            </value>
+	    </block>
+	</category>
+	
+	<category id="emakefun_display" name="显示器" colour="180">
+
+        <!-- VK16K33 init -->
+		<block type="nulllab_vk16k33_init">
+			<value name="nulllab_vk16k33_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x70</field>
+                </shadow>
+            </value>
+		</block>
+		
+		<!-- VK16K33设置亮度 -->
+		<block type="nulllab_vk16k33_brightness">
+			<value name="nulllab_vk16k33_brightness">
+                <shadow type="math_number">
+                    <field name="NUM">15</field>
+                </shadow>
+            </value>			
+		</block>
+		
+		<!-- VK16K33显示数字 -->
+		<block type="nulllab_vk16k33_showNumber">
+			<value name="nulllab_data">
+                <shadow type="math_number">
+                    <field name="NUM">12.34</field>
+                </shadow>
+            </value>			
+		</block>
+		
+		<!-- VK16K33显示时钟点 -->
+		<block type="nulllab_vk16k33_showColon">	
+		</block>
+
+		<block type="nulllab_MAX7219_init">
+        <value name="PIN1">
+          <shadow type="pins_digital">
+			<field name="PIN">23</field>
+          </shadow>
+        </value>
+        <value name="PIN2">
+          <shadow type="pins_digital">
+            <field name="PIN">32</field>
+          </shadow>
+        </value>
+        <value name="PIN3">
+          <shadow type="pins_digital">
+			<field name="PIN">33</field>
+          </shadow>
+        </value>
+        <value name="hDisplays">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="vDisplays">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+
+      <block type="nulllab_display_Matrix_DrawPixel">
+        <value name="XVALUE">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="YVALUE">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="STAT">
+          <shadow type="inout_highlow"></shadow>
+        </value>
+      </block>
+      <block type="nulllab_display_Max7219_Rotation">
+        <value name="NO">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="nulllab_display_Max7219_setPosition">
+        <value name="NO">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="X">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="Y">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="nulllab_display_Matrix_TEXT">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">Mixly</field>
+          </shadow>
+        </value>
+        <value name="Speed">
+          <shadow type="math_number">
+            <field name="NUM">300</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="nulllab_display_Matrix_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">Mixly</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="nulllab_display_Matrix_DisplayChar">
+        <value name="NO">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="LEDArray">
+          <block type="display_matrix_bitmap"></block>
+        </value>
+      </block>
+      <block type="nulllab_Matrix_img">
+      </block>
+      <block type="nulllab_display_Matrix_fillScreen">
+      </block>
+      <block type="nulllab_display_Matrix_Brightness">
+        <value name="Brightness">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="display_Matrix_write">
+      </block>
+	</category>
+
+    <category id="emakefun_actuator" name="执行器" colour="220">
+		<!-- DM11 I2C双路电机驱动板 -->
+		<block type="nulllab_DM11I2CDcMotorDriver">
+			<value name="nulllab_dm11_speed">
+				<shadow type="math_number">
+					<field name="NUM">4095</field>
+				</shadow>
+			</value>
+		</block>
+	</category>
+	
+	<category id="emakefun_sensor" name="传感器" colour="#9370DB">
+        <!--RGB超声波获取距离-->
+		<block type="nulllab_readultrasonicdistance">
+			<value name="DISTANCEPIN">
+                <shadow type="pins_digital">
+                    <field name="PIN">0</field>
+                </shadow>
+            </value>
+        </block>
+			<!-- 五路循迹V2 -->
+		<block type="nulllab_lineTracker_v2" >
+			<value name="nulllab_tracker_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x50</field>
+                </shadow>
+            </value>
+		</block>
+		<block type="nulllab_setSensitivity_v2" >
+			<value name="nulllab_sensitivity">
+                <shadow type="math_number">
+                    <field name="NUM">500</field>
+                </shadow>
+            </value>
+		</block>		
+		<block type="nulllab_getSensorValues_v2" />
+		<block type="nulllab_getSensorStates_v2" />
+		
+		<block type="nulllab_getSensorValues_v2_index" />
+		<block type="nulllab_getSensorStates_v2_index" />
+		
+		<!-- 五路循迹V3 -->
+		<block type="nulllab_lineTracker_v3" >
+			<value name="nulllab_tracker_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x50</field>
+                </shadow>
+            </value>
+		</block>
+		
+		<block type="nulllab_high_thresholds_v3" >
+			<value name="nulllab_high_threshold">
+                <shadow type="math_number">
+                    <field name="NUM">400</field>
+                </shadow>
+            </value>
+		</block>
+
+		<block type="nulllab_low_thresholds_v3" >
+			<value name="nulllab_low_threshold">
+                <shadow type="math_number">
+                    <field name="NUM">200</field>
+                </shadow>
+            </value>
+		</block>
+		
+		<block type="nulllab_getSensorValues_v3_index" />
+		<block type="nulllab_getSensorStates_v3_index" />
+    </category>
+	
+	
+	
+    <category id="emakefun_smart_modules" name="智能模块" colour="#16b886">
+
+    		<!-- 颜色传感器V2读取的值 -->
+        <block type="nulllab_color_view_v2_value"></block>
+		<!-- I2C扩展板 初始化 -->
+		<block type="nulllab_init_i2c_expansion_board" id="nulllab_init_i2c_expansion_board" >
+            <value name="nulllab_i2cAddr">
+                <shadow type="math_number">
+                    <field name="NUM">0x24</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置模式 -->
+		<block type="nulllab_set_i2c_expansion_board_mode" id="nulllab_set_i2c_expansion_board_mode" />
+		<!-- I2C扩展板 设置PWM模式频率 -->
+		<block type="nulllab_set_i2c_expansion_board_PWM_freq" id="nulllab_set_i2c_expansion_board_PWM_freq" >
+			<value name="nulllab_i2cPwmFreq">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置PWM模式占空比 -->
+		<block type="nulllab_set_i2c_expansion_board_PWM_duty" id="nulllab_set_i2c_expansion_board_PWM_duty" >
+			<value name="nulllab_i2cPwmDuty">
+                <shadow type="math_number">
+                    <field name="NUM">1024</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置舵机模式角度 -->
+		<block type="nulllab_set_i2c_expansion_board_servo" id="nulllab_set_i2c_expansion_board_servo" >
+			<value name="nulllab_i2cServoAngle">
+                <shadow type="math_number">
+                    <field name="NUM">90</field>
+                </shadow>
+            </value>
+        </block>
+		<!-- I2C扩展板 设置GPIO电平 -->
+		<block type="nulllab_set_i2c_expansion_board_level" id="nulllab_set_i2c_expansion_board_level" />
+		<!-- I2C扩展板 获取GPIO电平 -->
+		<block type="nulllab_get_i2c_expansion_board_level" id="nulllab_get_i2c_expansion_board_level" />
+		<!-- I2C扩展板 获取GPIO ADC -->
+		<block type="nulllab_get_i2c_expansion_board_adc" id="nulllab_get_i2c_expansion_board_adc" />
+	
+           <!-- 新款语音识别 设置触发模式 -->
+        <block type="nulllab_VoiceRecognition_init_V2"></block>
+
+        <!--语音识别设置词条和编号-->
+        <block type="nulllab_VoiceRecognition_Content_V2">
+            <value name="nulllab_Key_V2">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+            <value name="nulllab_content_V2">
+                <shadow type="text">
+                    <field name="TEXT">xiao yi xiao yi</field>
+                </shadow>
+            </value>
+        </block>
+
+        <!-- 语音识别设置唤醒时间 -->
+        <block type= "nulllab_VoiceRecognition_time_V2">
+            <value name="nulllab_time_V2">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+        </block>
+
+        <block type="speech_recognizer_event"></block>
+
+        <!-- 语音合成 发送数据并播放 -->
+        <block type= "nulllab_speech_synthesisStart">
+            <value name="nulllab_content">
+                <shadow type="text">
+                    <field name="TEXT">小爱同学</field>
+                </shadow>
+            </value>
+        </block>
+        
+        <!-- 语音合成到缓存 -->
+        <block type= "nulllab_speech_synthesisCache">
+            <value name="nulllab_content">
+                <shadow type="text">
+                    <field name="TEXT">小爱同学</field>
+                </shadow>
+            </value>
+            <value name="nulllab_index">
+                <shadow type="math_number">
+                    <field name="TEXT">1</field>
+                </shadow>
+            </value>
+        </block>
+        <!-- 语音合成播放缓存内容 -->
+        <block type= "nulllab_speech_cplay">
+            <value name="nulllab_freq">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+
+        		<!-- 手势传感器初始化 -->
+		<block type="nulllab_gesture_sensor_init">
+            <value name="nulllab_gesture_addr">
+                <shadow type="math_number">
+                    <field name="NUM">0x39</field>
+                </shadow>
+            </value>		
+		</block>
+		
+		<!-- 获取手势识别传感器状态 -->
+		<block type="nulllab_get_gesture"></block>
+		
+		<!-- 手势识别传感器的状态 -->
+		<block type="nulllab_gesture_sensor_status"></block>
+		
+		<!-- 初始化RFID I2C -->
+		<block type = "nulllab_init_RFID_I2C" >
+			<value name="nulllab_RFID">
+                <shadow type="math_number">
+                    <field name="NUM">0x28</field>
+                </shadow>
+            </value>		
+		</block>
+
+        <!-- 检测到卡片？ -->
+        <block type="nulllab_RFID_detection">
+        </block>
+
+        <!-- 读取卡片UID -->
+        <block type="nulllab_RFID_ReadUID">
+        </block>
+      
+	  
+		<block type="nulllab_DS1302_init">
+            <value name="RST">
+                <shadow type="pins_digital">
+                    <field name="PIN">2</field>
+                </shadow>
+            </value>
+            <value name="DAT">
+                <shadow type="pins_digital">
+                    <field name="PIN">5</field>
+                </shadow>
+            </value>
+            <value name="CLK">
+                <shadow type="pins_digital">
+                    <field name="PIN">4</field>
+                </shadow>
+            </value>
+        </block>
+		
+		<block type="nulllab_DS1307_init">
+            <value name="SDA">
+                <shadow type="pins_digital">
+                    <field name="PIN">2</field>
+                </shadow>
+            </value>
+            <value name="SCL">
+                <shadow type="pins_digital">
+                    <field name="PIN">5</field>
+                </shadow>
+            </value>
+        </block>
+        
+        <block type="nulllab_rtc_get_time"></block>
+		
+        <block type="nulllab_rtc_time">
+            <value name="hour">
+                <shadow type="math_number">
+                    <field name="NUM">8</field>
+                </shadow>
+            </value>
+            <value name="minute">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+            <value name="second">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+        </block>
+		
+        <block type="nulllab_rtc_date">
+            <value name="year">
+                <shadow type="math_number">
+                    <field name="NUM">2020</field>
+                </shadow>
+            </value>
+            <value name="month">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="day">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+		
+        <block type="nulllab_rtc_set_time">
+            <value name="date">
+                <shadow type="text">
+                    <field name="TEXT">Jan/01/2020</field>
+                </shadow>
+                <block type="RTC_date">
+                    <value name="year">
+                        <shadow type="math_number">
+                            <field name="NUM">2020</field>
+                        </shadow>
+                    </value>
+                    <value name="month">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="day">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                </block>
+            </value>
+            <value name="time">
+                <shadow type="text">
+                    <field name="TEXT">12:34:56</field>
+                </shadow>
+                <block type="RTC_time">
+                    <value name="hour">
+                        <shadow type="math_number">
+                            <field name="NUM">8</field>
+                        </shadow>
+                    </value>
+                    <value name="minute">
+                        <shadow type="math_number">
+                            <field name="NUM">0</field>
+                        </shadow>
+                    </value>
+                    <value name="second">
+                        <shadow type="math_number">
+                            <field name="NUM">0</field>
+                        </shadow>
+                    </value>
+                </block>
+            </value>
+        </block>
+		
+        <block type="nulllab_get_system_date_time"></block>
+		
+		
+    </category>
+
+
+    <category id="emakefun_communication" name="通信模块" colour="#16b886">
+		<block type="emakefun_ps3_mac_init" id = "emakefun_ps3_mac_init" name="初始化PS3手柄Mac地址">
+			<value name="nulllab_ps3_mac">
+                <shadow type="text">
+                    <field name="TEXT">00:01:02:03:04:05</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="emakefun_get_esp32_mac" id = "emakefun_get_esp32_mac" name="获取ESP32主板的MAC地址">
+        </block>
+        <block type="emakefun_esp32_isConnect" id = "emakefun_esp32_isConnect" name="是否连接上PS3手柄?">
+        </block>
+        <block type="emakefun_esp32_get_button" id = "emakefun_esp32_get_button" >
+        </block>
+		<block type="emakefun_esp32_loop_get_button" id = "emakefun_esp32_loop_get_button" >
+        </block>
+        <block type="emakefun_esp32_get_rock_analog" id = "emakefun_esp32_get_rock_analog" >
+        </block>
+        <block type="emakefun_esp32_get_battey_status" id = "emakefun_esp32_get_battey_status" >
+        </block>
+        <block type="emakefun_esp32_PS3_battey_status" id = "emakefun_esp32_PS3_battey_status" >
+        </block>
+        <block type="emakefun_esp32_PS3_set_player" id = "emakefun_esp32_PS3_set_player" >
+            <value name="emakefun_player">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="emakefun_ps3_help" name="使用帮助">
+            <value name="ps3_help">
+                <shadow type="text">
+                    <field name="TEXT">https://docs.emakefun.com/esp32/ps3_esp32/</field>
+                </shadow>
+            </value>
+        </block>
+
+    </category>
+    
+</category>

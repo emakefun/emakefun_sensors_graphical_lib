@@ -1,0 +1,95 @@
+{
+	"PIN_AnalogWrite": {
+		"menu": [
+			["P0", "P0"],
+			["P1", "P1"],
+			["P5(Button A)", "P5"],
+			["P6(Buzzer)", "P6"],
+			["P7(RGB LED)", "P7"],
+			["P8", "P8"],
+			["P9", "P9"],
+			["P11(Button B)", "P11"],
+			["P13", "P13"],
+			["P14", "P14"],
+			["P15", "P15"],
+			["P16", "P16"],
+			["P", "27"],
+			["Y", "14"],
+			["T", "12"],
+			["H", "13"],
+			["O", "14"],
+			["N", "15"]
+		]
+	},
+	"PIN_AnalogRead": {
+		"menu": [
+			["P0", "P0"],
+			["P1", "P1"],
+			["P2", "P2"],
+			["P3", "P3"],
+			["P4(Light sensor)", "P4"],
+			["P10(Sound sensor)", "P10"]
+		]
+	},
+	"PIN_DigitalWrite": {
+		"menu": [
+			["P0", "P0"],
+			["P1", "P1"],
+			["P5(Button A)", "P5"],
+			["P6(Buzzer)", "P6"],
+			["P7(RGB LED)", "P7"],
+			["P8", "P8"],
+			["P9", "P9"],
+			["P11(Button B)", "P11"],
+			["P13", "P13"],
+			["P14", "P14"],
+			["P15", "P15"],
+			["P16", "P16"],
+			["P", "27"],
+			["Y", "14"],
+			["T", "12"],
+			["H", "13"],
+			["O", "14"],
+			["N", "15"]
+		]
+	},
+	"PIN_DigitalRead": {
+		"menu": [
+			["P0", "P0"],
+			["P1", "P1"],
+			["P2", "P2"],
+			["P4(Light sensor)", "P4"],
+			["P5(Button A)", "P5"],
+			["P6(Buzzer)", "P6"],
+			["P7(RGB LED)", "P7"],
+			["P8", "P8"],
+			["P9", "P9"],
+			["P10(Sound sensor)", "P10"],
+			["P11(Button B)", "P11"],
+			["P13", "P13"],
+			["P14", "P14"],
+			["P15", "P15"],
+			["P16", "P16"],
+			["P", "27"],
+			["Y", "14"],
+			["T", "12"],
+			["H", "13"],
+			["O", "14"],
+			["N", "15"]
+		]
+	},
+	"PINMODE":{
+		"menu": [
+			
+			["INPUT", "INPUT"],
+			["OUTPUT", "OUTPUT"],
+			["PULLUP", "PULLUP"],
+			["INPUT_PULLUP", "INPUT_PULLUP"],
+			["PULLDOWN", "PULLDOWN"],
+			["INPUT_PULLDOWN", "INPUT_PULLDOWN"],
+			["OPEN_DRAIN", "OPEN_DRAIN"],
+			["OUTPUT_OPEN_DRAIN", "OUTPUT_OPEN_DRAIN"],
+			["SPECIAL", "SPECIAL"]
+		]
+	}
+}

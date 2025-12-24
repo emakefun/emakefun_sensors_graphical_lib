@@ -1,0 +1,16 @@
+{
+	"uno": true,
+	"nano": true,
+	"mpython": true,
+	"telloesp32": true,
+	"microbit": true,
+	"microbitV2": true,
+	"leonardo": true,
+	"mega2560": true,
+	"beetleProMini": false,
+	"fireBeetleEsp32":true,
+	"fireBeetleEsp32E": true,
+	"esp8266": true,
+	"pico": true,
+	"include": "DFRobot_IRremote.h"
+}
